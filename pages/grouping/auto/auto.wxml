@@ -1,0 +1,38 @@
+<!--pages/grouping/auto/auto.wxml-->
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">分组结果</view>
+</cu-custom>
+
+<view class="cu-form-group margin-top">
+   <view class='index'>红队：
+        <view wx:for="{{redteam}}" wx:key="item"  style='transform:translateX({{-index*0}}rpx)'>
+           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
+        </view>
+        <text ></text>
+    </view>
+</view>
+<view class="cu-form-group">
+   <view class='index'>蓝队：
+        <view wx:for="{{blueteam}}" wx:key="item"   style='transform:translateX({{-index*0}}rpx)'>
+           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
+        </view>
+        <text ></text>
+    </view>
+</view>
+<view class="cu-form-group">
+   <view class='index'>本轮未抽中：
+        <view wx:for="{{uncheckteam}}" wx:key="item"   style='transform:translateX({{-index*0}}rpx)'>
+           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
+        </view>
+        <text ></text>
+    </view>
+</view>
+
+
+
+<view class="cu-form-group  margin-top">
+    <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
+       <button bindtap="record">比赛结果记录</button>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/basics/home/home",
+    "pages/create/create",
+    "pages/match/match",
+    "pages/logs/logs",
+    "pages/initial/initial",
+    "pages/matchlist/matchlist",
+    "pages/register/register",
+    "pages/grouping/auto/auto",
+    "pages/record/record"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#39b54a",
+    "navigationBarTitleText": "Color UI",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json"
+}

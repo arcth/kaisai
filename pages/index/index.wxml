@@ -1,0 +1,15 @@
+<block wx:if = "{{!hasUserInfo}}">
+<view class="bg-img padding-top-xl flex align-end" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');min-height: 100%;">
+    <view class="bg-shadeBottom padding padding-top-xl padding-bottom-xxl flex-sub">
+       <button class = 'wx_button' open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo'>登录</button>
+    </view>
+  </view>
+</block>   
+<block wx:else>
+<basics wx:if="{{PageCur=='basics'}}"></basics>
+  <!-- <view class='wx_info'>
+    <image src='{{userInfo.avatarUrl}}'></image>
+    <text>{{userInfo.nickName}}</text> 
+  </view> -->
+</block>
+ 

@@ -1,0 +1,93 @@
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">比赛信息</view>
+</cu-custom>
+
+
+<view class="cu-card case {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="image">
+          <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 320rpx;"  bindtap="toregister" >
+      <view class="padding-xl text-white">
+        <view class="padding-xs text-xl"> 第  {{round.rounds}} 轮 进行中</view>
+        <view class="padding-xs">{{gname}}</view>
+      </view>
+    </view>
+      <!-- 状态 根据 status 改变-->
+      <view class="cu-tag bg-blue">{{statusdes}}</view>
+      
+      <view class="cu-bar bg-shadeBottom">
+        <text class="text-cut">点击进入签到</text>
+      </view>
+    </view>
+    <!--<view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">正义天使 凯尔</view>
+          <view class="text-gray text-sm flex justify-between">
+            十天前
+            <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> 10
+              <text class="cuIcon-appreciatefill margin-lr-xs"></text> 20
+              <text class="cuIcon-messagefill margin-lr-xs"></text> 30
+            </view>
+          </view>
+        </view>
+      </view>
+    </view> -->
+  </view>
+
+</view>
+<!---->
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> 賽事統計
+    </view>
+  </view>
+
+   <view class="cu-list menu">
+      <view class="cu-item">
+        <view class="content">
+          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+          <text class="text-grey">完成轮次</text>
+        </view>
+        <view class="action">
+          <text class="text-grey text-xxl">{{totalfield}} </text>
+        </view>
+      </view>
+       <view class="cu-item">
+        <view class="content">
+          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
+          <text class="text-grey">MVP</text>
+        </view>
+         <view class="action">
+          <text class="text-grey text-xxl">{{totalmvp}} </text>
+        </view>
+      </view>
+      
+ </view>
+      
+  <view class="cu-bar bg-white solid-bottom margin-top">
+      <view class="action">
+        <text class="cuIcon-title text-orange "></text> 戰績
+      </view>
+    </view>
+
+  <view wx:for="{{top}}" wx:key="item">
+    <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url({{item.user.avatarurl}})"></view>
+          <view class="content">
+            <view class="text-grey">{{item.user.nickname}}</view>
+    </view>
+  
+
+      <view class="action">
+        <text class="text-grey text-xxl">{{item.totalscore}} </text>
+        <text class="text-grey text-xxl">{{item.totalfield}} </text>
+        <text class="text-grey text-xxl">{{item.totalmvp}} </text>
+      </view>
+      </view>
+    </view>
+   </view>

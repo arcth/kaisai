@@ -1,0 +1,95 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.7.7",
+	"appid": "wx3d3e33eb83f09d5b",
+	"projectname": "ranking",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/grouping/auto/auto",
+					"pathName": "pages/grouping/auto/auto",
+					"query": "",
+					"scene": 1007
+				},
+				{
+					"id": -1,
+					"name": "pages/initial/initial",
+					"pathName": "pages/initial/initial",
+					"query": "data=%7B%22gamename%22%3A%22123%22%2C%22pattern%22%3A0%2C%22etime%22%3A%222019-11-26%22%2C%22prop%22%3Atrue%2C%22describe%22%3A%22123%22%2C%22openid%22%3A%22og0sd5NEchWeys4lMW7BgFOMxa7E%22%2C%22num%22%3A%22201911261425147567%22%7D",
+					"scene": 1008
+				},
+				{
+					"id": 2,
+					"name": "pages/match/match",
+					"pathName": "pages/match/match",
+					"query": "num=201911201059412140",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/register/register",
+					"pathName": "pages/register/register",
+					"query": "num= 201912041422336470",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/record/record",
+					"pathName": "pages/record/record",
+					"query": "round=%257B%2522id%2522%253A%252220191204142234421%2522%252C%2522num%2522%253A%2522201912041422336470%2522%252C%2522rounds%2522%253A1%252C%2522status%2522%253A1%252C%2522opentime%2522%253A%25222019-12-19%252016%253A47%253A36%2522%252C%2522closetime%2522%253A%25222019-12-19%252016%253A47%253A36%2522%252C%2522rounddesc%2522%253A%2522%2522%252C%2522teammode%2522%253A%25220%2522%252C%2522istimecontrol%2522%253A1%257D&redteam=%5B%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2215%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22user%22%3A%7B%22id%22%3A15%2C%22openid%22%3A%2215%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FBQNFymZN0VlIlA8U47QGfibWf5geSrvibticsicUicWvtN7EuqH3Z4JmvqdIbibpljkyDA2C48BcHZhuANTBBFD8ibmSg%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E7%9B%98%E5%8F%A4%22%2C%22logintime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%22og0sd5NEchWeys4lMW7BgFOMxa7E%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22user%22%3A%7B%22id%22%3A8%2C%22openid%22%3A%22og0sd5NEchWeys4lMW7BgFOMxa7E%22%2C%22avatarurl%22%3A%22https%3A%2F%2Fwx.qlogo.cn%2Fmmopen%2Fvi_32%2FzE7sVWdfz09AicAtTtMIVE6l2mfPiaa6iaFrhdfKQemdiaLNOPF0k5Vs00K1iagNxhvNSL7OTbtzqDbnLibopWHeleQA%2F132%22%2C%22province%22%3A%22Sichuan%22%2C%22city%22%3A%22Chengdu%22%2C%22gender%22%3A1%2C%22language%22%3A%22zh_CN%22%2C%22ctime%22%3A%222019-11-11T20%3A12%3A45.000%2B0000%22%2C%22country%22%3A%22China%22%2C%22nickname%22%3A%22%E6%B5%AE%E7%94%9F%E5%A6%82%E9%B1%BC%22%2C%22logintime%22%3A%222019-12-31T02%3A25%3A13.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2210%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3Anull%2C%22user%22%3A%7B%22id%22%3A10%2C%22openid%22%3A%2210%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FfbFL2j90tXibPgKVOxJZer1s9ENPvZySvffSoK01bcImctSWI1j0erHl5QjYkgfzwiamEk64KWc6Fib0A4Bvm18rQ%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E5%8F%AE%E5%BD%93%22%2C%22logintime%22%3A%222019-11-26T09%3A39%3A48.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3Anull%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2214%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22user%22%3A%7B%22id%22%3A14%2C%22openid%22%3A%2214%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FDYAIOgq83eoIHicz9LeWnvSEEkJv9vCaud8lWsyYKOib6hicMlYZSu3LaqQntficPSj32qiapyHI38x7icSNrgMMNP9Q%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E5%AE%88%E7%BA%A6%22%2C%22logintime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2212%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22user%22%3A%7B%22id%22%3A12%2C%22openid%22%3A%2212%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FwXjG5AcmFUmuvvTxloricey7gYhv8qIqvOQlAZVJnAeulYdVt6TkZsrecUhDTooBt94MEjDcTwFzrUNBRiaGZ5HQ%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E9%B8%A3%E4%BA%BA%22%2C%22logintime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22id%22%3A%2220191204142234421%22%7D%5D&blueteam=%5B%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2211%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3Anull%2C%22user%22%3A%7B%22id%22%3A11%2C%22openid%22%3A%2211%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2Fan9skXmFicQqK8xcQwz0T2mr0P2H7siaPCDia7hZU5O6DVHDwwaxLMO6fWZcTrwAkSv4XynqKhcSM1kjLM3iaRIOpg%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E6%9F%AF%E8%93%9D%22%2C%22logintime%22%3A%222019-11-26T09%3A39%3A48.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3Anull%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%229%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3Anull%2C%22user%22%3A%7B%22id%22%3A9%2C%22openid%22%3A%229%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FbuZEC9R8ia42YHcW9xic4DGzAhRlMMc8e6l6zeUaF0voIJOv83WcvZX8eiamibWUykChrS2sKibpe3bz1c0GhN1GPzA%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E5%A4%A7%E8%83%96%22%2C%22logintime%22%3A%222019-11-26T09%3A39%3A48.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3Anull%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%222%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3Anull%2C%22user%22%3A%7B%22id%22%3A6%2C%22openid%22%3A%222%22%2C%22avatarurl%22%3A%22https%3A%2F%2Fwx.qlogo.cn%2Fmmopen%2Fvi_32%2FDYAIOgq83eqwZruvjvDKJDpHTcibM44fJ5zDzicv31czmAqpDDUGtuS76oHbZzn4VGzTibP2GyoAibUeibQ8KuZBYRw%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E9%A3%9E%E6%9C%BA%22%2C%22logintime%22%3A%222019-11-26T09%3A39%3A48.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3Anull%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%2213%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22user%22%3A%7B%22id%22%3A13%2C%22openid%22%3A%2213%22%2C%22avatarurl%22%3A%22http%3A%2F%2Fthirdwx.qlogo.cn%2Fmmopen%2Fvi_32%2FQ0j4TwGTfTKAZDpSEhC27JG3q5lLndVWl1D1NvSMU4OzI2H6FicrLu96rj8SrhwzicToN0yxvyCUrH0lvgW8G73Q%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E8%99%9E%E5%A7%AC%22%2C%22logintime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3A%222019-12-12T02%3A22%3A48.000%2B0000%22%2C%22id%22%3A%2220191204142234421%22%7D%2C%7B%22num%22%3A%22201912041422336470%22%2C%22rounds%22%3A1%2C%22player%22%3A%221%22%2C%22team%22%3A0%2C%22teamname%22%3Anull%2C%22teammode%22%3Anull%2C%22outcome%22%3Anull%2C%22score%22%3A0%2C%22mvp%22%3A0%2C%22ctime%22%3Anull%2C%22user%22%3A%7B%22id%22%3A7%2C%22openid%22%3A%221%22%2C%22avatarurl%22%3A%22https%3A%2F%2Fwx.qlogo.cn%2Fmmopen%2Fvi_32%2FxJVg04QmgOVCialzHP3D8IsEVfRyCaE15Vujx3qRibuPmRPTdK8a8yYXicfYQuasHJBiaUPoec9tOHBeicO66ohLv1w%2F132%22%2C%22province%22%3Anull%2C%22city%22%3A%22%22%2C%22gender%22%3A0%2C%22language%22%3Anull%2C%22ctime%22%3A%222019-11-26T16%3A12%3A45.000%2B0000%22%2C%22country%22%3Anull%2C%22nickname%22%3A%22%E5%B0%8F%E5%A6%96%22%2C%22logintime%22%3A%222019-11-26T09%3A39%3A48.000%2B0000%22%2C%22mobile%22%3Anull%2C%22telnum%22%3Anull%7D%2C%22updatetime%22%3Anull%2C%22id%22%3A%2220191204142234421%22%7D%5D",
+					"scene": null
+				}
+			]
+		}
+	}
+}
