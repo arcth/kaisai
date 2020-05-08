@@ -8,14 +8,18 @@ Page({
    */
   data: {
     openid :'',
-    gamelist: {}
+    gamelist: {},
+    background: "/images/wzry1.jpg"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+    this.setData({
+      background: 'data:image/png;base64,' + base64
+    })
     var param = {
       openid: app.globalData.openid,
       status: options.status

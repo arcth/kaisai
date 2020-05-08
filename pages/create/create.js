@@ -152,12 +152,10 @@ Page({
       util.commonAjax('/api/creategame', 0, data)
         .then(function (resolve) {
           if (resolve.data.state === 0) {
-            var num = resolve.data.data.num
-            data.num = resolve.data.data.num
+            var game = resolve.data.data.game
              wx.redirectTo ({ 
-               url: '../initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(data))
+               url: '../initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(game)) + '&source=create' + '&introducer=' + app.globalData.openid 
              })
-
           } else {
             // 失败  
           }

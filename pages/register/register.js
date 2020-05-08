@@ -36,7 +36,15 @@ Page({
       round: JSON.parse(decodeURIComponent(options.round))
     })
     let roundinfo = JSON.parse(decodeURIComponent(options.round))
-    let iscreater = options.iscreater
+    if (options.iscreater === 'true') {
+      this.setData({
+        iscreater: true
+      })
+    } else if (options.iscreater === 'false') {
+      this.setData({
+        iscreater: false
+      })
+    }
     let pattern = options.pattern
     let disable = true
     let num = roundinfo.num
@@ -51,7 +59,6 @@ Page({
     }
     
     this.setData({
-      iscreater: iscreater,
       disable: disable,
       pattern: pattern,
       options: options,
@@ -66,7 +73,6 @@ Page({
       .then(function (resolve) {
         if (resolve.data.state === 0) {
           // 成功  
-          //console.log(" /api/getPlayers " + resolve.data.data.players)
           that.setData({
             players: resolve.data.data.players
           })

@@ -11,7 +11,7 @@
 
  <view wx:for="{{gamelist}}" wx:key="item" >
     <view class="cu-card">
-          <view class="cu-item bg-img shadow-blur" style="background-image: url('../../images/wzry1.jpg');height: 50%;" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
+          <view class="cu-item bg-img shadow-blur" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
           <view class="padding-xl text-white">
           <view class="text-cut padding bg-grey radius text-xxl" wx:if="{{item.creater == openid}}">你主办的比赛</view>
           <view class="padding-xs text-xl">比赛 ： {{item.name}}</view>

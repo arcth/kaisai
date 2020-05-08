@@ -7,7 +7,7 @@
 <view class="cu-card case {{isCard?'no-card':''}}">
   <view class="cu-item shadow">
     <view class="image">
-          <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 320rpx;"  bindtap="toregister" >
+          <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 320rpx;"  bindtap="toregister" >
       <view class="padding-xl text-white">
         <view class="padding-xs text-xl"> 第  {{round.rounds}} 轮 进行中</view>
         <view class="padding-xs">{{gname}}</view>

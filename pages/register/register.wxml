@@ -39,8 +39,8 @@
     </view>
  </view>
 
-<block wx:if="{{iscreater}}">
-<form bindsubmit='formSubmit'>
+<view wx:if="{{iscreater}}">
+<form bindsubmit='formSubmit' >
 <view class="cu-form-group margin-top">
 		<view class="title">日期选择</view>
 		<picker name="date" mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
@@ -90,7 +90,7 @@
     </view>
  </view>
  </form> 
-  </block>
+</view>
 
 <block wx:if="{{isDrawlots}}">
     <view class="cu-form-group  margin-top">

@@ -5,17 +5,17 @@
 </cu-custom>
 
 
- <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/wzry1.jpg');height: 50%;" bindtap="openCurrentGame" data-type="default-wzry"
- data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.gamename}}" data-pattern="{{gameinfo.pattern}}">
+ <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-type="default-wzry"
+ data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.name}}" data-pattern="{{gameinfo.pattern}}">
     <view class="padding-xl text-white">
-      <view class="padding-xs text-xl">比赛 ： {{gameinfo.gamename}}</view>
+      <view class="padding-xs text-xl">比赛 ： {{gameinfo.name}}</view>
       <view class="padding-xs">简介 ： {{gameinfo.describe}}</view>
       <view class="padding-xs">对战模式 : {{gameinfo.pattern?0:'5v5 个人赛'}}</view>
       <view class="padding-xs">结束时间 ：{{gameinfo.etime}}</view>
 
 <!-- BUG后期处理 头像多了没有换行  -->
       <view class='index'>已报名：
-        <view wx:for="{{participants}}" wx:key  style='transform:translateX({{-index*30}}rpx)'>
+        <view wx:for="{{participants}}" wx:key="key" style='transform:translateX({{-index*30}}rpx)'>
            <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
         </view>
         <text ></text>
@@ -23,6 +23,9 @@
     </view>
   </view>
       <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-       <button wx:if="{{hasUserInfo}}"  open-type='share' >分享</button>
-       <button wx:if = "{{!hasUserInfo}}"  open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' >登录参与比赛</button>
+       <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' >分享</button>
+       <!--<button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' >登录参与比赛</button>-->
+       <button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindtap='bindgetuserinfo' >参与比赛</button>
+
+       <!-- <button wx:if = "{{hasUserInfo && !isparticipant}}"  bindtap='bindgetuserinfo' >参与比赛</button> -->
     </view>

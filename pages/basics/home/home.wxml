@@ -31,10 +31,10 @@
     </view>
   </view>
   <navigator url="../matchlist/matchlist?status=0">
-    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 220rpx;"  >
+    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 220rpx;"  >
       <view class="padding-xl text-white">
         <view class="padding-xs text-xl"> Ranking</view>
-        <view class="padding-xs">Only the guilty need fear me.</view>
+        <view class="padding-xs">进行中</view>
       </view>
     </view>
   </navigator>

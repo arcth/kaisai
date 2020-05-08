@@ -11,9 +11,11 @@ Page({
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,
-    //viewimg : " <view class=" + '"' +"cu-avatar xl round margin-left" + '"' + " style=" + '"' + "background-image: url(",
-   // viewimgend:  " );" +'">' + "</view>",  
-    participants: {} 
+    isparticipant : false,
+    participants: {},
+    background : '/images/wzry1.jpg',
+    introducer : '',
+    options : ''
 
   },
 
@@ -21,75 +23,133 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const info = JSON.parse(decodeURIComponent(options.gameinfo))
-    
-    this.setData({
-      gameinfo: info
-    })
+    if (options.source != ''){
+      let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+      this.setData({
+        background: 'data:image/png;base64,' + base64,
+        options: options
+      })
+    }
+    console.log('000 initial.js openid =' + app.globalData.openid)
+    console.log('000 initial.js userInfo =' + app.globalData.userInfo)
+   
 
+    const info = JSON.parse(decodeURIComponent(options.gameinfo))
+    this.setData({
+      gameinfo: info,
+      introducer: options.introducer
+    })
+    if (app.globalData.userInfo == "undefined" || app.globalData.userInfo == null) {
+      console.log(' initial.js navigateTo =' + info.name)
+      wx.navigateTo({
+        url: '../index/index?gameinfo=' + encodeURIComponent(JSON.stringify(info)) + '&introducer=' + this.data.introducer
+      })
+    }
     var param = {
-      gamenum: info.num
+      gamenum: info.id
     }
     var that = this
-
     util.commonAjax('/api/getParticipants', 0, param)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
           // 成功  
           const obj = resolve.data.data.participants;
-
           that.setData({
             participants: obj
           })
-
-          //for (var index in obj) { //第一层循环取到各个list  
-          //  console.log( obj[index].avatarurl);
-          //}
-            
         } else {
           // 失败  
         }
       })
-
-    
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
+    var param = {
+      num: info.id,
+      player : app.globalData.openid
     }
+    util.commonAjax('/api/getCurPartakeInfo', 0, param)
+      .then(function (resolve) {
+      if (resolve.data.state === 0) {
+        // 成功  
+        const obj = resolve.data.data.partake;
+        if (typeof obj == "undefined" || obj == null || obj == "") {
+        } else {
+          that.setData({
+            isparticipant: true
+          })
+          console.log('1 initial.js isparticipant = ' + this.data.isparticipant)
+        }
+      } else {
+        // 失败  
+      }
+    })
+
+  
+    var param = {
+      id: app.globalData.openid
+    }
+    var that = this
+    util.commonAjax('/api/getuser', 0, param)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          const obj = resolve.data.data.wxuser;
+          if (typeof obj == "undefined" || obj == null || obj == "") {
+          } else {
+            that.setData({
+              hasUserInfo: true
+            })
+          }
+        } else {
+        }
+      })
+    console.log('2 initial.js hasUserInfo = ' + this.data.hasUserInfo )
+    console.log('2 initial.js isparticipant = ' + this.data.isparticipant)
   },
 
 
+  onShow: function () {
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1]; //当前页面
+    let info = currPage.data.gameinfo
+    if (info) {
+      this.setData({
+        gameinfo: info
+      })
+    }
+
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
     return {
-
-      title: '弹出分享时显示的分享标题',
-
+      title: '生死看淡，不服来干',
       desc: '分享页面的内容',
-
-      path: '/pages/initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(this.data.gameinfo)) // 路径，传递参数到指定页面。
-
+      path: '/pages/initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(this.data.gameinfo)) +'&introducer=' + app.globalData.openid  // 路径，传递参数到指定页面。
     }
-
   },
 
    bindgetuserinfo: function (e) {
 
-     console.log('initial.js row 83| = ' + app.globalData.code)
-     console.log('initial.js row 84| = ' + e.detail.userInfo)
-     console.log('initial.js row 85| = ' + e.detail.userInfo == app.globalData.openid)
-    app.globalData.userInfo = e.detail.userInfo
+    // 订阅消息授权 只支持bingtap的出发方式
+     wx.requestSubscribeMessage({
+       tmplIds: ["iRwCjnpwDtRhFAdogxGdSnodaz9ZGkli4snXX0UNy3A"],
+       success: (res) => {
+         if (res['iRwCjnpwDtRhFAdogxGdSnodaz9ZGkli4snXX0UNy3A'] === 'accept') {
+           wx.showToast({
+             title: '订阅OK！',
+             duration: 1000,
+             success(data) {
+               //成功
+             }
+           })
+         }
+       }
+     })
 
+    //app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: e.detail.userInfo,
+      userInfo: app.globalData.userInfo,
       hasUserInfo: true
     })
-    
 
     var data = {
       encryptedData: e.detail.encryptedData,
@@ -97,9 +157,10 @@ Page({
       code: app.globalData.code,
       userinfo: JSON.stringify(e.detail.userInfo),
       player: app.globalData.openid,
-      gamenum: this.data.gameinfo.num,
-      introducer: this.data.gameinfo.openid
+      gamenum: this.data.gameinfo.id,
+      introducer: this.data.introducer
     }
+    let that = this
      util.commonAjax('/api/joinGame', 0, data)
       .then(function (resolve) { 
         if (resolve.data.state === 0) {
@@ -109,6 +170,9 @@ Page({
           wx.setStorageSync('openid', resolve.data.data.open_id)
           // 新手们注意一下，记得把下面这个写到这里，有好处。  
           typeof cb == "function" && cb(app.globalData.userInfo)
+          that.options.source = ''
+          that.onLoad(that.options)
+          
         } else {
           // 失败  
         }

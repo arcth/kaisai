@@ -15,20 +15,33 @@ Page({
     top : '',
     totalfield : '',
     totalmvp : '',
-    statusdes : ''
+    statusdes : '',
+    gameinfo : '',
+    background: '/images/logo.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let iscreater = options.iscreater
+    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+    this.setData({
+      background: 'data:image/png;base64,' + base64
+    })
+    if (options.iscreater === 'true'){
+      this.setData({
+        iscreater : true
+      })
+    } else if (options.iscreater === 'false'){
+      this.setData({
+        iscreater : false
+      })
+    }
     let num = options.num
     let gname = options.gname
     let pattern = options.pattern
     this.setData({
       num: num,
-      iscreater: iscreater,
       gname: gname,
       pattern: pattern
     })
@@ -46,11 +59,28 @@ Page({
             round: resolve.data.data.curRound,
             statusdes: resolve.data.data.statusdes    
           })
-          
         } else {
           // 失败  
         }
       })
+
+    /**util.commonAjax('/api/getGameinfo', 0, param)
+      .then(function (resolve) {
+        // 这里自然不用解释了，这是接口返回的参数  
+        if (resolve.data.state === 0) {
+          // console.log(" match = " + resolve.data.data.statusdes)
+          // 成功  
+          that.setData({
+            gameinfo: resolve.data.data.game,
+            num: num,
+            iscreater: resolve.data.data.game.iscreater,
+            gname: resolve.data.data.game.name,
+            pattern: resolve.data.data.game.pattern
+          })
+        } else {
+          // 失败  
+        }
+      })**/
 
     util.commonAjax('/api/getTop', 0, param)
       .then(function (resolve) {  
@@ -78,49 +108,6 @@ Page({
         }
       })
    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    console.log(" match.js round 3 =" + this.data.round.id)
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**
