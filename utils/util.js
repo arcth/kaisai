@@ -28,7 +28,15 @@ function commonAjax(url, types, data) {
   // 这是es6的promise版本库大概在1.1.0开始支持的，大家可以去历史细节点去看一下，一些es6的机制已经可以使用了  
   var promise = new Promise(function (resolve, reject, defaults) {
     // 封装reuqest  
-    console.log("util wx.request  url =" + app.globalData.url + url)
+    wx.showLoading({
+      title: '加载中...',
+    })
+
+    /*wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 2000 关闭时间
+    }*/
     wx.request({
       url: app.globalData.url + url,
       data: data,
@@ -36,7 +44,10 @@ function commonAjax(url, types, data) {
       header: (types === 1) ? { 'content-type': 'application/json' } : { 'content-type': 'application/x-www-form-urlencoded' },
       success: resolve,
       fail: reject,
-      complete: defaults,
+      //complete: defaults,
+      complete: () => {
+        wx.hideLoading()
+      } 
     })
   });
   return promise;
