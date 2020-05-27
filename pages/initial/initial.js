@@ -18,7 +18,7 @@ Page({
 	gameUserContList:[],
 	registeredUserCount:5,// 已经报名总人数
     participants: {}, 
-    background : '/images/wzry1.jpg',
+    background : '/images/share-bg.png',
     introducer : '',
     options : ''
 

@@ -3,6 +3,7 @@
 	<view slot="backText">返回</view>
 	<view slot="content">分享比赛</view>
 </cu-custom>
+<image src="../../images/share-bg.png" class="share-bg"></image>
 <view class="inital-page">
 	<view class="title-text">{{gameinfo.name || '地利集团杯'}}</view>
 	<view class="game-count"><i></i><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
