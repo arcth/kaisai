@@ -7,12 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    gameinfo : {},
+    gameinfo : {
+		
+	},
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,
     isparticipant : false,
-    participants: {},
+	gameUserCont:20, //比赛总人数
+	gameUserContList:[],
+	registeredUserCount:5,// 已经报名总人数
+    participants: {}, 
     background : '/images/wzry1.jpg',
     introducer : '',
     options : ''
@@ -25,11 +30,19 @@ Page({
   onLoad: function (options) {
     if (options.source != ''){
       let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+	  // console.log(base64);
       this.setData({
         background: 'data:image/png;base64,' + base64,
         options: options
       })
     }
+	
+	//测试代码
+	let regArry = new Array(this.data.gameUserCont);
+	this.setData({gameUserContList:regArry})
+	regArry = null;
+	//-end
+	
     console.log('000 initial.js openid =' + app.globalData.openid)
     console.log('000 initial.js userInfo =' + app.globalData.userInfo)
    

@@ -26,20 +26,22 @@
   </view>
 </block>
 
-<block wx:if="{{TabCur==1}}">
-  <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-      <text class="cuIcon-title text-blue"></text>进行中的比赛
-    </view>
-  </view>
-  <navigator url="../matchlist/matchlist?status=0">
-    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 220rpx;"  >
-      <view class="padding-xl text-white">
-        <view class="padding-xs text-xl"> Ranking</view>
-        <view class="padding-xs">进行中</view>
-      </view>
-    </view>
-  </navigator>
+<block wx:if="{{TabCur==1}}" >
+	<view class="action-list-container">
+	  <view>
+		  <view class="title-text">
+			<text >进行中的比赛</text>
+		  </view>
+		 
+		  <navigator url="../matchlist/matchlist?status=0" >
+		  		<view class="bg-img bg-mask padding-tb-xl action-list-item" style="background-image: url({{background}});height: 220rpx;"  >
+		  		  <view class=" text-white">
+		  			<view class="padding-xs text-xl"> Ranking</view>
+		  			<view class="padding-xs">进行中</view>
+		  		  </view>
+		  		</view>
+		  </navigator>
+	  </view>
 <!--
   <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
@@ -55,17 +57,20 @@
     </view>
   </navigator>
 -->
-  <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-      <text class="cuIcon-title text-blue"></text>已完结的比赛
-    </view>
+	  <!-- <view>
+		  <view class="cu-bar bg-white solid-bottom margin-top">
+		  		<view class="action">
+		  		  <text class="cuIcon-title text-blue"></text>已完结的比赛
+		  		</view>
+		  </view>
+		  <navigator url="">
+		  		<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 220rpx;">
+		  		  <view class="padding-xl text-white">
+		  			<view class="padding-xs text-xl"> Ranked</view>
+		  			<view class="padding-xs">Only the guilty need fear me.</view>
+		  		  </view>
+		  		</view>
+		  </navigator>
+	  </view> -->
   </view>
-  <navigator url="">
-    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 220rpx;">
-      <view class="padding-xl text-white">
-        <view class="padding-xs text-xl"> Ranked</view>
-        <view class="padding-xs">Only the guilty need fear me.</view>
-      </view>
-    </view>
-  </navigator>
 </block>
