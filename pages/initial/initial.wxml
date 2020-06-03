@@ -6,7 +6,7 @@
 <image src="../../images/share-bg.png" class="share-bg"></image>
 <view class="inital-page">
 	<view class="title-text">{{gameinfo.name || '地利集团杯'}}</view>
-	<view class="game-count"><i></i><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
+	<view class="game-count"><image src="/images/user-icon.png" class="user-icon"></image><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
 	<view class="text-inline">简介 ： {{gameinfo.describe}}</view>
 	<view class="text-inline">对战模式 : {{gameinfo.pattern?0:'5v5 个人赛'}}</view>
 	<view>
@@ -27,7 +27,6 @@
 	
 	   <!-- <button wx:if = "{{hasUserInfo && !isparticipant}}"  bindtap='bindgetuserinfo' >参与比赛</button> -->
 	</view>
-	
 </view>
 
  <!-- <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-type="default-wzry"

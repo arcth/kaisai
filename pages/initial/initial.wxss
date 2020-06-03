@@ -12,12 +12,26 @@ page{
 .inital-page{
 	width: 560rpx;
 	margin: 160rpx auto 60rpx;
+	position: relative;
 	min-height: 800rpx;
 	padding: 46rpx 36rpx;
-	background:linear-gradient(180deg,rgba(238,10,10,.38) 0%,rgba(255,190,58,.68) 100%);
 	border-radius: 30rpx;
 	color: #fff;
 }
+.inital-page::before{
+	content: '';
+	display: block;
+	background:linear-gradient(180deg,rgba(238,10,10,1) 0%,rgba(255,190,58,1) 100%);
+	mix-blend-mode: multiply;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	border-radius: 30rpx;
+	z-index: -1;
+	top: 0;
+	left: 0;
+}
+
 .inital-page .title-text{
 	font-size: 44rpx;
 	font-weight: bold;
@@ -73,6 +87,12 @@ page{
 	font-size: 32rpx;
 	background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
 	
+}
+.game-count .user-icon{
+	display: inline-block;
+	width: 22rpx;
+	height: 24rpx;
+	margin-right: 8rpx;
 }
 .index {
   width: 100%;
