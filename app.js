@@ -76,7 +76,7 @@ App({
     userInfo: null,
     code:null,
     openid:null,
-    //url:'http://139.198.19.199:8080'
+    // url:'http://139.198.19.199:8080'
     url: 'http://localhost:8080'
   },
   
