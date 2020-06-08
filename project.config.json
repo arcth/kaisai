@@ -11,6 +11,8 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -18,10 +20,12 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.11.0",
+	"libVersion": "2.11.1",
 	"appid": "wx3d3e33eb83f09d5b",
 	"projectname": "ranking",
 	"debugOptions": {
@@ -65,7 +69,7 @@
 					"id": 1,
 					"name": "pages/initial/initial",
 					"pathName": "pages/initial/initial",
-					"query": "gameinfo=%257B%2522id%2522%253A%25222020042809215028144%2522%252C%2522pattern%2522%253A%25220%2522%252C%2522prop%2522%253A%2522true%2522%252C%2522ctime%2522%253A%25222020-04-28T01%253A21%253A50.000%252B0000%2522%252C%2522etime%2522%253A%25222020-04-28%2522%252C%2522round%2522%253A0%252C%2522creater%2522%253A%2522og0sd5NEchWeys4lMW7BgFOMxa7E%2522%252C%2522cycle%2522%253A8%252C%2522records%2522%253Anull%252C%2522players%2522%253Anull%252C%2522status%2522%253A0%252C%2522name%2522%253A%2522zzzz%2522%252C%2522describe%2522%253A%2522zz%2522%257D&source=create&introducer=og0sd5NEchWeys4lMW7BgFOMxa7E",
+					"query": "gameinfo=%7B%22id%22%3A%222020060214145666171%22%2C%22pattern%22%3A%220%22%2C%22prop%22%3A%22true%22%2C%22ctime%22%3A%222020-06-02T06%3A14%3A56.000%2B0000%22%2C%22etime%22%3A%222020-06-02%22%2C%22round%22%3A0%2C%22creater%22%3A%22og0sd5NEchWeys4lMW7BgFOMxa7E%22%2C%22cycle%22%3A8%2C%22records%22%3Anull%2C%22players%22%3Anull%2C%22status%22%3A0%2C%22name%22%3A%22%E7%9F%B3%E5%B8%86%E8%83%9C%E4%B8%B0%E5%A3%AB%E5%A4%A7%E5%A4%AB%22%2C%22describe%22%3A%22%E9%98%BF%E6%96%AF%E9%A1%BF%E5%8F%91%E7%94%9F%22%7D",
 					"scene": 1008
 				},
 				{

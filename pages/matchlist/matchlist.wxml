@@ -1,4 +1,3 @@
-
 <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">我的比赛</view>
@@ -9,16 +8,16 @@
 
 <!-- BUG后期处理 头像多了没有换行  -->
 
- <view wx:for="{{gamelist}}" wx:key="item" >
+ <view wx:for="{{groupon}}" wx:key="item" >
     <view class="cu-card">
           <view class="cu-item bg-img shadow-blur" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
           <view class="padding-xl text-white">
           <view class="text-cut padding bg-grey radius text-xxl" wx:if="{{item.creater == openid}}">你主办的比赛</view>
           <view class="padding-xs text-xl">比赛 ： {{item.name}}</view>
           <view class="padding-xs">简介 ： {{item.describe}}</view>
-          <view class="padding-xs">对战模式 : {{item.pattern?0:'5v5 个人赛'}}</view>
+          <view class="padding-xs">对战模式 : {{item.patterndes}}</view>
           <view class="padding-xs">结束时间 ：{{item.etime}}</view>
-
+<view class='padding-xs name_right'>赛事结束：{{item.endtime}}</view>
           <view class='index'>选手：
             <view wx:for="{{item.players}}" wx:key="item"  style='transform:translateX({{-index*30}}rpx)'> <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
             </view>

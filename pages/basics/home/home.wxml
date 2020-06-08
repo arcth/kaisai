@@ -7,7 +7,7 @@
   <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{2}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
     {{tabNav[index]}}
   </view>
-</scroll-view>
+</scroll-view>  
 
 <block wx:if="{{TabCur==0}}">
   <!-- <view class="cu-bar bg-white solid-bottom margin-top">
@@ -17,7 +17,8 @@
   </view> -->
 
   <view class="create-tag-container">
-	  <view class="bg-img create-tag-block padding-tb-xl" style="background-image: url('../../images/5v5.png');height: 350rpx;" bindtap="create" data-type="default-wzry">
+	  <view class="bg-img create-tag-block " style="height: 350rpx;" bindtap="create" data-type="default-wzry">
+	  	<image src="/images/5v5.png"></image>
 	    <!-- <view class="padding-xl text-white">
 	      <view class="padding-xs text-xl"> Ranking</view>
 	      <view class="padding-xs">Only the guilty need fear me.</view>
@@ -38,6 +39,21 @@
 		  		  <view class=" text-white">
 		  			<view class="padding-xs text-xl"> Ranking</view>
 		  			<view class="padding-xs">进行中</view>
+		  		  </view>
+		  		</view>
+		  </navigator>
+	  </view>
+
+	  <view>
+		  <view class="title-text">
+			<text >已完结的比赛</text>
+		  </view>
+		 
+		  <navigator url="../matchlist/matchlist?status=1" >
+		  		<view class="bg-img bg-mask padding-tb-xl action-list-item" style="background-image: url({{background}});height: 220rpx;"  >
+		  		  <view class=" text-white">
+		  			<view class="padding-xs text-xl"> Ranking</view>
+		  			<view class="padding-xs">已完结</view>
 		  		  </view>
 		  		</view>
 		  </navigator>

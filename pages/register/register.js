@@ -16,7 +16,7 @@ Page({
     etime: util.formatTimeOnly(new Date()),
     disable : true,
     index: '0',
-    picker: ['ELO匹配', '随机匹配', '手动抽签'],
+    picker: ['随机匹配', 'ELO匹配', '手动抽签'],
     teammode : '0',
     options :'',
     round : '',
@@ -77,7 +77,7 @@ Page({
             players: resolve.data.data.players
           })
           if (pattern == '0'){
-            if (that.data.players.length >= 10 && iscreater){
+            if (that.data.players.length >= 10 && that.data.iscreater){
               that.setData({
                 isDrawlots : true
               })

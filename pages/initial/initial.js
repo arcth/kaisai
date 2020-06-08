@@ -88,7 +88,7 @@ Page({
           that.setData({
             isparticipant: true
           })
-          console.log('1 initial.js isparticipant = ' + this.data.isparticipant)
+          console.log('1 initial.js isparticipant = ' + that.data.isparticipant)
         }
       } else {
         // 失败  
@@ -113,8 +113,6 @@ Page({
         } else {
         }
       })
-    console.log('2 initial.js hasUserInfo = ' + this.data.hasUserInfo )
-    console.log('2 initial.js isparticipant = ' + this.data.isparticipant)
   },
 
 
@@ -144,9 +142,9 @@ Page({
 
     // 订阅消息授权 只支持bingtap的出发方式
      wx.requestSubscribeMessage({
-       tmplIds: ["iRwCjnpwDtRhFAdogxGdSnodaz9ZGkli4snXX0UNy3A"],
+       tmplIds: ["iRwCjnpwDtRhFAdogxGdSsJXyp7sXBZDR0RskgLLe4A"],
        success: (res) => {
-         if (res['iRwCjnpwDtRhFAdogxGdSnodaz9ZGkli4snXX0UNy3A'] === 'accept') {
+         if (res['iRwCjnpwDtRhFAdogxGdSsJXyp7sXBZDR0RskgLLe4A'] === 'accept') {
            wx.showToast({
              title: '订阅OK！',
              duration: 1000,
@@ -195,8 +193,12 @@ Page({
     if (!this.data.hasUserInfo){
       return
     }
-    let num = event.currentTarget.dataset.gid
     let iscreater = event.currentTarget.dataset.iscreater
+    if(app.globalData.openid == this.data.gameinfo.creater ){
+      iscreater = true;
+    }
+    let num = event.currentTarget.dataset.gid
+    
     let gname = event.currentTarget.dataset.gname
     let pattern = event.currentTarget.dataset.pattern
     wx.redirectTo({

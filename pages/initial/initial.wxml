@@ -6,7 +6,7 @@
 <image src="../../images/share-bg.png" class="share-bg"></image>
 <view class="inital-page">
 	<view class="title-text">{{gameinfo.name || '地利集团杯'}}</view>
-	<view class="game-count"><i></i><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
+	<view class="game-count"><image src="/images/user-icon.png" class="user-icon"></image><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
 	<view class="text-inline">简介 ： {{gameinfo.describe}}</view>
 	<view class="text-inline">对战模式 : {{gameinfo.pattern?0:'5v5 个人赛'}}</view>
 	<view>
@@ -17,17 +17,16 @@
 			   <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
 			</view>
 			<!-- 占位元素 总人数减去已经报名人数-->
-			<view class="user-list-item" wx:for="{{gameUserContList}}" wx:key="*this"></view>
+			<!-- <view class="user-list-item" wx:for="{{gameUserContList}}" wx:key="*this"></view> -->
 		</view>
 	</view>
 	<view >
-	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' >分享</button>
+	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' class="btn-blue-gradient">分享</button>
 	   <!--<button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' >登录参与比赛</button>-->
 	   <button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindtap='bindgetuserinfo' class="btn-blue-gradient">报名参加比赛</button>
 	
 	   <!-- <button wx:if = "{{hasUserInfo && !isparticipant}}"  bindtap='bindgetuserinfo' >参与比赛</button> -->
 	</view>
-	
 </view>
 
  <!-- <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-type="default-wzry"
@@ -35,8 +34,13 @@
     <!-- <view class="padding-xl text-white">
       <view class="padding-xs text-xl">比赛 ： {{gameinfo.name}}</view>
       <view class="padding-xs">简介 ： {{gameinfo.describe}}</view>
+
+      <view class="padding-xs">对战模式 : {{gameinfo.patterndes}}</view>
+      <view class="padding-xs">结束时间 ：{{gameinfo.etime}}</view>
+
       <view class="padding-xs">对战模式 : {{gameinfo.pattern?0:'5v5 个人赛'}}</view>
       <view class="padding-xs">结束时间 ：{{gameinfo.etime}}</view> -->
+
 
 <!-- BUG后期处理 头像多了没有换行  -->
       <!-- <view class='index'>已报名：
