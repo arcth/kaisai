@@ -1,6 +1,6 @@
 Component({
   properties: {
-    background: String
+    background: String,
   },
   options: {
     addGlobalClass: true,

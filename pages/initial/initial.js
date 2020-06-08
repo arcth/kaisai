@@ -43,9 +43,6 @@ Page({
 	regArry = null;
 	//-end
 	
-    console.log('000 initial.js openid =' + app.globalData.openid)
-    console.log('000 initial.js userInfo =' + app.globalData.userInfo)
-   
 
     const info = JSON.parse(decodeURIComponent(options.gameinfo))
     this.setData({
