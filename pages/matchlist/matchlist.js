@@ -11,7 +11,7 @@ Page({
     gamelist: {},
     collageTeamlist : {},
     endTime: '2020-06-05 22:40:30', //2018/11/22 10:40:30这种格式也行
-    background: "/images/wzry1.jpg"
+    background: "/images/match_list_bg.png"
   },
 
   /**

@@ -13,7 +13,8 @@ Page({
     options:{},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     background: "/images/wzry1.jpg",
-    
+    ongoing:8,//假数据进行中的数量
+	finished:2,//完结的数量
   },
 
   //事件处理函数

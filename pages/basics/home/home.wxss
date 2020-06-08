@@ -21,8 +21,26 @@
 	height: 100%;
 }
 .action-list-item{
-	min-height: 240rpx;
-	padding:48rpx 38rpx;
+	height: 240rpx;
+	position: relative;
 	border-radius: 12rpx;
 }
-
+.match-card{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 22;
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	padding:48rpx 0 0 40rpx;
+	
+}
+.match-text-title{
+	font-size: 40rpx;
+	font-weight: bold;
+	margin-bottom: 66rpx;
+}
+.match-card.finshed-match{
+	color: rgba(255,255,255,.5);
+}

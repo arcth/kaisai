@@ -16,7 +16,7 @@
 
 
 <block wx:else>
-<basics  background='{{background}}' wx:if="{{PageCur=='basics'}}"></basics>
+<basics  background='{{background}}' wx:if="{{PageCur=='basics'}}" ongoing='{{ongoing}}' finished='{{finished}}'></basics>
   <!-- <view class='wx_info'>
     <image src='{{userInfo.avatarUrl}}'></image>
     <text>{{userInfo.nickName}}</text> 

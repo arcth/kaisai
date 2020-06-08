@@ -1,6 +1,8 @@
 Component({
   properties: {
     background: String,
+	ongoing:Number, //进行中的比赛数量
+	finished:Number, //完结的比赛数量
   },
   options: {
     addGlobalClass: true,
@@ -9,12 +11,15 @@ Component({
     TabCur: 0,
     scrollLeft: 0,
     tabNav: ['定制比赛', '我的比赛'],
-    createBackground:"/images/5v5.png",
+	startBg:'/images/match_start_bg.png',
+	finishBg:'/images/match_finished_bg.png',
   },
   onLoad:function(options){
-    let createBase64 = wx.getFileSystemManager().readFileSync(this.data.createBackground, 'base64');
+    let startBgBase64 = wx.getFileSystemManager().readFileSync(this.data.startBg, 'base64');
+    let finishBgBase64 = wx.getFileSystemManager().readFileSync(this.data.finishBg, 'base64');
     this.setData({
-      createBackground: 'data:image/png;base64,' + createBase64,
+      startBg: 'data:image/png;base64,' + createBase64,
+      finishBg: 'data:image/png;base64,' + finishBgBase64,
     })
   },
   methods: {
