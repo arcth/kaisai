@@ -17,7 +17,8 @@
   </view> -->
 
   <view class="create-tag-container">
-	  <view class="bg-img create-tag-block padding-tb-xl" style="background-image: url({{createBackground}});height: 350rpx;" bindtap="create" data-type="default-wzry">
+	  <view class="bg-img create-tag-block " style="height: 350rpx;" bindtap="create" data-type="default-wzry">
+	  	<image src="/images/5v5.png"></image>
 	    <!-- <view class="padding-xl text-white">
 	      <view class="padding-xs text-xl"> Ranking</view>
 	      <view class="padding-xs">Only the guilty need fear me.</view>
