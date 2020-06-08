@@ -30,3 +30,6 @@ page{
 view .text:first-of-type {
   transform: translateX(0px);
 }
+
+.name_right{color:#F9524A;text-align:left;}
+.name_right text{background:#F9524A;border-radius:6rpx;color:#fff;padding:2rpx 6rpx;}

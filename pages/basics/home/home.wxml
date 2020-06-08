@@ -7,7 +7,7 @@
   <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{2}}" wx:key="index" bindtap="tabSelect" data-id="{{index}}">
     {{tabNav[index]}}
   </view>
-</scroll-view>
+</scroll-view>  
 
 <block wx:if="{{TabCur==0}}">
   <view class="cu-bar bg-white solid-bottom margin-top">
@@ -58,7 +58,7 @@
       <text class="cuIcon-title text-blue"></text>已完结的比赛
     </view>
   </view>
-  <navigator url="">
+  <navigator url="../matchlist/matchlist?status=1">
     <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('../../images/logo.png');height: 220rpx;">
       <view class="padding-xl text-white">
         <view class="padding-xs text-xl"> Ranked</view>

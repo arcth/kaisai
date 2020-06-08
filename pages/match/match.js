@@ -64,23 +64,25 @@ Page({
         }
       })
 
-    /**util.commonAjax('/api/getGameinfo', 0, param)
+    /** util.commonAjax('/api/getGameinfo', 0, param)
       .then(function (resolve) {
         // 这里自然不用解释了，这是接口返回的参数  
         if (resolve.data.state === 0) {
           // console.log(" match = " + resolve.data.data.statusdes)
           // 成功  
           that.setData({
-            gameinfo: resolve.data.data.game,
-            num: num,
-            iscreater: resolve.data.data.game.iscreater,
-            gname: resolve.data.data.game.name,
-            pattern: resolve.data.data.game.pattern
+            gameinfo: resolve.data.data.game
           })
+          if(app.globalData.openid == that.gameinfo.creater ){
+            that.setData({
+              iscreater : true
+            })
+          }
+
         } else {
           // 失败  
         }
-      })**/
+      }) **/
 
     util.commonAjax('/api/getTop', 0, param)
       .then(function (resolve) {  
@@ -95,14 +97,12 @@ Page({
               totalfield = item.totalfield
               totalmvp = item.totalmvp
             }
-
           })
           that.setData({
             top: resolve.data.data.top,
             totalfield: totalfield,
             totalmvp: totalmvp
           })
-
         } else {
           // 失败  
         }
@@ -114,7 +114,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '生死看淡，不服来干',
+      desc: '分享页面的内容',
+      path: '/pages/initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(this.data.gameinfo)) +'&introducer=' + app.globalData.openid  // 路径，传递参数到指定页面。
+    }
   },
 
   toregister(event){
