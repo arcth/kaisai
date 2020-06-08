@@ -12,7 +12,8 @@ Page({
     hasUserInfo: false, 
     options:{},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    background: "/images/logo.png"
+    background: "/images/wzry1.jpg",
+    
   },
 
   //事件处理函数
