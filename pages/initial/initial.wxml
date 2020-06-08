@@ -17,11 +17,11 @@
 			   <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
 			</view>
 			<!-- 占位元素 总人数减去已经报名人数-->
-			<view class="user-list-item" wx:for="{{gameUserContList}}" wx:key="*this"></view>
+			<!-- <view class="user-list-item" wx:for="{{gameUserContList}}" wx:key="*this"></view> -->
 		</view>
 	</view>
 	<view >
-	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' >分享</button>
+	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' class="btn-blue-gradient">分享</button>
 	   <!--<button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' >登录参与比赛</button>-->
 	   <button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindtap='bindgetuserinfo' class="btn-blue-gradient">报名参加比赛</button>
 	
