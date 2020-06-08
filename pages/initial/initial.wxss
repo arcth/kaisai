@@ -3,12 +3,97 @@ page{
   height:100%;
   
 }
+.share-bg{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: -1;
+}
+.inital-page{
+	width: 560rpx;
+	margin: 160rpx auto 60rpx;
+	position: relative;
+	min-height: 800rpx;
+	padding: 46rpx 36rpx;
+	border-radius: 30rpx;
+	color: #fff;
+}
+.inital-page::before{
+	content: '';
+	display: block;
+	background:linear-gradient(180deg,rgba(238,10,10,1) 0%,rgba(255,190,58,1) 100%);
+	mix-blend-mode: multiply;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	border-radius: 30rpx;
+	z-index: -1;
+	top: 0;
+	left: 0;
+}
 
+.inital-page .title-text{
+	font-size: 44rpx;
+	font-weight: bold;
+	letter-spacing:3rpx ;
+	margin-bottom: 30rpx;
+}
+.title-text image{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	border:none
+}
+.user-list{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	
+}
+.user-list .user-list-item{
+	display: block;
+	width: 80rpx;
+	height: 80rpx;
+	margin-right: 22rpx;
+	margin-bottom: 36rpx;
+	border-radius: 40rpx;
+	background-color: #fff;
+}
+.user-list .user-list-item:nth-child(5n+5){
+	margin-right: 0;
+}
+.regsiter-text{
+	color: rgba(255,255,255,.65);
+	margin-bottom: 48rpx;
+}
+.text-inline{
+	font-size: 32rpx;
+	text-align: left;
+	margin-bottom: 30rpx;
+}
 .padding-bottom-xxl{
   padding-bottom: 60rpx;
 }
 
-
+.btn-blue-gradient{
+	display: block;
+	width: 100%;
+	height: 84rpx;
+	line-height: 84rpx;
+	color: #fff;
+	text-align: center;
+	border-radius: 42rpx;
+	font-size: 32rpx;
+	background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
+	
+}
+.game-count .user-icon{
+	display: inline-block;
+	width: 22rpx;
+	height: 24rpx;
+	margin-right: 8rpx;
+}
 .index {
   width: 100%;
   height: auto;
