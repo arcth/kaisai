@@ -106,9 +106,11 @@ Page({
     if (secStr.length == 1) secStr = '0' + secStr;
 
     if (day <= 1) {
-      return "剩 " + hrStr + " 小时 " + ":" + minStr + ":" + secStr;
+      // return   hrStr + " 小时 " + minStr + "分" +  secStr + "秒";
+      return   `${hrStr}小时${minStr}分${secStr}秒`;
     } else {
-      return "剩 " + day + " 天 " + hrStr + " 小时 "+ ":" + minStr + ":" + secStr;
+      // return   day + " 天 " + hrStr + " 小时 "+  minStr + "" + secStr;
+	  return `${day}天${hrStr}小时${minStr}分${secStr}秒`;
     }
   },
   //end
