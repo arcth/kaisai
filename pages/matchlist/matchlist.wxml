@@ -7,24 +7,29 @@
 
 
 <!-- BUG后期处理 头像多了没有换行  -->
-
- <view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
-		<image src="{{background}}" class="match-list-bg"></image>
-        <!-- <view class="cu-item bg-img shadow-blur"  > -->
-			<view class=" text-white">
-				  <!-- <view class="text-cut padding bg-grey radius text-xxl" wx:if="{{item.creater == openid}}">你主办的比赛</view> -->
-				  <view class="text-xxl text-bold title-padding-bottom">{{item.name}}</view>
-				  <view class="margin-bottom-sm nowarp-line-two info-color">
-					  赛事简介：{{item.describe}}123123123123asdasdaddasdasdasdasdasd奥术大师大所
-				  </view>
-				  <view class="margin-bottom-sm">对战模式 : {{item.patterndes}}</view>
-				  <view class="margin-bottom-sm">结束时间 ：{{item.etime}}</view>
-				  
-				  <view class='index'>选手：
-					<view wx:for="{{item.players}}" wx:key="item"  style='transform:translateX({{-index*30}}rpx)'> <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
-					</view>
-				  </view>
-				  <view class='surplus-tag'>剩余：{{item.endtime}}</view>
-			</view>
-		<!-- </view> -->
-  </view>
+<view class="groupon-container">
+	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
+			<image src="{{background}}" class="match-list-bg"></image>
+	       <!-- <view class="cu-item bg-img shadow-blur"  > -->
+				<view class="text-white cf">
+					  <image src="/images/my_match_icon.png" class="match-tag" wx:if="{{item.creater == openid}}" mode="aspectFit"></image>
+					  <!-- <view class="text-cut padding bg-grey radius text-xxl" wx:if="{{item.creater == openid}}">你主办的比赛</view> -->
+					  <view class="text-xxl text-bold title-padding-bottom match-title">{{item.name}}12312312312312312312312321</view>
+					  <view class="margin-bottom-sm nowarp-line-two info-color">
+						  赛事简介：{{item.describe}}123123123123asdasdaddasdasdasdasdasd奥术大师大所
+					  </view>
+					  <view class="margin-bottom-sm">对战模式 : {{item.patterndes}}</view>
+					  <view class="margin-bottom-sm">结束时间 ：{{item.etime}}</view>
+					  <view class="margin-bottom-sm">参赛人数 ：{{item.players.length}}</view>
+					  <view class='match-user margin-bottom-sm cf'>
+				
+						<view wx:for="{{item.players}}" wx:if="{{index < 10}}" wx:for-item="itemPlayers" wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
+							<image class='text' src='{{itemPlayers.avatarurl}}' mode='aspectFill'></image>
+						</view>
+					  </view>
+					  <view class='surplus-tag'>剩余：{{item.endtime}}</view>
+				</view>
+			<!-- </view> -->
+	</view>
+</view>
+ 

@@ -19,10 +19,19 @@
   <view class="create-tag-container">
 	  <view class="bg-img create-tag-block " style="height: 350rpx;" bindtap="create" data-type="default-wzry">
 	  	<image src="/images/5v5.png"></image>
+		
 	    <!-- <view class="padding-xl text-white">
 	      <view class="padding-xs text-xl"> Ranking</view>
 	      <view class="padding-xs">Only the guilty need fear me.</view>
 	    </view> -->
+	  </view>
+	  <view class="bg-img create-tag-block create-box"  data-type="default-wzry">
+		  <view class="create-m" bindtap="showTips">
+			 <image src="/images/jingyan.png"></image>
+		  </view>
+		  <view class="create-m" bindtap="showTips">
+			  <image src="/images/team.png"></image>
+		  </view>
 	  </view>
   </view>
 </block>
@@ -62,6 +71,8 @@
 		  		</view>
 		  </navigator>
 	  </view>
+	  
+	  
 <!--
   <view class="cu-bar bg-white solid-bottom margin-top">
     <view class="action">
@@ -94,3 +105,7 @@
 	  </view> -->
   </view>
 </block>
+
+<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+	          <view>该功能暂未开放，敬请期待！</view>
+	  </mp-dialog>

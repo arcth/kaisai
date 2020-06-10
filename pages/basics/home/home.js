@@ -13,6 +13,8 @@ Component({
     tabNav: ['定制比赛', '我的比赛'],
 	startBg:'/images/match_start_bg.png',
 	finishBg:'/images/match_finished_bg.png',
+	tipsDialogvisible:false,
+	oneButton: [{text: '确定'}],
   },
   onLoad:function(options){
     let startBgBase64 = wx.getFileSystemManager().readFileSync(this.data.startBg, 'base64');
@@ -22,6 +24,7 @@ Component({
       finishBg: 'data:image/png;base64,' + finishBgBase64,
     })
   },
+  
   methods: {
     //tab event事件捕获
     tabSelect(e) {
@@ -31,6 +34,18 @@ Component({
         scrollLeft: (e.currentTarget.dataset.id - 1) * 60
       })
     },
+	tapDialogButton(e) {
+	        this.setData({
+	            tipsDialogvisible: false,
+	            
+	        })
+	},
+	showTips:function(e){
+		console.log(11);
+		this.setData({
+		    tipsDialogvisible: true
+		})
+	},
     create: function (e) {
       wx.navigateTo({
         url: '../create/create?type=' + e.currentTarget.dataset.type,

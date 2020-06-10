@@ -44,3 +44,19 @@
 .match-card.finshed-match{
 	color: rgba(255,255,255,.5);
 }
+
+.create-box{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 28rpx;
+}
+.create-box .create-m{
+	width: 312rpx;
+	height: 280rpx;
+	border-radius: 12rpx;
+	filter: grayscale(100%);
+}
+.create-box .create-m image{
+	width: 100%;
+	height: 100%;
+}
