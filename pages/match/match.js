@@ -125,8 +125,16 @@ Page({
     let round = this.data.round
     let iscreater = this.data.iscreater
     let pattern = this.data.pattern
-    wx.navigateTo({
-      url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
-    })
+    //2--已经分组完成 直接进入分组结果页面 
+    if(round.status == 2){
+      wx.navigateTo({
+        url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
+      })
+    }else{
+      wx.navigateTo({
+        url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
+      })
+    }
+ 
   }
 })

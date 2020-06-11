@@ -13,6 +13,7 @@ Page({
     round:null,
     redteam: null,
     blueteam: null,
+    confirm: false,
     uncheckteam: null
   },
 
@@ -26,12 +27,23 @@ Page({
     this.setData({
       pattern: options.pattern
     })
+    if(roundinfo.status == 2){
+      this.setData({
+        redteam : options.redteam,
+        blueteam : options.blueteam,
+        uncheckteam : options.uncheckteam,
+        confirm : true
+      })
+      return
+    }
+
+    let that = this
     let param = {
       id: roundinfo.id,
-      teammode: roundinfo.teammode,
+      teammode:roundinfo.teammode,
       pattern: pattern
     }
-    var that = this
+
     util.commonAjax('/api/getGroupingResult', 0, param)
       .then(function(resolve) {
         if (resolve.data.state === 0) {
@@ -46,56 +58,20 @@ Page({
           // 失败  
         }
       })
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    if(this.data.confirm){
+      return {
+        title: '生而无畏，战至终章',
+        desc: '分享页面的内容',
+        path: '/pages/grouping/auto/auto?redteam=' + encodeURIComponent(JSON.stringify(this.data.redteam)) 
+        +'&blueteam=' + encodeURIComponent(JSON.stringify(this.data.blueteam)) + '&status=2'  // 路径，传递参数到指定页面。
+      }
+    }
   },
   record: function() {
    
@@ -105,6 +81,7 @@ Page({
     let uncheckteam = JSON.stringify(this.data.uncheckteam)
 
     let param = {
+      id: this.data.round.id,
       redteam: redteam,
       blueteam: blueteam,
       uncheckteam: uncheckteam,
@@ -113,17 +90,21 @@ Page({
     util.commonAjax('/api/groupingConfirm', 0, param)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
-          wx.redirectTo({
-            url: '../../record/record?&redteam=' + redteam + '&blueteam=' + blueteam + "&num=" + round.num + "&pattern=" + that.data.pattern
+          that.setData({
+            confirm : true
           })
         } else {
           // 失败  
         }
       })
 
-    
-   
-
-
+      //进行分享 通知
+  },
+  torecord: function() {
+    let redteam = JSON.stringify(this.data.redteam)
+    let blueteam = JSON.stringify(this.data.blueteam)
+    wx.redirectTo({
+      url: '../../record/record?&redteam=' + redteam + '&blueteam=' + blueteam + "&num=" + this.data.round.num + "&pattern=" + this.data.pattern
+    })
   }
 })

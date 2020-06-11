@@ -33,6 +33,7 @@
 
 <view class="cu-form-group  margin-top">
     <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-       <button bindtap="record">比赛结果记录</button>
+       <button wx:if = "{{confirm}}" bindtap="torecord">比赛结果记录</button>
+      <button wx:if="{{!confirm}}"  open-type='share' bindtap="record"  class="btn-blue-gradient">分好了，通知参赛者！</button>
     </view>
 </view>

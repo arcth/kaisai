@@ -37,58 +37,9 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   ChooseImage() {
     wx.chooseImage({
-      count: 1, //默认9
+      count: 1, //默认9 最多可以选择的图片张数
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], //从相册选择
       success: (res) => {
@@ -112,7 +63,7 @@ Page({
   },
   DelImg(e) {
     wx.showModal({
-      title: '召唤师',
+      title: '亲爱的!',
       content: '确定要删除吗？',
       cancelText: '再看看',
       confirmText: '確定',
@@ -165,7 +116,41 @@ Page({
       mvp: this.data.redshows + '|' + this.data.blueshows,
     }
     var that = this
-    util.commonAjax('/api/record', 0, param)
+    if (that.data.imgList != 0) {
+      for (var index in that.data.imgList) {
+        var filePath = that.data.imgList[index];
+        wx.uploadFile({
+          url: app.globalData.url + '/api/uploadPicture',
+          // url : app.data.baseurl + 'baiduFaceAndCompare?sfzh=' + app.data.user.sfzh,
+          filePath: filePath + '',
+          name: 'file',
+          formData:{
+              roundid : that.data.redteam[0].id,
+              gamenum : that.data.redteam[0].num,
+              index : index
+          },
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          success: function (res) {
+            var newlist = new Array();
+            var oldlist = that.data.list;
+            for (var obj in that.data.list){
+              if (that.data.list[obj].id == e.currentTarget.dataset.id){
+                 oldlist[obj].finish = true;
+              }
+            }
+            that.setData({
+              list: oldlist
+            })
+          },
+          fail: function (err) {
+            console.log(err)
+          }
+        });
+      }
+    }
+    /** util.commonAjax('/api/record', 0, param)
       .then(function (resolve) {
         console.log('record.js 跳转到match页的时候 pattern参数 =' + that.data.pattern)
         if (resolve.data.state === 0) {
@@ -175,6 +160,6 @@ Page({
         } else {
           // 失败  
         }
-      })
+      })**/
   }
 })
