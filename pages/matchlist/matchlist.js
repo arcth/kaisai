@@ -11,7 +11,9 @@ Page({
     gamelist: {},
     collageTeamlist : {},
     endTime: '2020-06-05 22:40:30', //2018/11/22 10:40:30这种格式也行
-    background: "/images/wzry1.jpg"
+    background: "/images/match_list_bg.png",
+	groupon:[],
+	
   },
 
   /**
@@ -41,6 +43,13 @@ Page({
             var lack_num = gamelist[i].create_num - gamelist[i].current_num
             gamelist[i].lack_num = lack_num
           }
+		  //测试代码
+		  // let img = gamelist[0].players[0],arr = [];
+		  // for(let k = 0;k<12;k++){
+		  // 	arr.push(img) 
+		  // }
+		  // gamelist[0].players = arr;
+		  //end
           that.setData({
             groupon: gamelist
           })
@@ -50,6 +59,13 @@ Page({
             var end_time = data[i].etime.replace(/-/g, '/')
            that.grouponcountdown(that,end_time, i)
            }
+		   
+		   
+		   
+		   // that.setData({
+			  //  groupon[0].players:arr
+		   // })
+		   //end
           /**that.data.gamelist.forEach(function (item, index) {
             that.setData({
                ['gamelist['+(index)+'].text'] : that.countDown('2020-06-05 10:40:30')
@@ -106,9 +122,11 @@ Page({
     if (secStr.length == 1) secStr = '0' + secStr;
 
     if (day <= 1) {
-      return "剩 " + hrStr + " 小时 " + ":" + minStr + ":" + secStr;
+      // return   hrStr + " 小时 " + minStr + "分" +  secStr + "秒";
+      return   `${hrStr}小时${minStr}分${secStr}秒`;
     } else {
-      return "剩 " + day + " 天 " + hrStr + " 小时 "+ ":" + minStr + ":" + secStr;
+      // return   day + " 天 " + hrStr + " 小时 "+  minStr + "" + secStr;
+	  return `${day}天${hrStr}小时${minStr}分${secStr}秒`;
     }
   },
   //end

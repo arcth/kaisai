@@ -5,10 +5,13 @@
 </cu-custom>
 
 <view class="cu-form-group">
-   <view class='index'>已报名：
-        <view wx:for="{{players}}" wx:key="item"   style='transform:translateX({{-index*30}}rpx)'>
-           <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
-        </view>
+   <view class='index'>
+		<span style="display:block;line-height: 60rpx;width: 360rpx;">已报名：</span>
+        <view class="flex-user-container">
+			<view wx:for="{{players}}" wx:key="item" class="palers-item" >
+			   <image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
+			</view>
+		</view>
         <text></text>
     </view>
 </view>

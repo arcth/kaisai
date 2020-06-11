@@ -11,7 +11,7 @@ Page({
     iscreater : false,
     isDrawlots: false,
     pattern : '0',
-    players : {},
+    players : [],
     btime: util.formatTimeOnly(new Date()),
     etime: util.formatTimeOnly(new Date()),
     disable : true,

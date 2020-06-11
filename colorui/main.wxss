@@ -13,6 +13,8 @@ page {
 	/* Color 可以自定义相关配色 */
 	/* var属性兼容性 --> https://www.caniuse.com/#feat=css-variables */
 	/* 标准色 */
+	--whiteGray:rgba(255,255,255,.7);
+	
 	--red: #e54d42;
 	--orange: #f37b1d;
 	--yellow: #fbbd08;
@@ -3094,7 +3096,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .margin-bottom-sm {
-	margin-bottom: 20rpx;
+	margin-bottom: 24rpx;
 }
 
 .margin-bottom {
@@ -3248,7 +3250,7 @@ scroll-view.cu-steps .cu-item {
 }
 
 .padding-bottom-sm {
-	padding-bottom: 20rpx;
+	padding-bottom: 24rpx;
 }
 
 .padding-bottom {

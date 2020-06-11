@@ -1,0 +1,26 @@
+{
+  "name": "kaisai",
+  "version": "1.0.0",
+  "description": "creating match",
+  "main": "app.js",
+  "miniprogram": "dist",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcth/kaisai.git"
+  },
+  "keywords": [
+    "kaisai"
+  ],
+  "author": "xuzhoulin&hutianhao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arcth/kaisai/issues"
+  },
+  "homepage": "https://github.com/arcth/kaisai#readme",
+  "dependencies": {
+    "weui-miniprogram": "^1.0.3"
+  }
+}
