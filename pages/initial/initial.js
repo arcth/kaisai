@@ -14,14 +14,14 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     isparticipant : false,
-	gameUserCont:20, //比赛总人数
-	gameUserContList:[],
-	registeredUserCount:5,// 已经报名总人数
+	  gameUserCont:20, //比赛总人数
+	  gameUserContList:[],
+ 	  registeredUserCount:5,// 已经报名总人数
     participants: {}, 
     background : '/images/share-bg.png',
     introducer : '',
-    options : ''
-
+    options : '',
+    imageBaseUrl:''
   },
 
   /**
@@ -29,10 +29,11 @@ Page({
    */
   onLoad: function (options) {
     if (options.source != ''){
-      let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+      // let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
 	  // console.log(base64);
       this.setData({
-        background: 'data:image/png;base64,' + base64,
+        // background: 'data:image/png;base64,' + base64,
+        imageBaseUrl:app.globalData.imageUrl,
         options: options
       })
     }

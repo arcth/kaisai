@@ -11,8 +11,9 @@ Page({
     gamelist: {},
     collageTeamlist : {},
     endTime: '2020-06-05 22:40:30', //2018/11/22 10:40:30这种格式也行
+    imageBaseUrl:'',
     background: "/images/match_list_bg.png",
-	groupon:[],
+	  groupon:[],
 	
   },
 
@@ -21,9 +22,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+    // let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
-      background: 'data:image/png;base64,' + base64
+      // background: 'data:image/png;base64,' + base64,
+      imageBaseUrl:app.globalData.imageUrl
     })
     var param = {
       openid: app.globalData.openid,

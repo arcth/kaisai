@@ -9,14 +9,14 @@
 <!-- BUG后期处理 头像多了没有换行  -->
 <view class="groupon-container">
 	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
-			<image src="{{background}}" class="match-list-bg"></image>
+			<image src="{{imageBaseUrl}}/match_list_bg.png" class="match-list-bg"></image>
 	       <!-- <view class="cu-item bg-img shadow-blur"  > -->
 				<view class="text-white cf">
 					  <image src="/images/my_match_icon.png" class="match-tag" wx:if="{{item.creater == openid}}" mode="aspectFit"></image>
 					  <!-- <view class="text-cut padding bg-grey radius text-xxl" wx:if="{{item.creater == openid}}">你主办的比赛</view> -->
-					  <view class="text-xxl text-bold title-padding-bottom match-title">{{item.name}}12312312312312312312312321</view>
+					  <view class="text-xxl text-bold title-padding-bottom match-title">{{item.name}}</view>
 					  <view class="margin-bottom-sm nowarp-line-two info-color">
-						  赛事简介：{{item.describe}}123123123123asdasdaddasdasdasdasdasd奥术大师大所
+						  赛事简介：{{item.describe}}
 					  </view>
 					  <view class="margin-bottom-sm">对战模式 : {{item.patterndes}}</view>
 					  <view class="margin-bottom-sm">结束时间 ：{{item.etime}}</view>

@@ -12,7 +12,7 @@ Page({
     hasUserInfo: false, 
     options:{},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+    imageBaseUrl:'',
     background: "/images/wzry1.jpg",
     ongoing:8,//假数据进行中的数量
 	  finished:2,//完结的数量
@@ -26,10 +26,12 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(app.globalData);
     let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
       background: 'data:image/png;base64,' + base64,
-      options: options
+      options: options,
+      imageBaseUrl:app.globalData.imageUrl
     })
 
     if (app.globalData.userInfo && app.globalData.openid) {
