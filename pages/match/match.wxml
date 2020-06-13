@@ -5,20 +5,21 @@
 
 
 <view class="cu-card case {{isCard?'no-card':''}}">
-  <view class="cu-item shadow">
-    <view class="image">
-          <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 320rpx;"  bindtap="toregister" >
-      <view class="padding-xl text-white">
-        <view class="padding-xs text-xl"> 第  {{round.rounds}} 轮 进行中</view>
-        <view class="padding-xs">{{gname}}</view>
+  <view >
+    <view class="match-top-contaienr">
+      <view class="bg-img  padding-tb-xl match-card" style="background-image: url({{imageBaseUrl}}/match_start_bg.png)"  bindtap="toregister" >
+		<view class="text-white">
+			<view class="info-color match-title">{{gname}}</view>
+			<view class="text-xxl text-bold"> 第  {{round.rounds}} 轮 进行中</view>
+		</view>
+		<view class="match-tag">{{statusdes}}</view>
       </view>
-    </view>
       <!-- 状态 根据 status 改变-->
-      <view class="cu-tag bg-blue">{{statusdes}}</view>
       
-      <view class="cu-bar bg-shadeBottom">
+      
+      <!-- <view class="cu-bar bg-shadeBottom">
         <text class="text-cut">点击进入签到</text>
-      </view>
+      </view> -->
     </view>
     <!--<view class="cu-list menu-avatar">
       <view class="cu-item">
