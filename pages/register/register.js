@@ -76,13 +76,13 @@ Page({
           that.setData({
             players: resolve.data.data.players
           })
-          if (pattern == '0'){
-            if (that.data.players.length >= 10 && that.data.iscreater){
-              that.setData({
-                isDrawlots : true
-              })
-            }
+          var minparticipants = parseInt(pattern)*2;//最小参赛队员数
+          if (that.data.players.length >= minparticipants && that.data.iscreater){
+            that.setData({
+              isDrawlots : true
+            })
           }
+          
         } else {
           // 失败  
         }
@@ -161,7 +161,6 @@ Page({
           })
           //刷新当前页面的数据
           getCurrentPages()[getCurrentPages().length - 1].onLoad(that.options)
-          getCurrentPages()[getCurrentPages().length - 2].onLoad(that.options)
         } else {
           // 失败  
         }

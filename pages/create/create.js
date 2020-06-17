@@ -7,10 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index: 0,
+    index: 4,
     date: util.getNowFormatDate(),
     imgList: [],
-    picker: ['5v5'],
+    picker: ['1v1','2v2','3v3','4v4','5v5'],
 
   },
 
@@ -78,9 +78,11 @@ Page({
   },
 
   PickerChange(e) {
+    
     this.setData({
       index: e.detail.value
     })
+   
   },
   ChooseImage() {
     wx.chooseImage({
@@ -131,11 +133,12 @@ Page({
   formSubmit: function (e) {
     
     var gamename =  e.detail.value.gamename
-    var pattern = e.detail.value.pattern
+    var pattern = parseInt(e.detail.value.pattern)+1
     var etime =  e.detail.value.etime
     var prop = e.detail.value.prop
     var describe = e.detail.value.describe
 
+    console.log(pattern)
     if (gamename.length === 0) {
         
     }else{

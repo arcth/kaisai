@@ -27,17 +27,30 @@ Page({
     this.setData({
       pattern: options.pattern
     })
+    let that = this
     if(roundinfo.status == 2){
-      this.setData({
-        redteam : options.redteam,
-        blueteam : options.blueteam,
-        uncheckteam : options.uncheckteam,
-        confirm : true
+      var parameter= {
+        id: roundinfo.id
+      }
+      util.commonAjax('/api/getCurRoundREC', 0, parameter)
+      .then(function(resolve) {
+        if (resolve.data.state === 0) {
+          let redteam = resolve.data.data.RED
+          that.setData({
+            redteam: resolve.data.data.RED,
+            blueteam: resolve.data.data.BLUE,
+            uncheckteam: resolve.data.data.UNCHECK,
+            confirm : true,
+            round: roundinfo
+          })
+        } else {
+          // 失败  
+        }
       })
       return
     }
 
-    let that = this
+    
     let param = {
       id: roundinfo.id,
       teammode:roundinfo.teammode,

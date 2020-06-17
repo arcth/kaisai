@@ -48,6 +48,7 @@ Page({
     let param = {
       num: num
     }
+    console.log(" match page onload")
     let that = this
     util.commonAjax('/api/getRound', 0, param)
       .then(function (resolve) {
