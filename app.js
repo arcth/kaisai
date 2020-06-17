@@ -76,9 +76,9 @@ App({
     userInfo: null,
     code:null,
     openid:null,
-    url:'http://139.198.19.199:8080', //服务器地址
+    //url:'http://139.198.19.199:8080', //服务器地址
     //url:'http://118.114.77.102:9258' //我的电脑映射的公网访问地址
-    // url: 'http://localhost:8080'
+     url: 'http://localhost:8080'
   },
    
 }) 
