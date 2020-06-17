@@ -1,9 +1,9 @@
 Component({
   properties: {
     background: String,
-
-	ongoing:Number, //进行中的比赛数量
-	finished:Number, //完结的比赛数量
+	  ongoing:Number, //进行中的比赛数量
+    finished:Number, //完结的比赛数量
+    imageBaseUrl:String
   },
   options: {
     addGlobalClass: true,
@@ -12,15 +12,17 @@ Component({
     TabCur: 0,
     scrollLeft: 0,
     tabNav: ['定制比赛', '我的比赛'],
-
-	startBg:'/images/match_start_bg.png',
-	finishBg:'/images/match_finished_bg.png',
-	tipsDialogvisible:false,
-	oneButton: [{text: '确定'}],
+    startBg:'/images/match_start_bg.png',
+    finishBg:'/images/match_finished_bg.png',
+    tipsDialogvisible:false,
+    oneButton: [{text: '确定'}],
   },
   onLoad:function(options){
+    let app = getApp();
+    
     let startBgBase64 = wx.getFileSystemManager().readFileSync(this.data.startBg, 'base64');
     let finishBgBase64 = wx.getFileSystemManager().readFileSync(this.data.finishBg, 'base64');
+
     this.setData({
       startBg: 'data:image/png;base64,' + createBase64,
       finishBg: 'data:image/png;base64,' + finishBgBase64,

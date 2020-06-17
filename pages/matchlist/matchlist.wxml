@@ -9,7 +9,7 @@
 <!-- BUG后期处理 头像多了没有换行  -->
 <view class="groupon-container">
 	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
-			<image src="{{background}}" class="match-list-bg"></image>
+			<image src="{{imageBaseUrl}}/match_list_bg.png" class="match-list-bg"></image>
 	       <!-- <view class="cu-item bg-img shadow-blur"  > -->
 				<view class="text-white cf">
 					  <image src="/images/my_match_icon.png" class="match-tag" wx:if="{{item.creater == openid}}" mode="aspectFit"></image>

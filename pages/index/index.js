@@ -12,7 +12,7 @@ Page({
     hasUserInfo: false, 
     options:{},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
+    imageBaseUrl:'',
     background: "/images/wzry1.jpg",
     ongoing:8,//假数据进行中的数量
 	  finished:2,//完结的数量
@@ -27,6 +27,10 @@ Page({
 
   onLoad: function (options) {
 
+    this.setData({
+      options: options,
+      imageBaseUrl:app.globalData.imageUrl
+    })
 
     if (app.globalData.userInfo && app.globalData.openid) {
       this.setData({
