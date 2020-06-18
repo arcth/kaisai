@@ -130,10 +130,12 @@ Page({
       wx.navigateTo({
         url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
       })
-    }else{
+    }else if(round.status === 0 || round.status === 1){
       wx.navigateTo({
         url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
       })
+    }else{
+      return false;
     }
  
   }
