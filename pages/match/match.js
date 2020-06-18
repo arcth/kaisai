@@ -17,16 +17,15 @@ Page({
     totalmvp : '',
     statusdes : '',
     gameinfo : '',
-    background: '/images/logo.png'
+    imageBaseUrl:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
-      background: 'data:image/png;base64,' + base64
+      imageBaseUrl:app.globalData.imageUrl,
     })
     if (options.iscreater === 'true'){
       this.setData({
