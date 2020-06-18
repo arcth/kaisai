@@ -14,7 +14,7 @@
       </view>
     </view>
       <!-- 状态 根据 status 改变-->
-      <view class="cu-tag bg-blue">{{statusdes}}</view>
+      <view class="cu-tag bg-blue">{{round.statusdes}}</view>
       
       <view class="cu-bar bg-shadeBottom">
         <text class="text-cut">点击进入签到</text>
