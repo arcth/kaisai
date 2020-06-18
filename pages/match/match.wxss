@@ -6,10 +6,10 @@
 .match-card{
     width: 100%;
     min-height: 240rpx;
-    padding:62rpx  46rpx 0;
+    padding:62rpx  46rpx 30rpx;
     border-radius: 12rpx;
     position: relative;
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .match-title{
