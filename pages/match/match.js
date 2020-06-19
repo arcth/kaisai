@@ -24,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("天昊 我进来了！")
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
     })

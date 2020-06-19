@@ -52,25 +52,28 @@
     margin-right: 0;
 }
 .cu-list.menu>.cu-item .content {
-    flex: 1 0 auto;
+    flex: 1;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .action-text{
     display: inline-block;
-    width: 33.33%;
+    width: 20%;
     text-align: center;
     color: #000;
 }
 .action-title-text{
     text-align: center;
     display: inline-block;
-    width: 33.33%;
+    width: 20%;
 
 }
 .title-action-name{
     flex: 1 0 auto;
 }
 .title-action-item{
-    width: 40%;
+    width: 60%;
     min-width: 220rpx;
 }
 .cu-list.menu>.cu-item .content .user-name-text{
@@ -79,6 +82,6 @@
     padding-right: 60rpx;
 }
 .cu-list.menu>.cu-item .action {
-    width: 40%;
+    width: 60%;
     min-width: 220rpx;
 }

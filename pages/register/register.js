@@ -160,7 +160,15 @@ Page({
             round: resolve.data.data.curRound
           })
           //刷新当前页面的数据
-          getCurrentPages()[getCurrentPages().length - 1].onLoad(that.options)
+          var pages = getCurrentPages();
+          var prevPage = pages[pages.length - 2]
+          pages[pages.length - 1].onLoad(that.options)
+          if(prevPage.route == "pages/match/match"){
+            prevPage.setData({ 
+              round:that.data.round
+            })
+          }
+          
         } else {
           // 失败  
         }
@@ -196,10 +204,12 @@ Page({
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
+    
     var param = {
-      player : app.globalData.openid,
+      player : app.globalData.openid, 
       round : JSON.stringify(this.data.round)
     }
+    
     let that = this
     util.commonAjax('/api/register', 0, param)
       .then(function (resolve) {

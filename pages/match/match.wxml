@@ -69,9 +69,11 @@
         战绩
       </view>
       <view class="action title-action-item">
-        <text class="action-title-text">嗷嗷</text>
-        <text class="action-title-text">哈哈 </text>
-        <text class="action-title-text">嘻嘻 </text>
+        <text class="action-title-text">积分</text>
+         <text class="action-title-text">胜</text>
+        <text class="action-title-text">负</text>
+        <text class="action-title-text">签到 </text>
+        <text class="action-title-text">MVP </text>
       </view>
       </view>
     </view>
@@ -81,11 +83,13 @@
         <view class="cu-item">
           <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
           <view class="content">
-            <view class="user-name-text">{{item.user.nickname}}</view>
+            {{item.user.nickname}}
           </view>
   
 
       <view class="action">
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalscore}} </text>
         <text class="action-text">{{item.totalscore}} </text>
         <text class="action-text">{{item.totalfield}} </text>
         <text class="action-text">{{item.totalmvp}} </text>
