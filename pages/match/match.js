@@ -17,18 +17,16 @@ Page({
     totalmvp : '',
     statusdes : '',
     gameinfo : '',
-	imageBaseUrl:'',
-    background: '/images/logo.png'
+    imageBaseUrl:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+    console.log("天昊 我进来了！")
     this.setData({
-      background: 'data:image/png;base64,' + base64,
-	  imageBaseUrl:app.globalData.imageUrl
+      imageBaseUrl:app.globalData.imageUrl,
     })
     if (options.iscreater === 'true'){
       this.setData({
@@ -50,6 +48,7 @@ Page({
     let param = {
       num: num
     }
+    console.log(" match page onload")
     let that = this
     util.commonAjax('/api/getRound', 0, param)
       .then(function (resolve) {
@@ -132,10 +131,12 @@ Page({
       wx.navigateTo({
         url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
       })
-    }else{
+    }else if(round.status === 0 || round.status === 1){
       wx.navigateTo({
         url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
       })
+    }else{
+      return false;
     }
  
   }

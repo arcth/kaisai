@@ -4,18 +4,19 @@
 </cu-custom>
 
 
-<view class="cu-card case {{isCard?'no-card':''}}">
-  <view >
-    <view class="match-top-contaienr">
-      <view class="bg-img  padding-tb-xl match-card" style="background-image: url({{imageBaseUrl}}/match_start_bg.png)"  bindtap="toregister" >
-		<view class="text-white">
-			<view class="info-color match-title">{{gname}}</view>
-			<view class="text-xxl text-bold"> 第  {{round.rounds}} 轮 进行中</view>
-		</view>
-		<view class="match-tag">{{statusdes}}</view>
-      </view>
+
+<view class="">
+  <view class="match-card-container">
+    <view class="match-card" style="background-image: url({{imageBaseUrl}}/match_start_bg.png)" bindtap="toregister">
+          <view class="">
+            <view class="text-white">
+              <view class="match-title">{{gname}}</view>
+              <view class="match-round"> 第  {{round.rounds}} 轮 进行中</view>
+            </view>
+          </view>
       <!-- 状态 根据 status 改变-->
-      
+
+      <view class="match-tag">{{round.statusdes}}</view>
       
       <!-- <view class="cu-bar bg-shadeBottom">
         <text class="text-cut">点击进入签到</text>
@@ -41,53 +42,58 @@
 
 </view>
 <!---->
-  <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-      <text class="cuIcon-title text-orange "></text> 賽事統計
-    </view>
-  </view>
-
+  
+  <view class="title-bar">赛事统计</view>
    <view class="cu-list menu">
       <view class="cu-item">
         <view class="content">
-          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
-          <text class="text-grey">完成轮次</text>
+          <text class="text-black">完成轮次</text>
         </view>
-        <view class="action">
-          <text class="text-grey text-xxl">{{totalfield}} </text>
+        <view class="action " style="text-align:right">
+          <text class="text-black text-xxl">{{totalfield}} </text>
         </view>
       </view>
        <view class="cu-item">
         <view class="content">
-          <image src="/images/logo.png" class="png" mode="aspectFit"></image>
-          <text class="text-grey">MVP</text>
+          <text class="text-black">MVP</text>
         </view>
-         <view class="action">
-          <text class="text-grey text-xxl">{{totalmvp}} </text>
+         <view class="action" style="text-align:right">
+          <text class="text-black text-xxl">{{totalmvp}} </text>
         </view>
       </view>
       
  </view>
       
-  <view class="cu-bar bg-white solid-bottom margin-top">
-      <view class="action">
-        <text class="cuIcon-title text-orange "></text> 戰績
+  <view class="cu-list menu title-bar solid-bottom margin-top">
+    <view class="cu-item">
+      <view class="content title-action-name">
+        战绩
+      </view>
+      <view class="action title-action-item">
+        <text class="action-title-text">积分</text>
+         <text class="action-title-text">胜</text>
+        <text class="action-title-text">负</text>
+        <text class="action-title-text">签到 </text>
+        <text class="action-title-text">MVP </text>
+      </view>
       </view>
     </view>
 
   <view wx:for="{{top}}" wx:key="item">
     <view class="cu-list menu">
         <view class="cu-item">
-          <view class="cu-avatar round lg" style="background-image:url({{item.user.avatarurl}})"></view>
+          <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
           <view class="content">
-            <view class="text-grey">{{item.user.nickname}}</view>
-    </view>
+            {{item.user.nickname}}
+          </view>
   
 
       <view class="action">
-        <text class="text-grey text-xxl">{{item.totalscore}} </text>
-        <text class="text-grey text-xxl">{{item.totalfield}} </text>
-        <text class="text-grey text-xxl">{{item.totalmvp}} </text>
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalfield}} </text>
+        <text class="action-text">{{item.totalmvp}} </text>
       </view>
       </view>
     </view>

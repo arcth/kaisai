@@ -26,10 +26,8 @@ Page({
   },
 
   onLoad: function (options) {
-    console.log(app.globalData);
-    let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
+
     this.setData({
-      background: 'data:image/png;base64,' + base64,
       options: options,
       imageBaseUrl:app.globalData.imageUrl
     })

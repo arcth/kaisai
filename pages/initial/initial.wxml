@@ -8,7 +8,7 @@
 	<view class="title-text">{{gameinfo.name || '地利集团杯'}}</view>
 	<view class="game-count"><image src="/images/user-icon.png" class="user-icon"></image><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
 	<view class="text-inline">简介 ： {{gameinfo.describe}}</view>
-	<view class="text-inline">对战模式 : {{gameinfo.pattern?0:'5v5 个人赛'}}</view>
+	<view class="text-inline">对战模式 : {{gameinfo.patterndes}}</view>
 	<view>
 		<view class="regsiter-text">已报名</view>
 		<view class="user-list">

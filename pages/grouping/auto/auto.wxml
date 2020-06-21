@@ -3,8 +3,38 @@
 	<view slot="backText">返回</view>
 	<view slot="content">分组结果</view>
 </cu-custom>
+<image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg"></image>
+<view class="auto-page">
+	<view class="match-text-container">
+		<view class="match-title">地利集团杯</view>
+		<view class="match-sub-title">王者荣耀 第一场</view>
+	</view>
+	<view class="match-group">
+		<view class="match-group-item">
+			<view class="group-name">红队队员</view>
+			<view class="match-user-info">
+				<image wx:for="{{redteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+			</view>
+		</view>
+		<view class="match-group-item">
+			<view class="group-name">蓝队队员</view>
+			<view class="match-user-info">
+				<image wx:for="{{blueteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+			</view>
+		</view>
+	</view>
+	<view class="btn-group">
+		<button wx:if = "{{confirm}}" bindtap="torecord" class="btn-group-item">比赛结果记录</button>
+		<button wx:if="{{!confirm}}"  open-type='share' bindtap="record"  class="btn-group-item">分好了，通知参赛者！</button>
+		<text>未抽中的小伙伴，下次再加油</text>
+	</view>
+</view>
 
-<view class="cu-form-group margin-top">
+
+
+
+
+<!-- <view class="cu-form-group margin-top">
    <view class='index'>红队：
         <view wx:for="{{redteam}}" wx:key="item"  style='transform:translateX({{-index*0}}rpx)'>
            <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
@@ -36,4 +66,4 @@
        <button wx:if = "{{confirm}}" bindtap="torecord">比赛结果记录</button>
       <button wx:if="{{!confirm}}"  open-type='share' bindtap="record"  class="btn-blue-gradient">分好了，通知参赛者！</button>
     </view>
-</view>
+</view> -->

@@ -150,9 +150,8 @@ Page({
         });
       }
     }
-    /** util.commonAjax('/api/record', 0, param)
+     util.commonAjax('/api/record', 0, param)
       .then(function (resolve) {
-        console.log('record.js 跳转到match页的时候 pattern参数 =' + that.data.pattern)
         if (resolve.data.state === 0) {
           wx.redirectTo({
             url: '../match/match?num=' + that.data.num + '&iscreater=' + true + '&pattern=' + that.data.pattern
@@ -160,6 +159,6 @@ Page({
         } else {
           // 失败  
         }
-      })**/
+      })
   }
 })
