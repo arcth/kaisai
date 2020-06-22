@@ -17,6 +17,7 @@ Page({
     totalmvp : '',
     statusdes : '',
     gameinfo : '',
+    isovergame : 0,
     imageBaseUrl:'',
   },
 
@@ -24,7 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("天昊 我进来了！")
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
     })
@@ -43,12 +43,12 @@ Page({
     this.setData({
       num: num,
       gname: gname,
-      pattern: pattern
+      pattern: pattern,
+      isovergame : options.options
     })
     let param = {
       num: num
     }
-    console.log(" match page onload")
     let that = this
     util.commonAjax('/api/getRound', 0, param)
       .then(function (resolve) {

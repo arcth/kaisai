@@ -43,7 +43,6 @@ Page({
       
       app.userInfoReadyCallback = res => {
         if (res.userInfo && app.globalData.openid) {
-          console.log('2 index.js 44 app.globalData.openid = ' + app.globalData.openid)
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true

@@ -51,7 +51,6 @@ Page({
       introducer: options.introducer
     })
     if (app.globalData.userInfo == "undefined" || app.globalData.userInfo == null) {
-      console.log(' initial.js navigateTo =' + info.name)
       wx.navigateTo({
         url: '../index/index?gameinfo=' + encodeURIComponent(JSON.stringify(info)) + '&introducer=' + this.data.introducer
       })
@@ -86,7 +85,6 @@ Page({
           that.setData({
             isparticipant: true
           })
-          console.log('1 initial.js isparticipant = ' + that.data.isparticipant)
         }
       } else {
         // 失败  

@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function (options) {
     var type = options.type
-    console.log('gametype =' + type)
+   // console.log('gametype =' + type)
   },
 
   /**
@@ -138,7 +138,7 @@ Page({
     var prop = e.detail.value.prop
     var describe = e.detail.value.describe
 
-    console.log(pattern)
+    //console.log(pattern)
     if (gamename.length === 0) {
         
     }else{

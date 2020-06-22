@@ -14,6 +14,7 @@ Page({
     redteam: null,
     blueteam: null,
     confirm: false,
+    iscreater: false,
     uncheckteam: null
   },
 
@@ -22,10 +23,10 @@ Page({
    */
   onLoad: function(options) {
     let roundinfo = JSON.parse(decodeURIComponent(options.round))
-    let iscreater = options.iscreater
     let pattern = options.pattern
     this.setData({
-      pattern: options.pattern
+      pattern: options.pattern,
+
     })
     let that = this
     if(roundinfo.status == 2){
@@ -67,6 +68,24 @@ Page({
             uncheckteam: resolve.data.data.UNCHECK,
             round: roundinfo
           })
+        } else {
+          // 失败  
+        }
+      })
+      /**
+       *  解决：从分享页面进入的用户 需要通过是否为创建者判断 进行页面控制
+       */
+      var pm= {
+        num: roundinfo.num
+      }
+      util.commonAjax('/api/getGameInfo', 0, pm)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          if(app.globalData.openid == resolve.data.data.game.creater ){
+            that.setData({
+              iscreater : true
+            })
+          }
         } else {
           // 失败  
         }

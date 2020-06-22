@@ -13,6 +13,7 @@ Page({
     endTime: '2020-06-05 22:40:30', //2018/11/22 10:40:30这种格式也行
     imageBaseUrl:'',
     background: "/images/match_list_bg.png",
+    isovergame: 0, //0 进行中的比赛 1已经完结的比赛
 	  groupon:[],
 	
   },
@@ -25,12 +26,14 @@ Page({
     // let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
       // background: 'data:image/png;base64,' + base64,
-      imageBaseUrl:app.globalData.imageUrl
+      imageBaseUrl:app.globalData.imageUrl,
+      isovergame : options.status
     })
     var param = {
       openid: app.globalData.openid,
       status: options.status
     }
+   
     var that = this
     util.commonAjax('/api/selectGameinfoByOpenid', 0, param)
       .then(function (resolve) { 
@@ -139,7 +142,8 @@ Page({
     let gname = event.currentTarget.dataset.gname
     let pattern = event.currentTarget.dataset.pattern
     wx.redirectTo({
-      url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname + "&pattern=" + pattern
+      url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname +
+       "&pattern=" + pattern + "isovergame=" + this.data.isovergame
     })
   },
 

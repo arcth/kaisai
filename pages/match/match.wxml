@@ -89,8 +89,8 @@
 
       <view class="action">
         <text class="action-text">{{item.totalscore}} </text>
-        <text class="action-text">{{item.totalscore}} </text>
-        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalwin}} </text>
+        <text class="action-text">{{item.totallose}} </text>
         <text class="action-text">{{item.totalfield}} </text>
         <text class="action-text">{{item.totalmvp}} </text>
       </view>

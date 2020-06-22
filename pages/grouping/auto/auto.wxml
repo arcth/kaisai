@@ -1,5 +1,5 @@
 <!--pages/grouping/auto/auto.wxml-->
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">分组结果</view>
 </cu-custom>
@@ -33,7 +33,8 @@
 
 <view class="cu-form-group  margin-top">
     <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-       <button wx:if = "{{confirm}}" bindtap="torecord">比赛结果记录</button>
-      <button wx:if="{{!confirm}}"  open-type='share' bindtap="record"  class="btn-blue-gradient">分好了，通知参赛者！</button>
+      <button wx:if = "{{confirm && iscreater}}" bindtap="torecord">比赛结果记录</button>
+      <button wx:if="{{!confirm && iscreater}}"  open-type='share' bindtap="record"  class="btn-blue-gradient">分好了！通知参赛者</button>
+      <button wx:if = "{{!iscreater}}" open-type='share'>分享</button>
     </view>
 </view>
