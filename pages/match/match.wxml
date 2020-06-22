@@ -4,6 +4,7 @@
 </cu-custom>
 
 
+
 <view class="">
   <view class="match-card-container">
     <view class="match-card" style="background-image: url({{imageBaseUrl}}/match_start_bg.png)" bindtap="toregister">
