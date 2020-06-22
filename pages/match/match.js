@@ -44,7 +44,7 @@ Page({
       num: num,
       gname: gname,
       pattern: pattern,
-      isovergame : options.options
+      isovergame : options.isovergame
     })
     let param = {
       num: num

@@ -143,7 +143,7 @@ Page({
     let pattern = event.currentTarget.dataset.pattern
     wx.redirectTo({
       url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname +
-       "&pattern=" + pattern + "isovergame=" + this.data.isovergame
+       "&pattern=" + pattern + "&isovergame=" + this.data.isovergame
     })
   },
 
