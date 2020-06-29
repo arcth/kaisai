@@ -126,7 +126,8 @@ function isBlank(str) {
 
 function checklogin(openid){
   let param = {
-    code: openid
+    code: openid,
+    status: 0
   }
   this.commonAjax('/api/getParticipants', 0, param)
     .then(function (resolve) {
@@ -139,12 +140,55 @@ function checklogin(openid){
     })
 }
 
+function bindgetuserinfo(e) {
+  
+  // 获取公共配置  
+  var app = getApp()
+
+  app.globalData.userInfo = e.detail.userInfo
+
+  wx.getUserInfo({
+    complete: (res) => {
+      res.userInfo
+    },
+  })
+
+  wx.getUserInfo({
+    success: res => {
+      app.globalData.userInfo = res.userInfo
+    }
+  })
+  
+  var data = { 
+    encryptedData: e.detail.encryptedData, 
+    iv: e.detail.iv, 
+    code: app.globalData.code,
+    userinfo: JSON.stringify(e.detail.userInfo)
+    } 
+  this.commonAjax('/api/login', 0, data) 
+    .then(function (resolve) {
+      if (resolve.data.state === 0) {
+        // 成功  
+        app.globalData.openid = resolve.data.data.open_id
+        wx.setStorageSync('userInfo', resolve.data.data)
+        wx.setStorageSync('openid', resolve.data.data.open_id)
+        // 新手们注意一下，记得把下面这个写到这里，有好处。  
+        typeof cb == "function" && cb(app.globalData.userInfo)
+      } else {
+        console.log('/api/login 失败' )  
+      }
+    })
+  
+  
+}
+
 
 module.exports = {
   formatTime: formatTime,
   commonAjax: commonAjax,
   getNowFormatDate: getNowFormatDate,
   formatTimeOnly: formatTimeOnly,
-  isBlank: isBlank
+  isBlank: isBlank,
+  bindgetuserinfo:bindgetuserinfo
   
 }  
