@@ -15,6 +15,7 @@ Page({
     blueteam: null,
     confirm: false,
     iscreater: false,
+    game:null,
     uncheckteam: null
   },
 
@@ -26,7 +27,6 @@ Page({
     let pattern = options.pattern
     this.setData({
       pattern: options.pattern,
-
     })
     let that = this
     if(roundinfo.status == 2){
@@ -48,7 +48,6 @@ Page({
           // 失败  
         }
       })
-      return
     }
 
     
@@ -61,7 +60,6 @@ Page({
     util.commonAjax('/api/getGroupingResult', 0, param)
       .then(function(resolve) {
         if (resolve.data.state === 0) {
-          let redteam = resolve.data.data.RED
           that.setData({
             redteam: resolve.data.data.RED,
             blueteam: resolve.data.data.BLUE,
@@ -81,6 +79,9 @@ Page({
       util.commonAjax('/api/getGameInfo', 0, pm)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
+          that.setData({
+            game:resolve.data.data.game
+          })
           if(app.globalData.openid == resolve.data.data.game.creater ){
             that.setData({
               iscreater : true

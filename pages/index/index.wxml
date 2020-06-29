@@ -1,7 +1,5 @@
-<block wx:if = "{{!hasUserInfo}}">
-<!-- <view class="bg-img padding-top-xl flex align-end" style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');min-height: 100%;">
-    
-  </view>-->
+<!-- <block wx:if = "{{!hasUserInfo}}">
+
   <view class="login-page-container">
 		<view class="login-page-logo"></view>
 		<image src="/images/kaisai-text.png" class="kaisai-text"></image>
@@ -15,7 +13,8 @@
 </block>   
 
 
-<block wx:else>
+<block wx:else> -->
+<block>
 <basics  background='{{background}}' wx:if="{{PageCur=='basics'}}" ongoing='{{ongoing}}' finished='{{finished}}' imageBaseUrl='{{imageBaseUrl}}'></basics>
   <!-- <view class='wx_info'>
     <image src='{{userInfo.avatarUrl}}'></image>

@@ -18,6 +18,7 @@ Page({
     statusdes : '',
     gameinfo : '',
     isovergame : 0,
+    roundsdesc:'',
     imageBaseUrl:'',
   },
 
@@ -40,17 +41,20 @@ Page({
     let num = options.num
     let gname = options.gname
     let pattern = options.pattern
+    let isovergame = options.isovergame
     this.setData({
       num: num,
       gname: gname,
       pattern: pattern,
-      isovergame : options.isovergame
+      isovergame : isovergame
     })
     let param = {
-      num: num
+      num: num,
+      isovergame : isovergame
     }
     let that = this
-    util.commonAjax('/api/getRound', 0, param)
+    if(isovergame == 0){
+      util.commonAjax('/api/getRound', 0, param)
       .then(function (resolve) {
         // 这里自然不用解释了，这是接口返回的参数  
         if (resolve.data.state === 0) {
@@ -58,12 +62,19 @@ Page({
           // 成功  
           that.setData({
             round: resolve.data.data.curRound,
-            statusdes: resolve.data.data.statusdes    
+            statusdes: resolve.data.data.statusdes,
+            roundsdesc : ' 第' + resolve.data.data.curRound.rounds + '轮 进行中' 
           })
         } else {
           // 失败  
         }
       })
+    }else{
+      that.setData({
+        roundsdesc:' 系列赛完结'
+      })
+    }
+    
 
     /** util.commonAjax('/api/getGameinfo', 0, param)
       .then(function (resolve) {

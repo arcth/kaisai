@@ -34,7 +34,7 @@
 		</picker>
 	</view>
  <view class="cu-form-group">
-    <textarea disabled>{{round.rounddesc==null?"":round.rounddesc}}</textarea>
+    <textarea readonly>{{round.rounddesc==null?"":round.rounddesc}}</textarea>
  </view>
 <view class="cu-form-group">
   <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">

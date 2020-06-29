@@ -14,8 +14,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imageBaseUrl:'',
     background: "/images/wzry1.jpg",
-    ongoing:8,//假数据进行中的数量
-	  finished:2,//完结的数量
+    ongoing:Number,//假数据进行中的数量
+	  finished:Number//完结的数量
   },
 
   //事件处理函数
@@ -63,6 +63,20 @@ Page({
         }
       })
     }
+    var param = {
+      openid: app.globalData.openid,
+    }
+    var that = this
+    util.commonAjax('/api/countGameinfoByOpenid', 0, param)
+      .then(function (resolve) { 
+        if (resolve.data.state === 0) {
+          // 成功  
+          that.setData({
+            finished: resolve.data.data.finishedCount,
+            ongoing: resolve.data.data.ongoingCount
+          })
+        } 
+      })
   }, 
   bindgetuserinfo: function(e) {
     

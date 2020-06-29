@@ -23,9 +23,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    // let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
     this.setData({
-      // background: 'data:image/png;base64,' + base64,
       imageBaseUrl:app.globalData.imageUrl,
       isovergame : options.status
     })
@@ -33,7 +31,6 @@ Page({
       openid: app.globalData.openid,
       status: options.status
     }
-   
     var that = this
     util.commonAjax('/api/selectGameinfoByOpenid', 0, param)
       .then(function (resolve) { 
@@ -100,9 +97,12 @@ Page({
     that.setData({
       groupon: groupons
     })
-    setTimeout(function () {
-      that.grouponcountdown(that, end_time, param);
-    }, 1000)
+    if(that.data.isovergame == 0){ //提升比赛列表页性能 数据量过大会导致页面响应问题
+      setTimeout(function () {
+        that.grouponcountdown(that, end_time, param);
+      }, 1000)
+    }
+    
   },
 
   // 时间格式化输出，每1s都会调用一次

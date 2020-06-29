@@ -50,13 +50,14 @@ Page({
       gameinfo: info,
       introducer: options.introducer
     })
-    if (app.globalData.userInfo == "undefined" || app.globalData.userInfo == null) {
+   /**  if (app.globalData.userInfo == "undefined" || app.globalData.userInfo == null) {
       wx.navigateTo({
         url: '../index/index?gameinfo=' + encodeURIComponent(JSON.stringify(info)) + '&introducer=' + this.data.introducer
       })
-    }
+    }*/
     var param = {
-      gamenum: info.id
+      gamenum: info.id,
+      status: 0
     }
     var that = this
     util.commonAjax('/api/getParticipants', 0, param)
@@ -123,6 +124,11 @@ Page({
     }
 
   },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -134,7 +140,49 @@ Page({
     }
   },
 
-   bindgetuserinfo: function (e) {
+  login:function(e){
+    this.setData({
+      modalName: 'login'
+    })
+  },
+
+  bindgetuserinfo: function(e) {
+    
+    app.globalData.userInfo = e.detail.userInfo
+    
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    }) 
+
+    var data = { 
+      encryptedData: e.detail.encryptedData, 
+      iv: e.detail.iv, 
+      code: app.globalData.code,
+      userinfo: JSON.stringify(e.detail.userInfo)
+      } 
+    let that = this
+    util.commonAjax('/api/login', 0, data) 
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          // 成功  
+          app.globalData.openid = resolve.data.data.open_id
+          wx.setStorageSync('userInfo', resolve.data.data)
+          wx.setStorageSync('openid', resolve.data.data.open_id)
+          typeof cb == "function" && cb(app.globalData.userInfo)
+          that.setData({
+            userInfo: e.detail.userInfo,
+            hasUserInfo: true
+          }) 
+          that.onLoad(that.options)
+        } else {
+          console.log('/api/login 失败' )  
+        }
+      })
+    
+  },
+
+   joingame: function (e) {
 
     // 订阅消息授权 只支持bingtap的出发方式
      wx.requestSubscribeMessage({
@@ -154,8 +202,7 @@ Page({
 
     //app.globalData.userInfo = e.detail.userInfo
     this.setData({
-      userInfo: app.globalData.userInfo,
-      hasUserInfo: true
+      userInfo: app.globalData.userInfo
     })
 
     var data = {
@@ -172,9 +219,6 @@ Page({
       .then(function (resolve) { 
         if (resolve.data.state === 0) {
           // 成功  
-          app.globalData.openid = resolve.data.data.open_id
-          wx.setStorageSync('userInfo', resolve.data.data)
-          wx.setStorageSync('openid', resolve.data.data.open_id)
           // 新手们注意一下，记得把下面这个写到这里，有好处。  
           typeof cb == "function" && cb(app.globalData.userInfo)
           that.options.source = ''
@@ -198,7 +242,7 @@ Page({
     let gname = event.currentTarget.dataset.gname
     let pattern = event.currentTarget.dataset.pattern
     wx.redirectTo({
-      url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname + "&pattern=" + pattern
+      url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname + "&pattern=" + pattern + "&isovergame=0" 
     })
   },
 })

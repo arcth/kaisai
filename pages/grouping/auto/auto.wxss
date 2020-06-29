@@ -35,6 +35,7 @@ view .text:first-of-type {
 }
 .match-text-container{
 	margin-bottom: 40rpx;
+	min-height: 140rpx;
 }
 .match-title{
 	font-size: 64rpx;

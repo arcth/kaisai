@@ -4,8 +4,10 @@
 	<view slot="content">分享比赛</view>
 </cu-custom>
 <image src="{{imageBaseUrl}}/share-bg.png" class="share-bg"></image>
-<view class="inital-page">
-	<view class="title-text">{{gameinfo.name || '地利集团杯'}}</view>
+<view class="inital-page" >
+<view bindtap="openCurrentGame" data-type="default-wzry"
+ data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.name}}" data-pattern="{{gameinfo.pattern}}">
+	<view class="title-text">{{gameinfo.name }}</view>
 	<view class="game-count"><image src="/images/user-icon.png" class="user-icon"></image><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
 	<view class="text-inline">简介 ： {{gameinfo.describe}}</view>
 	<view class="text-inline">对战模式 : {{gameinfo.patterndes}}</view>
@@ -20,15 +22,35 @@
 			<!-- <view class="user-list-item" wx:for="{{gameUserContList}}" wx:key="*this"></view> -->
 		</view>
 	</view>
+	</view>
 	<view >
 	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' class="btn-blue-gradient">分享</button>
-	   <!--<button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' >登录参与比赛</button>-->
-	   <button wx:if = "{{!hasUserInfo || !isparticipant}}"  open-type='getUserInfo' bindtap='bindgetuserinfo' class="btn-blue-gradient">报名参加比赛</button>
+	   <button wx:if = "{{!hasUserInfo && !isparticipant}}"  bindtap='login' class="btn-blue-gradient">登录参与比赛</button>
+	   <button wx:if = "{{hasUserInfo && !isparticipant}}"   bindtap='joingame' class="btn-blue-gradient">报名参加比赛</button>
 	
 	   <!-- <button wx:if = "{{hasUserInfo && !isparticipant}}"  bindtap='bindgetuserinfo' >参与比赛</button> -->
 	</view>
 </view>
 
+<view class="cu-modal {{modalName=='login'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">您还未登录</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请先登录再执行操作
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">暂不登录</button>
+        <button open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo' class="cu-btn bg-green margin-left" bindtap="hideModal">立即登录</button>
+      </view>
+    </view>
+  </view>
+</view>
  <!-- <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{background}});height: 50%;" bindtap="openCurrentGame" data-type="default-wzry"
  data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.name}}" data-pattern="{{gameinfo.pattern}}"> -->
     <!-- <view class="padding-xl text-white">

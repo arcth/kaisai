@@ -11,7 +11,7 @@
           <view class="">
             <view class="text-white">
               <view class="match-title">{{gname}}</view>
-              <view class="match-round"> 第  {{round.rounds}} 轮 进行中</view>
+              <view class="match-round"> {{roundsdesc}}</view>
             </view>
           </view>
       <!-- 状态 根据 status 改变-->

@@ -154,7 +154,8 @@ Page({
       .then(function (resolve) {
         if (resolve.data.state === 0) {
           wx.redirectTo({
-            url: '../match/match?num=' + that.data.num + '&iscreater=' + true + '&pattern=' + that.data.pattern
+            url: '../match/match?num=' + that.data.num + '&iscreater=' + true + 
+            '&pattern=' + that.data.pattern + '&isovergame=' + 0
           })
         } else {
           // 失败  
