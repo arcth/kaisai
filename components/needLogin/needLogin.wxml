@@ -1,3 +1,19 @@
-<view class="need-login-model" animation="{{viewAnimation}}">
-    
+<view wx:if="{{isShow}}">
+	<cover-view class="need-login-model">
+		<cover-view class="need-login-model"  >
+			<cover-view class="need-login-dialog">
+				<cover-image src="../../images/need-login-title.png" class="title-image"></cover-image>
+				<cover-view class="close-icon" bindtap="hideModal">
+					<cover-image src="../../images/close-icon.png" mode="aspectFill"></cover-image>
+				</cover-view>
+				<cover-view class="login-info-text">请先登录再进行操作</cover-view>
+				<cover-image src="../../images/need-login-bg.png" class="login-modle-bg"></cover-image>
+				<cover-view class="need-login-btn-group">	
+					<button class="need-login-btn not" bindtap="hideModal">暂不登录</button>
+					<button class="need-login-btn allow" open-type='getUserInfo' bindgetuserinfo="handleGetUserInfo" >立即登录</button>
+				</cover-view>
+			</cover-view>
+		</cover-view>
+	</cover-view>
 </view>
+
