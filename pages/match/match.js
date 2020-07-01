@@ -13,6 +13,7 @@ Page({
     pattern : '',
     round : '',
     top : '',
+    top_field : '',
     totalfield : '',
     totalmvp : '',
     statusdes : '',
@@ -75,8 +76,11 @@ Page({
       })
     }
     
-
-    /** util.commonAjax('/api/getGameinfo', 0, param)
+    var parameter = {
+      num: num,
+      isovergame : isovergame
+    }
+     util.commonAjax('/api/getGameInfo', 0, parameter)
       .then(function (resolve) {
         // 这里自然不用解释了，这是接口返回的参数  
         if (resolve.data.state === 0) {
@@ -85,7 +89,7 @@ Page({
           that.setData({
             gameinfo: resolve.data.data.game
           })
-          if(app.globalData.openid == that.gameinfo.creater ){
+          if(app.globalData.openid == that.data.gameinfo.creater ){
             that.setData({
               iscreater : true
             })
@@ -94,7 +98,7 @@ Page({
         } else {
           // 失败  
         }
-      }) **/
+      }) 
 
     util.commonAjax('/api/getTop', 0, param)
       .then(function (resolve) {  
@@ -102,6 +106,7 @@ Page({
           // console.log(" match = " + resolve.data.data.statusdes)
           // 成功  
           let top = resolve.data.data.top
+          let top_field = resolve.data.data.top_field
           let totalfield;
           let totalmvp;
           top.forEach(function (item, index) {
@@ -111,7 +116,8 @@ Page({
             }
           })
           that.setData({
-            top: resolve.data.data.top,
+            top:top,
+            top_field : top_field,
             totalfield: totalfield,
             totalmvp: totalmvp
           })
@@ -120,6 +126,14 @@ Page({
         }
       })
    
+  },
+
+  onPullDownRefresh : function(){
+    wx.stopPullDownRefresh({
+      complete: (res) => {
+        getCurrentPages()[getCurrentPages().length - 1].onLoad(this.options)
+      },
+    })
   },
 
   /**
@@ -139,8 +153,8 @@ Page({
     let pattern = this.data.pattern
     //2--已经分组完成 直接进入分组结果页面 
     if(round.status == 2){
-      wx.navigateTo({
-        url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
+      wx.redirectTo({
+        url: '../grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
       })
     }else if(round.status === 0 || round.status === 1){
       wx.navigateTo({

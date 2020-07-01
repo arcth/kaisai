@@ -50,6 +50,7 @@ Page({
     let num = roundinfo.num
     let curTime = util.formatTime(new Date())
     //如果启用签到时间限制
+    console.log(' register  status =' + roundinfo.status)
     if (roundinfo.istimecontrol == 1 ){
       if (curTime > roundinfo.opentime && curTime < roundinfo.closetime){
         disable = false
@@ -82,14 +83,33 @@ Page({
               isDrawlots : true
             })
           }
-          
         } else {
           // 失败  
         }
       })
   },
 
-  
+  onPullDownRefresh : function(){
+    wx.stopPullDownRefresh({
+      complete: (res) => {
+        let param = {
+          num: this.data.num,
+          isovergame : 0
+        }
+        let that = this
+        util.commonAjax('/api/getRound', 0, param)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          var round = resolve.data.data.curRound
+          that.data.options.round = encodeURIComponent(JSON.stringify(round))
+          getCurrentPages()[getCurrentPages().length - 1].onLoad(that.data.options)
+        }else {
+          // 失败  
+        }
+      })
+      },
+    })
+  },
   DateChange(e) {
     this.setData({
       date: e.detail.value

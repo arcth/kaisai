@@ -97,4 +97,39 @@
       </view>
       </view>
     </view>
-   </view>
+  </view>
+
+<view class="cu-list menu title-bar solid-bottom margin-top">
+    <view class="cu-item">
+      <view class="content title-action-name">
+        低于平均出场率
+      </view>
+      <view class="action title-action-item">
+        <text class="action-title-text">积分</text>
+         <text class="action-title-text">胜</text>
+        <text class="action-title-text">负</text>
+        <text class="action-title-text">签到 </text>
+        <text class="action-title-text">MVP </text>
+      </view>
+      </view>
+    </view>
+
+  <view wx:for="{{top_field}}" wx:key="item">
+    <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
+          <view class="content">
+            {{item.user.nickname}}
+          </view>
+  
+
+      <view class="action">
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalwin}} </text>
+        <text class="action-text">{{item.totallose}} </text>
+        <text class="action-text">{{item.totalfield}} </text>
+        <text class="action-text">{{item.totalmvp}} </text>
+      </view>
+      </view>
+    </view>
+  </view>

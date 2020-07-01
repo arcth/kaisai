@@ -101,8 +101,8 @@ Page({
       return {
         title: '生而无畏，战至终章',
         desc: '分享页面的内容',
-        path: '/pages/grouping/auto/auto?redteam=' + encodeURIComponent(JSON.stringify(this.data.redteam)) 
-        +'&blueteam=' + encodeURIComponent(JSON.stringify(this.data.blueteam)) + '&status=2'  // 路径，传递参数到指定页面。
+        path: '/pages/grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(this.data.round))
+         + '&iscreater=' + this.dataiscreater + '&pattern=' + this.datapattern
       }
     }
   },
