@@ -60,6 +60,12 @@
 </view>
 </form>
 
+
+<need-login wx:if="{{modalName=='login'}}">
+
+</need-login>
+
+
 <view class="cu-modal {{modalName=='login'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
