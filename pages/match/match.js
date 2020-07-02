@@ -21,6 +21,7 @@ Page({
     isovergame : 0,
     roundsdesc:'',
     imageBaseUrl:'',
+    average:''
   },
 
   /**
@@ -87,7 +88,8 @@ Page({
           // console.log(" match = " + resolve.data.data.statusdes)
           // 成功  
           that.setData({
-            gameinfo: resolve.data.data.game
+            gameinfo: resolve.data.data.game,
+            gname: resolve.data.data.game.name
           })
           if(app.globalData.openid == that.data.gameinfo.creater ){
             that.setData({
@@ -109,18 +111,23 @@ Page({
           let top_field = resolve.data.data.top_field
           let totalfield;
           let totalmvp;
+          let average;
           top.forEach(function (item, index) {
             if (item.player == app.globalData.openid){
               totalfield = item.totalfield
               totalmvp = item.totalmvp
+              average = item.average
             }
+            
           })
           that.setData({
             top:top,
             top_field : top_field,
             totalfield: totalfield,
-            totalmvp: totalmvp
+            totalmvp: totalmvp,
+            average:average
           })
+          console.log(that.data.average)
         } else {
           // 失败  
         }

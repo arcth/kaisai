@@ -50,7 +50,6 @@ Page({
     let num = roundinfo.num
     let curTime = util.formatTime(new Date())
     //如果启用签到时间限制
-    console.log(' register  status =' + roundinfo.status)
     if (roundinfo.istimecontrol == 1 ){
       if (curTime > roundinfo.opentime && curTime < roundinfo.closetime){
         disable = false

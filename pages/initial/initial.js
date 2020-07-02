@@ -14,7 +14,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     isparticipant : false,
-	  gameUserCont:20, //比赛总人数
+	  gameUserCont:'∞', //比赛总人数
 	  gameUserContList:[],
  	  registeredUserCount:5,// 已经报名总人数
     participants: {}, 
@@ -65,8 +65,10 @@ Page({
         if (resolve.data.state === 0) {
           // 成功  
           const obj = resolve.data.data.participants;
+          
           that.setData({
-            participants: obj
+            participants: obj,
+            registeredUserCount: obj.length
           })
         } else {
           // 失败  

@@ -89,7 +89,7 @@
  
   <view class="cu-form-group">
     <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-       <button form-type='submit' >保存设置</button>
+       <button form-type='submit' >设置好了，开启签到</button>
     </view>
  </view>
  </form> 

@@ -74,7 +74,8 @@ Page({
        *  解决：从分享页面进入的用户 需要通过是否为创建者判断 进行页面控制
        */
       var pm= {
-        num: roundinfo.num
+        num: roundinfo.num,
+        isovergame : 0
       }
       util.commonAjax('/api/getGameInfo', 0, pm)
       .then(function (resolve) {

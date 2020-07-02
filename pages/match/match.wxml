@@ -43,7 +43,7 @@
 </view>
 <!---->
   
-  <view class="title-bar">赛事统计</view>
+  <view class="title-bar">个人赛事统计</view>
    <view class="cu-list menu">
       <view class="cu-item">
         <view class="content">
@@ -73,7 +73,8 @@
         <text class="action-title-text">积分</text>
          <text class="action-title-text">胜</text>
         <text class="action-title-text">负</text>
-        <text class="action-title-text">签到 </text>
+       <!-- <text class="action-title-text">签到次 </text>-->
+         <text class="action-title-text">出勤率 </text>
         <text class="action-title-text">MVP </text>
       </view>
       </view>
@@ -92,7 +93,8 @@
         <text class="action-text">{{item.totalscore}} </text>
         <text class="action-text">{{item.totalwin}} </text>
         <text class="action-text">{{item.totallose}} </text>
-        <text class="action-text">{{item.totalfield}} </text>
+      <!--  <text class="action-text">{{item.totalfield}} </text> -->
+        <text class="action-text">{{item.avgpercent}} </text>
         <text class="action-text">{{item.totalmvp}} </text>
       </view>
       </view>
@@ -102,13 +104,14 @@
 <view class="cu-list menu title-bar solid-bottom margin-top">
     <view class="cu-item">
       <view class="content title-action-name">
-        低于平均出场率
+        低于平均出勤率({{average}})
       </view>
       <view class="action title-action-item">
         <text class="action-title-text">积分</text>
          <text class="action-title-text">胜</text>
         <text class="action-title-text">负</text>
-        <text class="action-title-text">签到 </text>
+      <!--  <text class="action-title-text">签到次 </text> -->
+        <text class="action-title-text">出勤率 </text>
         <text class="action-title-text">MVP </text>
       </view>
       </view>
@@ -127,7 +130,8 @@
         <text class="action-text">{{item.totalscore}} </text>
         <text class="action-text">{{item.totalwin}} </text>
         <text class="action-text">{{item.totallose}} </text>
-        <text class="action-text">{{item.totalfield}} </text>
+      <!--  <text class="action-text">{{item.totalfield}} </text> -->
+        <text class="action-text">{{item.avgpercent}} </text>
         <text class="action-text">{{item.totalmvp}} </text>
       </view>
       </view>

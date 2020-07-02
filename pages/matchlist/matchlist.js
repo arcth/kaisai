@@ -15,7 +15,6 @@ Page({
     background: "/images/match_list_bg.png",
     isovergame: 0, //0 进行中的比赛 1已经完结的比赛
 	  groupon:[],
-	
   },
 
   /**
@@ -98,7 +97,7 @@ Page({
       groupon: groupons
     })
     if(that.data.isovergame == 0){ //提升比赛列表页性能 数据量过大会导致页面响应问题
-      setTimeout(function () {
+       setTimeout(function () {
         that.grouponcountdown(that, end_time, param);
       }, 1000)
     }
