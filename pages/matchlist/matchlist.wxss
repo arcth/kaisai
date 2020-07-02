@@ -8,7 +8,37 @@ page{
   padding-bottom: 60rpx;
 }
 
-
+.no-data-contianer{
+	text-align: center;
+	margin-top: 340rpx;
+}
+.no-data-img{
+	width: 582rpx;
+	height: 292rpx;
+	display: block;
+	margin: 0 auto;
+}
+.no-data-zh{
+	color: #333;
+	font-size: 40rpx;
+	font-weight: bold;
+	margin-bottom: 20rpx;
+	display: block;
+}
+.no-data-en{
+	color: #bcbebf;
+	font-size: 28rpx;
+}
+.login-btn{
+	width: 440rpx;
+	height: 84rpx;
+	border-radius: 42rpx;
+	margin: 100rpx auto 0;
+	background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
+	font-size: 32rpx;
+	font-weight: 500;
+	color: #fff;
+}
 .index {
   width: 100%;
   height: auto;

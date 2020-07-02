@@ -4,10 +4,23 @@
 </cu-custom>
 
 
-
-
+<view wx:if="{{!isLogin}}">
+	<view class="no-data-contianer">
+		<image src="../../images/no-data.png" class="no-data-img"></image>
+		<text class="no-data-zh">还没有比赛</text>
+		<text class="no-data-en">NO GAME</text>
+		<button class="login-btn" open-type='getUserInfo' bindgetuserinfo="handleGetUserInfo" >登录 创建比赛</button>
+	</view>
+</view>
+<view wx:if="{{isLogin && groupon.length === 0}}">
+	<view class="no-data-contianer">
+		<image src="../../images/no-data.png" class="no-data-img"></image>
+		<text class="no-data-zh">还没有比赛</text>
+		<text class="no-data-en">NO GAME</text>
+	</view>
+</view>
 <!-- BUG后期处理 头像多了没有换行  -->
-<view class="groupon-container">
+<view class="groupon-container" wx:if="{{isLogin && groupon.length > 0}}">
 	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
 			<image src="{{imageBaseUrl}}/match_list_bg.png" class="match-list-bg"></image>
 	       <!-- <view class="cu-item bg-img shadow-blur"  > -->

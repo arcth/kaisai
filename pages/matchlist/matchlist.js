@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+	isLogin:false,
     openid: '',
     gamelist: {},
     collageTeamlist : {},
@@ -22,6 +23,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+	if(app.globalData.userInfo && app.globalData.openid){
+		this.setData({
+			isLogin:true
+		})
+	}
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
       isovergame : options.status
@@ -145,6 +151,31 @@ Page({
        "&pattern=" + pattern + "&isovergame=" + this.data.isovergame
     })
   },
-
+  handleGetUserInfo:function(e){
+  		  // debugger;
+  		  let vm = this;
+  		  // console.log(vm);
+  		  app.globalData.userInfo = e.detail.userInfo;
+  		  var data = {
+  		    encryptedData: e.detail.encryptedData, 
+  		    iv: e.detail.iv, 
+  		    code: app.globalData.code,
+  		    userinfo: JSON.stringify(e.detail.userInfo)
+  		    } 
+  		  util.commonAjax('/api/login', 0, data) 
+  		    .then(function (resolve) {
+  		      if (resolve.data.state === 0) {
+  		        // 成功  
+  		        app.globalData.openid = resolve.data.data.open_id
+  		        wx.setStorageSync('userInfo', resolve.data.data)
+  		        wx.setStorageSync('openid', resolve.data.data.open_id)
+  				wx.redirectTo({
+  				  url: '../index/index'
+  				})
+  		      } else {
+  		        console.log('/api/login 失败' )  
+  		      }
+  		    })
+  }
 
 })
