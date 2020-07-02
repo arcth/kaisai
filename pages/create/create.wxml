@@ -60,7 +60,15 @@
 </view>
 </form>
 
-<view class="cu-modal {{modalName=='login'?'show':''}}">
+
+<!-- <need-login wx:if="{{modalName=='login'}}"> -->
+<!-- 需要登录弹出窗 -->
+<need-login isShow="{{isShow}}">
+
+</need-login>
+
+
+<!-- <view class="cu-modal {{modalName=='login'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">您还未登录</view>
@@ -78,4 +86,4 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->

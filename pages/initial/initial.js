@@ -10,6 +10,7 @@ Page({
     gameinfo : {
 		
 	},
+	isShow:false,
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,
@@ -144,45 +145,46 @@ Page({
 
   login:function(e){
     this.setData({
-      modalName: 'login'
+      // modalName: 'login',
+	  isShow:true
     })
   },
 
-  bindgetuserinfo: function(e) {
+  // bindgetuserinfo: function(e) {
     
-    app.globalData.userInfo = e.detail.userInfo
+  //   app.globalData.userInfo = e.detail.userInfo
     
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    }) 
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   }) 
 
-    var data = { 
-      encryptedData: e.detail.encryptedData, 
-      iv: e.detail.iv, 
-      code: app.globalData.code,
-      userinfo: JSON.stringify(e.detail.userInfo)
-      } 
-    let that = this
-    util.commonAjax('/api/login', 0, data) 
-      .then(function (resolve) {
-        if (resolve.data.state === 0) {
-          // 成功  
-          app.globalData.openid = resolve.data.data.open_id
-          wx.setStorageSync('userInfo', resolve.data.data)
-          wx.setStorageSync('openid', resolve.data.data.open_id)
-          typeof cb == "function" && cb(app.globalData.userInfo)
-          that.setData({
-            userInfo: e.detail.userInfo,
-            hasUserInfo: true
-          }) 
-          that.onLoad(that.options)
-        } else {
-          console.log('/api/login 失败' )  
-        }
-      })
+  //   var data = { 
+  //     encryptedData: e.detail.encryptedData, 
+  //     iv: e.detail.iv, 
+  //     code: app.globalData.code,
+  //     userinfo: JSON.stringify(e.detail.userInfo)
+  //     } 
+  //   let that = this
+  //   util.commonAjax('/api/login', 0, data) 
+  //     .then(function (resolve) {
+  //       if (resolve.data.state === 0) {
+  //         // 成功  
+  //         app.globalData.openid = resolve.data.data.open_id
+  //         wx.setStorageSync('userInfo', resolve.data.data)
+  //         wx.setStorageSync('openid', resolve.data.data.open_id)
+  //         typeof cb == "function" && cb(app.globalData.userInfo)
+  //         that.setData({
+  //           userInfo: e.detail.userInfo,
+  //           hasUserInfo: true
+  //         }) 
+  //         that.onLoad(that.options)
+  //       } else {
+  //         console.log('/api/login 失败' )  
+  //       }
+  //     })
     
-  },
+  // },
 
    joingame: function (e) {
 

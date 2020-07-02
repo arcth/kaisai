@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+	isShow:false,
     index: 4,
     date: util.getNowFormatDate(),
     imgList: [],
@@ -80,7 +81,9 @@ Page({
       textareaAValue: e.detail.value
     })
   },
-  hideModal(e) {
+  handleHideModal(e) {
+	  // debugger;
+	
     this.setData({
       modalName: null
     })
@@ -89,10 +92,12 @@ Page({
   formSubmit: function (e) {
 
     //判断是否登录
-    if (app.globalData.userInfo && app.globalData.openid) {
-    }else{
+	// debugger;
+    if (!(app.globalData.userInfo && app.globalData.openid)) {
+    
       this.setData({
-        modalName: 'login'
+        modalName: 'login',
+		isShow:true
       })
       let pages = getCurrentPages() //页面栈    
       pages.onLoad
@@ -107,9 +112,22 @@ Page({
 
     //console.log(pattern)
     if (gamename.length === 0) {
-        
-    }else{
-
+        wx.showToast({
+          title: '请输入比赛名称',
+          icon: 'none',
+          duration: 2000
+        })
+		return;
+    }
+	if(gamename.length > 20){
+		wx.showToast({
+		  title: '比赛名称请勿超过20个字',
+		  icon: 'none',
+		  duration: 2000
+		})
+		return;
+	}
+	  
       var data ={
         gamename: gamename,
         pattern: pattern,
@@ -130,35 +148,36 @@ Page({
             // 失败  
           }
         })
-    }
+    
   },
-  bindgetuserinfo: function(e) {
+  
+  // bindgetuserinfo: function(e) {
     
-    app.globalData.userInfo = e.detail.userInfo
-    
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    }) 
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   debugger;
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   }) 
 
-    var data = { 
-      encryptedData: e.detail.encryptedData, 
-      iv: e.detail.iv, 
-      code: app.globalData.code,
-      userinfo: JSON.stringify(e.detail.userInfo)
-      } 
-    util.commonAjax('/api/login', 0, data) 
-      .then(function (resolve) {
-        if (resolve.data.state === 0) {
-          // 成功  
-          app.globalData.openid = resolve.data.data.open_id
-          wx.setStorageSync('userInfo', resolve.data.data)
-          wx.setStorageSync('openid', resolve.data.data.open_id)
-          typeof cb == "function" && cb(app.globalData.userInfo)
-        } else {
-          console.log('/api/login 失败' )  
-        }
-      })
+  //   var data = { 
+  //     encryptedData: e.detail.encryptedData, 
+  //     iv: e.detail.iv, 
+  //     code: app.globalData.code,
+  //     userinfo: JSON.stringify(e.detail.userInfo)
+  //     } 
+  //   util.commonAjax('/api/login', 0, data) 
+  //     .then(function (resolve) {
+  //       if (resolve.data.state === 0) {
+  //         // 成功  
+  //         app.globalData.openid = resolve.data.data.open_id
+  //         wx.setStorageSync('userInfo', resolve.data.data)
+  //         wx.setStorageSync('openid', resolve.data.data.open_id)
+  //         typeof cb == "function" && cb(app.globalData.userInfo)
+  //       } else {
+  //         console.log('/api/login 失败' )  
+  //       }
+  //     })
     
-  },
+  // },
 })
