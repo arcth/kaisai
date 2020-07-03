@@ -21,7 +21,7 @@ Page({
     isovergame : 0,
     roundsdesc:'',
     imageBaseUrl:'',
-    average:''
+    average:'0.0%'
   },
 
   /**
@@ -127,7 +127,6 @@ Page({
             totalmvp: totalmvp,
             average:average
           })
-          console.log(that.data.average)
         } else {
           // 失败  
         }

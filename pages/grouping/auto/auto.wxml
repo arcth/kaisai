@@ -6,7 +6,7 @@
 <image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg"></image>
 <view class="auto-page">
 	<view class="match-text-container">
-		<view class="match-title">{{game.name}}qweqweqweqeqweqweqwe驱蚊器翁231231312312312312123</view>
+		<view class="match-title">{{game.name}}</view>
 		<view class="match-sub-title">第  {{round.rounds}} 轮</view>
 	</view>
 	<view class="match-group">

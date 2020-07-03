@@ -104,7 +104,7 @@
 <view class="cu-list menu title-bar solid-bottom margin-top">
     <view class="cu-item">
       <view class="content title-action-name">
-        低于平均出勤率({{average}})
+        平均出勤率({{average}})
       </view>
       <view class="action title-action-item">
         <text class="action-title-text">积分</text>

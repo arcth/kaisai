@@ -1,5 +1,6 @@
 // pages/register/register.js
 const util = require('../../utils/util.js');
+//const socket = require('../../utils/websocket.js');
 const app = getApp()
 Page({
 
@@ -23,12 +24,37 @@ Page({
     num: ''
 
   },
-
+  connectWebsocket: function () {
+    wx.connectSocket({
+      url: 'ws://ksai.nong12.com/server/server/1',
+      data: {
+        x: '1',
+        y: '22'
+      },
+      header: {
+        'content-type': 'application/json'
+      },
+      method: "GET"
+    })
+    wx.onSocketOpen(function (res) {
+      console.log('WebSocket连接已打开！')
+    })
+    wx.onSocketError(function (res) {
+      console.log(res)
+      console.log('WebSocket连接打开失败，请检查！')
+    })
+    wx.onSocketMessage(function (res) {
+      console.log('收到服务器内容：' + res.data)
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+   //this.connectWebsocket()
+   //socket.connectSocket()
+
+
     if (util.isBlank(options.round)) {
       return
     }
@@ -233,12 +259,9 @@ Page({
       .then(function (resolve) {
         
         if (resolve.data.state === 0) {
-         
-          
         } else {
           // 失败  
         }
       })
-
   }
 })
