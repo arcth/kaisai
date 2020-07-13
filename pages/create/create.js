@@ -11,6 +11,9 @@ Page({
     index: 4,
     date: util.getNowFormatDate(),
     imgList: [],
+    tipsDialogvisible: false,
+    oneButton: [{text: '确定'}],
+    dialogmsg:'',
     picker: ['1v1','2v2','3v3','4v4','5v5'],
 
   },
@@ -22,7 +25,16 @@ Page({
     var type = options.type
    // console.log('gametype =' + type)
   },
-
+	tapDialogButton(e) {
+	  this.setData({
+	    tipsDialogvisible: false,
+	   })
+	},
+	showTips:function(e){
+		this.setData({
+		    tipsDialogvisible: true
+		})
+	},
   DateChange(e) {
     this.setData({
       date: e.detail.value
@@ -137,6 +149,7 @@ Page({
         openid: app.globalData.openid,
         num : null
       }
+      let that = this
       util.commonAjax('/api/creategame', 0, data)
         .then(function (resolve) {
           if (resolve.data.state === 0) {
@@ -144,8 +157,13 @@ Page({
              wx.redirectTo ({ 
                url: '../initial/initial?gameinfo=' + encodeURIComponent(JSON.stringify(game)) + '&source=create' + '&introducer=' + app.globalData.openid 
              })
-          } else {
-            // 失败  
+          } else if(resolve.data.state === 2){
+            // 检查失败
+            var errmsg =   resolve.data.data.errmsg
+            that.setData({
+              tipsDialogvisible: true,
+              dialogmsg : errmsg
+            })
           }
         })
     

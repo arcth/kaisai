@@ -24,7 +24,7 @@
 		</picker>
 	</view>
   <view class="cu-form-group">
-		<view class="title">是否启用道具</view>
+		<view class="title">公开赛</view>
 		<switch name="prop"  class="red sm" checked></switch>
 	</view>
 
@@ -68,6 +68,9 @@
 </need-login>
 
 
+<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+	          <view>{{dialogmsg}}</view>
+ </mp-dialog>
 <!-- <view class="cu-modal {{modalName=='login'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">

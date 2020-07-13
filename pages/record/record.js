@@ -16,6 +16,9 @@ Page({
     num: '',
     winner: [],
     loser: [],
+    tipsDialogvisible: false,
+    oneButton: [{text: '确定'}],
+    dialogmsg:'',
     imgList: []
 
   },
@@ -36,7 +39,16 @@ Page({
     })
 
   },
-
+  tapDialogButton(e) {
+	  this.setData({
+	    tipsDialogvisible: false,
+	   })
+	},
+	showTips:function(e){
+		this.setData({
+		    tipsDialogvisible: true
+		})
+	},
   ChooseImage() {
     wx.chooseImage({
       count: 1, //默认9 最多可以选择的图片张数
@@ -121,7 +133,6 @@ Page({
         var filePath = that.data.imgList[index];
         wx.uploadFile({
           url: app.globalData.url + '/api/uploadPicture',
-          // url : app.data.baseurl + 'baiduFaceAndCompare?sfzh=' + app.data.user.sfzh,
           filePath: filePath + '',
           name: 'file',
           formData:{
@@ -133,6 +144,25 @@ Page({
             "Content-Type": "multipart/form-data"
           },
           success: function (res) {
+            console.log(res)
+            if( res.statusCode != 200){
+              that.setData({
+                tipsDialogvisible: true,
+                dialogmsg : '上传图片含有违法违规内容！'
+              })
+              return
+            }
+            util.commonAjax('/api/record', 0, param)
+            .then(function (resolve) {
+              if (resolve.data.state === 0) {
+                wx.redirectTo({
+                  url: '../match/match?num=' + that.data.num + '&iscreater=' + true + 
+                  '&pattern=' + that.data.pattern + '&isovergame=' + 0
+                })
+              } else {
+                // 失败  
+              }
+            })
             var newlist = new Array();
             var oldlist = that.data.list;
             for (var obj in that.data.list){
@@ -145,12 +175,14 @@ Page({
             })
           },
           fail: function (err) {
+            console.log(22222222222222222222)
             console.log(err)
+            return
           }
         });
       }
-    }
-     util.commonAjax('/api/record', 0, param)
+    }else{
+      util.commonAjax('/api/record', 0, param)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
           wx.redirectTo({
@@ -161,5 +193,7 @@ Page({
           // 失败  
         }
       })
+    }
+    
   }
 })

@@ -53,7 +53,6 @@ Component({
 		        app.globalData.openid = resolve.data.data.open_id
 		        wx.setStorageSync('userInfo', resolve.data.data)
 		        wx.setStorageSync('openid', resolve.data.data.open_id)
-				vm.setData({viewAnimation:vm.animation.export()});
 		        typeof cb == "function" && cb(app.globalData.userInfo)
 		      } else {
 		        console.log('/api/login 失败' )  

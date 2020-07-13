@@ -27,14 +27,14 @@
  </block>
  	<view class="cu-form-group">
 		<view class="title">分组模式</view>
-		<picker name="teammode" disabled='false' value="{{index}}" range="{{picker}}">
+		<picker name="teammode"  value="{{index}}" range="{{picker}}" >
 			<view class="picker">
 				{{index?picker[index]:'选择分组模式'}}
 			</view>
 		</picker>
 	</view>
  <view class="cu-form-group">
-    <textarea readonly>{{round.rounddesc==null?"":round.rounddesc}}</textarea>
+    <textarea readonly>{{round.rounddesc == null?'':round.rounddesc}}</textarea>
  </view>
 <view class="cu-form-group">
   <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
@@ -130,3 +130,6 @@
     </view>
   </view>
 </view>
+<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+	          <view>{{dialogmsg}}</view>
+ </mp-dialog>
