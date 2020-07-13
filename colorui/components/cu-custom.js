@@ -35,7 +35,6 @@ Component({
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
     Custom: app.globalData.Custom,
-    statusBarHeight: app.globalData.systeminfo.statusBarHeight
   },
   /**
    * 组件的方法列表
