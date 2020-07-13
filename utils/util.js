@@ -13,25 +13,20 @@ const formatNumber = n => {
  * data  传递数据对象  
  */
 function commonAjax(url, types, data) {
-
   // 获取公共配置  
   var app = getApp()
-
   // 公共参数（一般写接口的时候都会有些公共参数，你可以事先把这些参数都封装起来，就不用每次调用方法的时候再去写，）  
   var d = {
     token: '123456789',
   }
-
   // 合并对象(公共参数加传入参数合并对象) mergeObj对象在下面  
   var datas = mergeObj(d, data)
-
   // 这是es6的promise版本库大概在1.1.0开始支持的，大家可以去历史细节点去看一下，一些es6的机制已经可以使用了  
   var promise = new Promise(function (resolve, reject, defaults) {
     // 封装reuqest  
     wx.showLoading({
       title: '加载中...',
     })
-
     /*wx.showToast({
       title: '成功',
       icon: 'success',
