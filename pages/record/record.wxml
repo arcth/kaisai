@@ -91,3 +91,6 @@
     <button form-type='submit' class="cu-btn bg-red margin-tb-sm lg">提交</button>
   </view>
 </form>
+<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+	          <view>{{dialogmsg}}</view>
+ </mp-dialog>

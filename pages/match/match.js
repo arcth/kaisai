@@ -1,5 +1,6 @@
 // pages/match/match.js
 const app = getApp()
+const socket = require('../../utils/websocket.js')
 const util = require('../../utils/util.js')
 Page({
 
@@ -24,10 +25,32 @@ Page({
     average:'0.0%'
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //socket.closeSocket();
+    var fields = {
+      socketid:app.globalData.openid
+    }
+    util.commonAjax('/api/onlinejudge', 0, fields)
+      .then(function (resolve) {
+        // 这里自然不用解释了，这是接口返回的参数  
+        if (resolve.data.state === 0) {
+          if(!resolve.data.data.isconnect){
+            socket.connectSocket();
+            app.globalData.isConnect = true
+          }
+        } else {
+          // 失败  
+        }
+      })
+    
+    
+
+
+
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
     })
@@ -133,6 +156,7 @@ Page({
       })
    
   },
+  
 
   onPullDownRefresh : function(){
     wx.stopPullDownRefresh({
@@ -157,14 +181,15 @@ Page({
     let round = this.data.round
     let iscreater = this.data.iscreater
     let pattern = this.data.pattern
+    let num = this.data.num
     //2--已经分组完成 直接进入分组结果页面 
     if(round.status == 2){
       wx.redirectTo({
-        url: '../grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
+        url: '../grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
       })
     }else if(round.status === 0 || round.status === 1){
       wx.navigateTo({
-        url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern
+        url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
       })
     }else{
       return false;

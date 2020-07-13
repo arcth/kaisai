@@ -1,7 +1,9 @@
 // pages/register/register.js
 const util = require('../../utils/util.js');
-//const socket = require('../../utils/websocket.js');
+const socket = require('../../utils/websocket.js');
+
 const app = getApp()
+const api = app.globalData.api
 Page({
 
   /**
@@ -17,51 +19,34 @@ Page({
     etime: util.formatTimeOnly(new Date()),
     disable : true,
     index: '0',
-    picker: ['随机匹配', 'ELO匹配', '手动抽签'],
+    picker: ['随机匹配'],
     teammode : '0',
     options :'',
     round : '',
+    tipsDialogvisible: false,
+    oneButton: [{text: '确定'}],
+    dialogmsg:'',
     num: ''
 
   },
-  connectWebsocket: function () {
-    wx.connectSocket({
-      url: 'ws://ksai.nong12.com/server/server/1',
-      data: {
-        x: '1',
-        y: '22'
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: "GET"
-    })
-    wx.onSocketOpen(function (res) {
-      console.log('WebSocket连接已打开！')
-    })
-    wx.onSocketError(function (res) {
-      console.log(res)
-      console.log('WebSocket连接打开失败，请检查！')
-    })
-    wx.onSocketMessage(function (res) {
-      console.log('收到服务器内容：' + res.data)
-    })
+  onUnload: function (options) {
+    //socket.closeSocket();
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   //this.connectWebsocket()
-   //socket.connectSocket()
-
-
+  // socket.closeSocket();
+  // socket.connectSocket();
+   
     if (util.isBlank(options.round)) {
       return
     }
     this.setData({
-      round: JSON.parse(decodeURIComponent(options.round))
+      num:options.num,
+      pattern:options.pattern,
+      options: options
     })
-    let roundinfo = JSON.parse(decodeURIComponent(options.round))
     if (options.iscreater === 'true') {
       this.setData({
         iscreater: true
@@ -71,47 +56,84 @@ Page({
         iscreater: false
       })
     }
-    let pattern = options.pattern
-    let disable = true
-    let num = roundinfo.num
-    let curTime = util.formatTime(new Date())
-    //如果启用签到时间限制
-    if (roundinfo.istimecontrol == 1 ){
-      if (curTime > roundinfo.opentime && curTime < roundinfo.closetime){
-        disable = false
-      }
-    } else if (roundinfo.status == 1){
-      disable = false
-    }
-    
-    this.setData({
-      disable: disable,
-      pattern: pattern,
-      options: options,
-      num : num
-    })
+    this.init()
+        
+  },
+  async init () {
+    await api.showLoading() // 显示loading
+    await this.getRound()  
+    await this.getPlayers()
+    await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
 
-    let param = {
-      id: roundinfo.id
+  getRound(){
+    return new Promise((resolve, reject) => {
+    let parameter = {
+      num: this.data.num,
+      isovergame : 0
     }
-    let that = this
-    util.commonAjax('/api/getPlayers', 0, param)
+    let that = this      
+      api.commonAjax('/api/getRound', 0, parameter)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
-          // 成功  
-          that.setData({
-            players: resolve.data.data.players
-          })
-          var minparticipants = parseInt(pattern)*2;//最小参赛队员数
-          if (that.data.players.length >= minparticipants && that.data.iscreater){
-            that.setData({
-              isDrawlots : true
-            })
+          var round = resolve.data.data.curRound
+          var disable = true
+          var curTime = util.formatTime(new Date())
+          //如果启用签到时间限制
+          if (round.istimecontrol == 1 ){
+            if (curTime > round.opentime && curTime < round.closetime){
+              disable = false
+            }
+          } else if (round.status == 1){
+            disable = false
           }
-        } else {
+          that.setData({
+            round:round,
+            disable:disable,
+            num : round.num
+          })
+        }else {
           // 失败  
         }
+      }).then((res) => {
+        resolve()
       })
+        .catch((err) => {
+          console.error(err)
+          reject(err)
+        })
+    })
+  },
+  getPlayers(){
+    return new Promise((resolve, reject) => {
+    let param = {
+      id: this.data.round.id
+    }
+    var that = this
+        api.commonAjax('/api/getPlayers', 0, param)
+          .then(function (resolve) {
+            if (resolve.data.state === 0) {
+              // 成功  
+              that.setData({
+                players: resolve.data.data.players
+              })
+              var minparticipants = parseInt(that.data.pattern)*2;//最小参赛队员数
+              if (that.data.players.length >= minparticipants && that.data.iscreater){
+                that.setData({
+                  isDrawlots : true
+                })
+              }
+            } else {
+              // 失败  
+            }
+          }).then((res) => {
+            resolve()
+          })
+            .catch((err) => {
+              console.error(err)
+              reject(err)
+            })
+        })
   },
 
   onPullDownRefresh : function(){
@@ -135,6 +157,7 @@ Page({
       },
     })
   },
+  
   DateChange(e) {
     this.setData({
       date: e.detail.value
@@ -204,6 +227,7 @@ Page({
             round: resolve.data.data.curRound
           })
           //刷新当前页面的数据
+          
           var pages = getCurrentPages();
           var prevPage = pages[pages.length - 2]
           pages[pages.length - 1].onLoad(that.options)
@@ -213,6 +237,13 @@ Page({
             })
           }
           
+        }else if(resolve.data.state === 2){
+          // 检查失败
+          var errmsg =   resolve.data.data.errmsg
+          that.setData({
+            tipsDialogvisible: true,
+            dialogmsg : errmsg
+          })
         } else {
           // 失败  
         }

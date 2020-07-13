@@ -30,10 +30,10 @@ Page({
     })
     let that = this
     if(roundinfo.status == 2){
-      var parameter= {
+    var parameter= {
         id: roundinfo.id
       }
-      util.commonAjax('/api/getCurRoundREC', 0, parameter)
+    util.commonAjax('/api/getCurRoundREC', 0, parameter)
       .then(function(resolve) {
         if (resolve.data.state === 0) {
           let redteam = resolve.data.data.RED
@@ -47,10 +47,11 @@ Page({
         } else {
           // 失败  
         }
-      })
-    }
-
+    })
+  }
     
+//status =2 已分组。  
+    if(roundinfo.status != 2 ){
     let param = {
       id: roundinfo.id,
       teammode:roundinfo.teammode,
@@ -70,6 +71,7 @@ Page({
           // 失败  
         }
       })
+    }
       /**
        *  解决：从分享页面进入的用户 需要通过是否为创建者判断 进行页面控制
        */
@@ -109,13 +111,13 @@ Page({
   },
   record: function() {
    
-    let round = this.data.round
+    let round =JSON.stringify( this.data.round)
     let redteam = JSON.stringify(this.data.redteam)
     let blueteam = JSON.stringify(this.data.blueteam)
     let uncheckteam = JSON.stringify(this.data.uncheckteam)
 
     let param = {
-      id: this.data.round.id,
+      round:round,
       redteam: redteam,
       blueteam: blueteam,
       uncheckteam: uncheckteam,

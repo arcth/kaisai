@@ -1,6 +1,8 @@
 // pages/initial/initial.js
 const app = getApp()
+const socket = require('../../utils/websocket.js')
 const util = require('../../utils/util.js')
+const api = app.globalData.api
 Page({
 
   /**
@@ -12,7 +14,7 @@ Page({
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,
-    isparticipant : false,
+    isparticipant : false, //是否已经是参赛者
 	  gameUserCont:'∞', //比赛总人数
 	  gameUserContList:[],
  	  registeredUserCount:5,// 已经报名总人数
@@ -27,11 +29,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+   
+
     if (options.source != ''){
-      // let base64 = wx.getFileSystemManager().readFileSync(this.data.background, 'base64');
-	  // console.log(base64);
       this.setData({
-        // background: 'data:image/png;base64,' + base64,
         imageBaseUrl:app.globalData.imageUrl,
         options: options
       })
@@ -44,74 +45,113 @@ Page({
 	//-end
 	
 
+    //const info = JSON.parse(decodeURIComponent(options.gameinfo))
     const info = JSON.parse(decodeURIComponent(options.gameinfo))
     this.setData({
       gameinfo: info,
       introducer: options.introducer
     })
-   /**  if (app.globalData.userInfo == "undefined" || app.globalData.userInfo == null) {
-      wx.navigateTo({
-        url: '../index/index?gameinfo=' + encodeURIComponent(JSON.stringify(info)) + '&introducer=' + this.data.introducer
-      })
-    }*/
-    var param = {
-      gamenum: info.id,
-      status: 0
-    }
-    var that = this
-    util.commonAjax('/api/getParticipants', 0, param)
-      .then(function (resolve) {
+    this.init()
+  },
+
+  async init(){
+    await api.showLoading() // 显示loading
+    await this.isloginedUser()  
+    await this.isparticipant()
+    await this.getParticipants()
+    await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
+
+
+  isloginedUser(){
+    return new Promise((resolve, reject) => {
+      
+      var param = {
+        id: app.globalData.openid
+      }
+      var that = this
+        api.commonAjax('/api/getuser', 0, param)
+          .then(function (resolve) {
+            if (resolve.data.state === 0) {
+              const obj = resolve.data.data.wxuser;
+              if (typeof obj == "undefined" || obj == null || obj == "") {
+                
+              } else {
+                that.setData({
+                  hasUserInfo: true
+                })
+                if(!app.globalData.isConnect){
+                  socket.connectSocket();
+                  app.globalData.isConnect = true
+                }
+              }
+            } else {
+            }
+          }).then((res) => {
+          resolve()
+         }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
+  },
+  isparticipant(){
+    return new Promise((resolve, reject) => {
+      var param = {
+        num: this.data.gameinfo.id,
+        player : app.globalData.openid
+      }
+      var that = this
+      api.commonAjax('/api/getCurPartakeInfo', 0, param)
+        .then(function (resolve) {
         if (resolve.data.state === 0) {
           // 成功  
-          const obj = resolve.data.data.participants;
-          
-          that.setData({
-            participants: obj,
-            registeredUserCount: obj.length
-          })
-        } else {
-          // 失败  
-        }
-      })
-    var param = {
-      num: info.id,
-      player : app.globalData.openid
-    }
-    util.commonAjax('/api/getCurPartakeInfo', 0, param)
-      .then(function (resolve) {
-      if (resolve.data.state === 0) {
-        // 成功  
-        const obj = resolve.data.data.partake;
-        if (typeof obj == "undefined" || obj == null || obj == "") {
-        } else {
-          that.setData({
-            isparticipant: true
-          })
-        }
-      } else {
-        // 失败  
-      }
-    })
-
-  
-    var param = {
-      id: app.globalData.openid
-    }
-    var that = this
-    util.commonAjax('/api/getuser', 0, param)
-      .then(function (resolve) {
-        if (resolve.data.state === 0) {
-          const obj = resolve.data.data.wxuser;
+          const obj = resolve.data.data.partake;
           if (typeof obj == "undefined" || obj == null || obj == "") {
           } else {
             that.setData({
-              hasUserInfo: true
+              isparticipant: true
             })
           }
         } else {
+          // 失败  
         }
-      })
+        }).then((res) => {
+          resolve()
+        }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
   },
+  getParticipants(){
+    return new Promise((resolve, reject) => { 
+      var param = {
+        gamenum: this.data.gameinfo.id,
+        status: 0
+      }
+      var that = this
+      api.commonAjax('/api/getParticipants', 0, param)
+        .then(function (resolve) {
+          if (resolve.data.state === 0) {
+            // 成功  
+            const obj = resolve.data.data.participants;
+            that.setData({
+              participants: obj,
+              registeredUserCount: obj.length
+            })
+          } else {
+            // 失败  
+          }
+        }).then((res) => {
+          resolve()
+        }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
+  },
+
 
 
   onShow: function () {
@@ -171,6 +211,7 @@ Page({
         if (resolve.data.state === 0) {
           // 成功  
           app.globalData.openid = resolve.data.data.open_id
+          app.globalData.socketId = resolve.data.data.open_id
           wx.setStorageSync('userInfo', resolve.data.data)
           wx.setStorageSync('openid', resolve.data.data.open_id)
           typeof cb == "function" && cb(app.globalData.userInfo)
