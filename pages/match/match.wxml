@@ -15,7 +15,7 @@
             </view>
           </view>
       <!-- 状态 根据 status 改变-->
-
+	  <image src="../../images/right-icon.png" class="right-icon"></image>
       <view class="match-tag">{{round.statusdes}}</view>
       
       <!-- <view class="cu-bar bg-shadeBottom">
