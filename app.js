@@ -81,7 +81,8 @@ App({
     isConnect:false,
     openid:null,
     socketId:null,
-    imageUrl:'https://ksai.nong12.com/images',
+    // imageUrl:'https://ksai.nong12.com/images',
+    imageUrl:'http://images.esale.chinacarabao.com',
 
      websocketUrl: 'wss://ksaiwss.nong12.com',
      url: 'https://ksai.nong12.com'
