@@ -9,8 +9,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+	 CustomBar: app.globalData.CustomBar,
+	  
     gameinfo : {},
 	  isShow:false,
+	  
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,
