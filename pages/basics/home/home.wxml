@@ -1,5 +1,5 @@
 <scroll-view scroll-y class="scrollPage">
-  <image wx:if="{{imageBaseUrl}}" src='{{imageBaseUrl}}/kaisai_banner_1.png' mode='widthFix' class='png' style='width:100%;height:446rpx;display: block;'></image>
+  <image wx:if="{{imageBaseUrl}}" src='{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8Nb56ACj74AAYdmiBMteU981.png' mode='widthFix' class='png' style='width:100%;height:446rpx;display: block;'></image>
 </scroll-view>
 
 <scroll-view scroll-x class="bg-white nav text-center " scroll-with-animation scroll-left="{{scrollLeft}}">
@@ -20,7 +20,7 @@
 
 	  <view class="bg-img create-tag-block " style="height: 350rpx;" bindtap="create" data-type="default-wzry">
 		  
-	  	<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/5v5.png" ></image>
+	  	<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FC/wKhmBV8NbzCALMeeAABhjc1fiT8239.png" ></image>
 	    <!-- <view class="padding-xl text-white">
 	      <view class="padding-xs text-xl"> Ranking</view>
 	      <view class="padding-xs">Only the guilty need fear me.</view>
@@ -28,10 +28,10 @@
 	  </view>
 	  <view class="bg-img create-tag-block create-box"  data-type="default-wzry">
 		  <view class="create-m" bindtap="showTips">
-			 <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/jingyan.png"></image>
+			 <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8Nb36Ab904AADZCHTezRQ673.png"></image>
 		  </view>
 		  <view class="create-m" bindtap="showTips">
-			  <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/team.png"></image>
+			  <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FE/wKhmBV8NcJ-AKH4rAACspeKLFr4324.png"></image>
 		  </view>
 	  </view>
   </view>
@@ -45,7 +45,7 @@
 		</view>
 		  <navigator url="../matchlist/matchlist?status=0" >
 		  		<view class="bg-img   action-list-item"  >
-					<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/match_start_bg.png" style="display: block;width: 100%;height: 100%;"></image>
+					<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8NcCuAUoAgAAKB-TNEZS8613.png" style="display: block;width: 100%;height: 100%;"></image>
 					
 		  		    <view class="text-white match-card">
 		  			  <view class="match-text-title">进行中</view>
@@ -62,7 +62,7 @@
 		 
 		  <navigator url="../matchlist/matchlist?status=1" >
 		  		<view class="bg-img  action-list-item"   >
-				  <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/match_finished_bg.png" style="display: block;width: 100%;height: 100%;"></image>
+				  <image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8Nb92AHjLpAAJ64aaBGUo278.png" style="display: block;width: 100%;height: 100%;"></image>
 					
 		  		  <view class=" text-white match-card finshed-match">
 		  			<view class="match-text-title">已完成</view>

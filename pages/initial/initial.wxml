@@ -3,7 +3,7 @@
 	<view slot="backText">返回</view>
 	<view slot="content">分享比赛</view>
 </cu-custom>
-<image src="{{imageBaseUrl}}/share-bg.png" class="share-bg"></image>
+<image src="{{imageBaseUrl}}/group1/M00/48/FA/wKhmBV8NbaqAbfErAAd1c_ciOOQ428.png" class="share-bg"></image>
 <view class="inital-page" >
 <view bindtap="openCurrentGame" data-type="default-wzry"
  data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.name}}" data-pattern="{{gameinfo.pattern}}">
