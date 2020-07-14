@@ -1,4 +1,11 @@
 /* colorui/components/cu-custom.wxss */
+.cu-top-bar{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99999;
+}
 .cu-custom .cu-bar{
   padding: 0;
   z-index: 99999;
