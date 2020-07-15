@@ -42,6 +42,18 @@
     </view>
  </view>
 
+<view  class="cu-form-group" >
+ <view class="content">
+        <text class="cuIcon-warn text-green"></text>
+        <text class="text-grey">提示:</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm">{{tips}}</text>
+      </view>
+
+ </view>
+
+
 <view wx:if="{{iscreater}}">
 <form bindsubmit='formSubmit' >
 <view class="cu-form-group margin-top">
@@ -98,7 +110,7 @@
 <block wx:if="{{isDrawlots}}">
     <view class="cu-form-group  margin-top">
       <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-       <button bindtap="drawlots">开启抽签</button>
+       <button bindtap="drawlots">开启分组抽签</button>
       </view>
     </view>
  </block>

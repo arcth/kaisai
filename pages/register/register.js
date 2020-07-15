@@ -13,6 +13,7 @@ Page({
     date: util.getNowFormatDate(),
     iscreater : false,
     isDrawlots: false,
+    tips: '',
     pattern : '0',
     players : [],
     btime: util.formatTimeOnly(new Date()),
@@ -63,6 +64,7 @@ Page({
     await api.showLoading() // 显示loading
     await this.getRound()  
     await this.getPlayers()
+    await this.tipsSet()
     await api.hideLoading() // 等待请求数据成功后，隐藏loading
   },
 
@@ -134,6 +136,54 @@ Page({
               reject(err)
             })
         })
+  },
+  tipsSet(){
+    return new Promise((resolve) => {
+      let that = this
+       setTimeout(function () {
+        console.log('执行操作1');
+        var minparticipants = parseInt(that.data.pattern)*2;
+        if(that.data.disable && !that.data.iscreater){
+          that.setData({
+            tips : '等待比赛创建者开启签到！(下拉刷新)'
+          })
+        }else{
+          
+          if(that.data.players.length >= minparticipants && !that.data.iscreater){
+            that.setData({
+              tips : '签到人数已达到比赛条件，等待比赛创建者开启分组抽签'
+            })
+          }else if(that.data.players.length < minparticipants && !that.data.iscreater){
+            var upto = minparticipants - that.data.players.length 
+            that.setData({
+              tips : '签到人数未达到比赛条件，差' + upto +'人 等待其它参赛者签到'
+            })
+          }
+        }
+
+        if(that.data.disable && that.data.iscreater){
+          that.setData({
+            tips : '您是创建者，请通过以下功能完成设置发起签到'
+          })
+        }else{
+          
+          if(that.data.players.length >= minparticipants && that.data.iscreater){
+            that.setData({
+              tips : '签到人数已达到比赛条件，通过底部按钮可开启分组抽签'
+            })
+          }else if(that.data.players.length < minparticipants && that.data.iscreater){
+            var upto = minparticipants - that.data.players.length 
+            that.setData({
+              tips : '签到人数未达到比赛条件，差' + upto +'人 等待其它参赛者签到'
+            })
+          }
+        }
+        resolve('这是数据1');
+    }, 100);
+
+      
+    })
+
   },
 
   onPullDownRefresh : function(){
@@ -294,5 +344,21 @@ Page({
           // 失败  
         }
       })
+
+      // 订阅消息授权 只支持bingtap的出发方式
+     wx.requestSubscribeMessage({
+      tmplIds: ["REGlu77CuRx8bK25zbFgtnsOR2bEcISPrP67sENgMz8"],
+      success: (res) => {
+        if (res['REGlu77CuRx8bK25zbFgtnsOR2bEcISPrP67sENgMz8'] === 'accept') {
+          wx.showToast({
+            title: '已订阅分组通知！',
+            duration: 1000,
+            success(data) {
+              //成功
+            }
+          })
+        }
+      }
+    })
   }
 })

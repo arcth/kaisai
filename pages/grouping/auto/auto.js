@@ -105,7 +105,7 @@ Page({
         title: '生而无畏，战至终章',
         desc: '分享页面的内容',
         path: '/pages/grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(this.data.round))
-         + '&iscreater=' + this.dataiscreater + '&pattern=' + this.datapattern
+         + '&iscreater=' + this.data.iscreater + '&pattern=' + this.datapattern
       }
     }
   },

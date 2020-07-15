@@ -38,6 +38,7 @@ Page({
       .then(function (resolve) {
         // 这里自然不用解释了，这是接口返回的参数  
         if (resolve.data.state === 0) {
+          console.log('onlinejudge : ' + app.globalData.openid + '  '+ resolve.data.data.isconnect )
           if(!resolve.data.data.isconnect){
             socket.connectSocket();
             app.globalData.isConnect = true
