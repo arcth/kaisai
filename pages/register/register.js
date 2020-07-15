@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CustomBar: app.globalData.CustomBar,
     date: util.getNowFormatDate(),
     iscreater : false,
     isDrawlots: false,

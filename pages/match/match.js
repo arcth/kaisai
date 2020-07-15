@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    CustomBar: app.globalData.CustomBar,
     iscreater : false,
     num : '',
     gname : '',

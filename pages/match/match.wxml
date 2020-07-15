@@ -4,8 +4,7 @@
 </cu-custom>
 
 
-
-<view class="">
+<view style="margin-top:{{CustomBar}}px">
   <view class="match-card-container">
     <view class="match-card" style="background-image: url({{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8NcCuAUoAgAAKB-TNEZS8613.png)" bindtap="toregister">
           <view class="">

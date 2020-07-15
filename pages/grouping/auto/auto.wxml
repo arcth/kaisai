@@ -3,7 +3,9 @@
 	<view slot="backText">返回</view>
 	<view slot="content">分组结果</view>
 </cu-custom>
-<image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg"></image>
+<image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg" style="top:{{CustomBar}}px"></image>
+
+<view style="margin-top:{{CustomBar}}px">
 <view class="auto-page">
 	<view class="match-text-container">
 		<view class="match-title">{{game.name}}</view>
@@ -16,7 +18,7 @@
 				<image wx:for="{{redteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
 			</view>
 		</view>
-		<view class="match-group-item">
+		<view class="match-group-item bottom-group">
 			<view class="group-name">蓝队队员</view>
 			<view class="match-user-info">
 				<image wx:for="{{blueteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
@@ -30,7 +32,7 @@
 		<text>未抽中的小伙伴，下次再加油</text>
 	</view>
 </view>
-
+</view>
 
 
 

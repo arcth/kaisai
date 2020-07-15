@@ -61,11 +61,12 @@ view .text:first-of-type {
 .match-group-item{
 	color: #fff;
 }
+
 .group-name{
 	
 }
 .match-group-item:first-child{
-	margin-bottom: 240rpx;
+	margin-bottom: 340rpx;
 }
 .match-user-info image{
 	display: block;

@@ -2,8 +2,10 @@
 	<view slot="backText">返回</view>
 	<view slot="content">创建比赛</view>
 </cu-custom>
+
+<view style="margin-top:{{CustomBar}}px" class="padding-top">
 <form bindsubmit='formSubmit'>
-	<view class="cu-form-group margin-top">
+	<view class="cu-form-group">
 		<view class="title">比赛名称</view>
 		<input name="gamename" placeholder="请给比赛起个名字"></input>
 	</view>
@@ -59,7 +61,7 @@
   <button form-type='submit'   class="cu-btn bg-red margin-tb-sm lg">点击创建</button>
 </view>
 </form>
-
+</view>
 
 <!-- <need-login wx:if="{{modalName=='login'}}"> -->
 <!-- 需要登录弹出窗 -->

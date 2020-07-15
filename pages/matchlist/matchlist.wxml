@@ -3,7 +3,8 @@
 	<view slot="content">我的比赛</view>
 </cu-custom>
 
-
+<!-- 顶部topbar 高度 -->
+<view style="margin-top:{{CustomBar}}px">
 <view wx:if="{{!isLogin}}">
 	<view class="no-data-contianer">
 		<image src="../../images/no-data.png" class="no-data-img"></image>
@@ -45,4 +46,4 @@
 			<!-- </view> -->
 	</view>
 </view>
- 
+</view>

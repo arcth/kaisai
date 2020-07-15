@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-	isShow:false,
+    CustomBar: app.globalData.CustomBar,
+	  isShow:false,
     index: 4,
     date: util.getNowFormatDate(),
     imgList: [],

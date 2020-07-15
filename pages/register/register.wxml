@@ -4,6 +4,8 @@
 	<view slot="content">分享比赛</view>
 </cu-custom>
 
+<view style="margin-top:{{CustomBar}}px">
+
 <view class="cu-form-group">
    <view class='index'>
 		<span style="display:block;line-height: 60rpx;width: 360rpx;">已报名：</span>
@@ -141,6 +143,7 @@
       开启您的比赛
     </view>
   </view>
+</view>
 </view>
 <mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
 	          <view>{{dialogmsg}}</view>

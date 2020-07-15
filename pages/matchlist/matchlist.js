@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-	isLogin:false,
+    CustomBar: app.globalData.CustomBar,
+	  isLogin:false,
     openid: '',
     gamelist: {},
     collageTeamlist : {},

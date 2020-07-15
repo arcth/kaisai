@@ -3,7 +3,7 @@
   <view slot="backText">返回</view>
   <view slot="content">比赛结果</view>
 </cu-custom>
-
+<view style="margin-top:{{CustomBar}}px">
 <form bindsubmit='formSubmit'>
   <radio-group class="block" bindchange='teamradiochange'>
     <view class="cu-bar bg-white solid-bottom margin-top">
@@ -91,6 +91,7 @@
     <button form-type='submit' class="cu-btn bg-red margin-tb-sm lg">提交</button>
   </view>
 </form>
+</view>
 <mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
 	          <view>{{dialogmsg}}</view>
  </mp-dialog>

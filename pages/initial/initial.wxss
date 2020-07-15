@@ -120,6 +120,9 @@ page{
 	font-size: 30rpx;
 	margin-top: 40rpx;
 }
+.share-button-text::after{
+	border:none;
+}
 .game-count .user-icon{
 	display: inline-block;
 	width: 22rpx;
