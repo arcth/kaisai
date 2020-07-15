@@ -25,7 +25,7 @@
 	</view>
 	</view>
 	<view >
-	   <button wx:if="{{hasUserInfo && isparticipant}}"   class="btn-blue-gradient">已报名</button>
+	   <button wx:if="{{hasUserInfo && isparticipant}}"   class="btn-blue-gradient" disabled="true" >已报名</button>
 	   <button wx:if = "{{!hasUserInfo && !isparticipant}}"  bindtap='login' class="btn-blue-gradient">登录参与比赛</button>
 	   <button wx:if = "{{hasUserInfo && !isparticipant}}"   bindtap='joingame' class="btn-blue-gradient">报名参加比赛</button>
 	   <button open-type='share' class="share-button-text">分享邀请其他伙伴</button>
