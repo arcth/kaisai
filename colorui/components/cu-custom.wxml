@@ -1,6 +1,6 @@
 <view class="cu-custom cu-top-bar {{bgColor}}" style="height:{{CustomBar}}px">
   <view class="cu-bar  {{bgImage!=''?'none-bg text-white bg-img':''}} " style="height:{{CustomBar - StatusBar}}px;top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
-    <view class="action" bindtap="BackPage" wx:if="{{isBack}}" style="margin-top:{{StatusBar}}px">
+    <view class="action" bindtap="BackPage" wx:if="{{isBack}}" >
       <text class="cuIcon-back"></text>
       <slot name="backText"></slot>
     </view>
