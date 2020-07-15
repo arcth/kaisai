@@ -3,10 +3,11 @@
 	<view slot="backText">返回</view>
 	<view slot="content">分享比赛</view>
 </cu-custom>
-<image src="{{imageBaseUrl}}/group1/M00/48/FA/wKhmBV8NbaqAbfErAAd1c_ciOOQ428.png" class="share-bg"></image>
+<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/48/FA/wKhmBV8NbaqAbfErAAd1c_ciOOQ428.png" class="share-bg" style="top:{{CustomBar}}px"></image>
 <view class="inital-page" >
-<view bindtap="openCurrentGame" data-type="default-wzry"
+<view bindtap="openCurrentGame" data-type="default-wzry" class="match-info"
  data-gid="{{gameinfo.id}}" data-iscreater="{{gameinfo.creater == openid}}" data-gname="{{gameinfo.name}}" data-pattern="{{gameinfo.pattern}}">
+	<image src="../../images/right-icon.png" class="right-icon"></image>
 	<view class="title-text">{{gameinfo.name }}</view>
 	<view class="game-count"><image src="/images/user-icon.png" class="user-icon"></image><text>{{registeredUserCount}}/{{gameUserCont}}</text></view>
 	<view class="text-inline">简介 ： {{gameinfo.describe}}</view>
@@ -27,7 +28,7 @@
 	   <button wx:if="{{hasUserInfo && isparticipant}}"  open-type='share' class="btn-blue-gradient">分享</button>
 	   <button wx:if = "{{!hasUserInfo && !isparticipant}}"  bindtap='login' class="btn-blue-gradient">登录参与比赛</button>
 	   <button wx:if = "{{hasUserInfo && !isparticipant}}"   bindtap='joingame' class="btn-blue-gradient">报名参加比赛</button>
-	
+	   <button open-type='share' class="share-button-text">分享邀请其他伙伴</button>
 	   <!-- <button wx:if = "{{hasUserInfo && !isparticipant}}"  bindtap='bindgetuserinfo' >参与比赛</button> -->
 	</view>
 </view>
