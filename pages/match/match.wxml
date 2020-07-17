@@ -1,3 +1,5 @@
+
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">比赛信息</view>
@@ -42,6 +44,13 @@
 </view>
 <!---->
   
+  <view>
+		<view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+				历史轮次
+		</view>
+	</view>
+
+
   <view class="title-bar">个人赛事统计</view>
    <view class="cu-list menu">
       <view class="cu-item">
@@ -136,3 +145,32 @@
       </view>
     </view>
   </view>
+</scroll-view>
+  <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+			<text class="cuIcon-pullright"></text>
+		</view>
+	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+				<view class="cu-item arrow" wx:for="{{historyList}}" wx:key="item">
+					<view class="content" bindtap="toResult" data-id="{{item.id}}"  data-rounds="{{item.rounds}}">
+						<!-- <text class="cuIcon-github text-grey"></text> -->
+						<text class="text-grey">第{{item.rounds}}轮  </text>
+            <block class='match-user margin-bottom-sm cf'>
+              <block wx:for="{{item.teammate}}" wx:if="{{index < 10}}" wx:for-item="itemPlayers" wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
+							  <image class='text' src='{{itemPlayers.avatarurl}}  ' mode='aspectFill'></image>
+						  </block>
+					  </block>
+
+           <block wx:if="{{item.result=='LOSE'}}">
+            <text class="text-red">{{item.result}}</text>
+           </block>
+           <block wx:elif="{{item.result=='WIN'}}">
+            <text class="text-green">{{item.result}}</text>
+           </block>
+
+         
+            
+					</view>
+				</view>
+			</view>
+		</scroll-view>

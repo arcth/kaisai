@@ -1,0 +1,98 @@
+
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">比赛信息</view>
+</cu-custom>
+
+
+<view style="margin-top:{{CustomBar}}px">
+  <view class="match-card-container">
+    <view class="match-card" style="background-image: url({{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8NcCuAUoAgAAKB-TNEZS8613.png)" >
+          <view class="">
+            <view class="text-white">
+              <view class="match-title">{{gname}}</view>
+              <view class="match-round"> 第 {{rounds}} 轮</view>
+              <view class="match-user">
+              <block wx:for="{{win}}" wx:if="{{index < 10}}"  wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
+							  <image class='text' src='{{item.avatarurl}}  ' mode='aspectFill'></image>
+						  </block>
+              </view>
+            </view>
+          </view>
+    </view>
+  </view>
+
+</view>
+
+  
+
+      
+  <view class="cu-list menu title-bar solid-bottom margin-top">
+    <view class="cu-item">
+      <view class="content title-action-name">
+        战绩
+      </view>
+      <view class="action title-action-item">
+        <text class="action-title-text">积分</text>
+         <text class="action-title-text">胜</text>
+        <text class="action-title-text">负</text>
+         <text class="action-title-text">出勤率 </text>
+        <text class="action-title-text">MVP </text>
+      </view>
+      </view>
+    </view>
+
+  <view wx:for="{{top}}" wx:key="item">
+    <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
+          <view class="content">
+            {{item.user.nickname}}
+          </view>
+  
+
+      <view class="action">
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalwin}} </text>
+        <text class="action-text">{{item.totallose}} </text>
+        <text class="action-text">{{item.avgpercent}} </text>
+        <text class="action-text">{{item.totalmvp}} </text>
+      </view>
+      </view>
+    </view>
+  </view>
+
+<view class="cu-list menu title-bar solid-bottom margin-top">
+    <view class="cu-item">
+      <view class="content title-action-name">
+        平均出勤率({{average}})
+      </view>
+      <view class="action title-action-item">
+        <text class="action-title-text">积分</text>
+         <text class="action-title-text">胜</text>
+        <text class="action-title-text">负</text>
+        <text class="action-title-text">出勤率 </text>
+        <text class="action-title-text">MVP </text>
+      </view>
+      </view>
+    </view>
+
+  <view wx:for="{{top_field}}" wx:key="item">
+    <view class="cu-list menu">
+        <view class="cu-item">
+          <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
+          <view class="content">
+            {{item.user.nickname}}
+          </view>
+  
+
+      <view class="action">
+        <text class="action-text">{{item.totalscore}} </text>
+        <text class="action-text">{{item.totalwin}} </text>
+        <text class="action-text">{{item.totallose}} </text>
+        <text class="action-text">{{item.avgpercent}} </text>
+        <text class="action-text">{{item.totalmvp}} </text>
+      </view>
+      </view>
+    </view>
+  </view>

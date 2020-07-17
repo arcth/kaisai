@@ -23,7 +23,8 @@ Page({
     isovergame : 0,
     roundsdesc:'',
     imageBaseUrl:'',
-    average:'0.0%'
+    average:'0.0%',
+    historyList:''
   },
 
 
@@ -77,15 +78,14 @@ Page({
     })
     let param = {
       num: num,
+      rounds:'',
       isovergame : isovergame
     }
     let that = this
     if(isovergame == 0){
       util.commonAjax('/api/getRound', 0, param)
       .then(function (resolve) {
-        // 这里自然不用解释了，这是接口返回的参数  
         if (resolve.data.state === 0) {
-         // console.log(" match = " + resolve.data.data.statusdes)
           // 成功  
           that.setData({
             round: resolve.data.data.curRound,
@@ -156,9 +156,30 @@ Page({
           // 失败  
         }
       })
-   
+      this.gethistroyrounds(num,isovergame)
   },
-  
+  //onload end
+
+  gethistroyrounds(num,isovergame){
+    var parameter = {
+      num: num,
+      player:app.globalData.openid,
+      isovergame : isovergame
+    }
+    let that = this
+    util.commonAjax('/api/getHistroyRounds', 0, parameter)
+    .then(function (resolve) {
+      // 这里自然不用解释了，这是接口返回的参数  
+      if (resolve.data.state === 0) {
+        let historyList = resolve.data.data.historyList
+        that.setData({
+          historyList : historyList
+        })
+      } else {
+        // 失败  
+      }
+    }) 
+  },
 
   onPullDownRefresh : function(){
     wx.stopPullDownRefresh({
@@ -196,6 +217,22 @@ Page({
     }else{
       return false;
     }
- 
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  toResult:function(e){
+    wx.navigateTo({
+      url: '../roundResult/roundRresult?id=' + e.currentTarget.dataset.id 
+      + '&isovergame='+this.data.isovergame + '&num=' + this.data.num
+      +  '&rounds=' + e.currentTarget.dataset.rounds +'&gname='+this.data.gname,
+    })
   }
 })

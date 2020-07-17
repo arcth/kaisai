@@ -62,7 +62,7 @@ Page({
           })
         }
       })
-    }
+    }   
     var param = {
       openid: app.globalData.openid,
     }
@@ -77,8 +77,12 @@ Page({
           })
         } 
       })
+   
   }, 
-  bindgetuserinfo: function(e) {
+
+  
+
+  bindgetuserinfo: function(e){
     
     app.globalData.userInfo = e.detail.userInfo
     
