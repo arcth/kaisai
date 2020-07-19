@@ -17,7 +17,13 @@ Page({
     confirm: false,
     iscreater: false,
     game:null,
-    uncheckteam: null
+    uncheckteam: null,
+	removeReason:[
+		{label:'有事来不了',id:1},
+		{label:'请假没来上班',id:2},
+		{label:'听德云社相声去了',id:3},
+	],
+	removeReasonId:null
   },
 
   /**
@@ -34,6 +40,7 @@ Page({
     var parameter= {
         id: roundinfo.id
       }
+	  return false;
     util.commonAjax('/api/getCurRoundREC', 0, parameter)
       .then(function(resolve) {
         if (resolve.data.state === 0) {
@@ -143,5 +150,29 @@ Page({
     wx.redirectTo({
       url: '../../record/record?&redteam=' + redteam + '&blueteam=' + blueteam + "&num=" + this.data.round.num + "&pattern=" + this.data.pattern
     })
+  },
+  handleLongPress:function(e){ //长按显示底部弹窗，同时缓存长按的当前用户数据
+	  //e.currentTarget.dataset.user 
+	  this.setData({
+	        modalName: e.currentTarget.dataset.target
+	  })
+  },
+  hideModal:function(e) {
+      this.setData({
+        modalName: null
+      })
+  },
+  reasonRadioChange(e){ //点击单选框
+	  console.log(e.detail.value);
+	  this.setData({
+		  removeReasonId:e.detail.value
+	  })
+  },
+  reomveUser(){
+	 //获取Id
+	 let _id = this.removeReasonId;
+	//获取缓存的当前用户信息，
+	//ajax删除抽取等操作
+	//
   }
 })

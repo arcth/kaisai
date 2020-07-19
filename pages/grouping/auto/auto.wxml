@@ -8,20 +8,29 @@
 <view style="margin-top:{{CustomBar}}px">
 <view class="auto-page">
 	<view class="match-text-container">
-		<view class="match-title">{{game.name}}</view>
+		<view class="match-title">{{game.name}}2</view>
 		<view class="match-sub-title">第  {{round.rounds}} 轮</view>
 	</view>
 	<view class="match-group">
 		<view class="match-group-item">
 			<view class="group-name">红队队员</view>
 			<view class="match-user-info">
-				<image wx:for="{{redteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				<!-- <view class="user-image-box" bindlongpress="handleLongPress" data-target="bottomModal" data-user="">
+					<image  src="/images/kaisai-text.png" mode='aspectFill'  ></image>
+				</view> -->
+				<view class="user-image-box" wx:for="{{redteam}}" wx:key="item">
+					<image   src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				</view>
+				
 			</view>
 		</view>
 		<view class="match-group-item bottom-group">
 			<view class="group-name">蓝队队员</view>
 			<view class="match-user-info">
-				<image wx:for="{{blueteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				<view class="user-image-box" wx:for="{{blueteam}}" wx:key="item">
+					<image   src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				</view>
+				
 			</view>
 		</view>
 	</view>
@@ -35,6 +44,28 @@
 </view>
 
 
+<!-- 删除的底部弹窗 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green" bind="reomveUser">确定</view>
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+    </view>
+    <view class="padding-xs text-left">
+      请选择要删除该队员的理由：
+    </view>
+	<radio-group class="block" bindchange="reasonRadioChange">
+	      <view class="cu-list menu text-left">
+	        <view class="cu-item" wx:for="{{removeReason}}" wx:key="{{item.id}}">
+	          <label class="flex justify-between align-center flex-sub">
+	            <view class="flex-sub">{{item.label}}</view>
+	            <radio class="round" value="{{item.id}}"></radio>
+	          </label>
+	        </view>
+	      </view>
+	</radio-group>
+  </view>
+</view>
 
 
 <!-- <view class="cu-form-group margin-top">
