@@ -3,30 +3,38 @@
 	position: relative;
 	height: 72rpx;
 }
-.match-user .match-user-item{
-	width: 72rpx;
-	height: 72rpx;
-	position: absolute;
-	left: 0;
-}
-.match-user .match-user-item image{
-	display: block;
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-}
+
+
 .match-card-container{
   padding: 24rpx 30rpx;
   color: #fff;
 }
 .match-card{
   width: 100%;
-  min-height: 240rpx;
-  padding:62rpx  66rpx 30rpx;
+  height: 325rpx;
+  padding:46rpx 0 0;
   border-radius: 12rpx;
   position: relative;
   background-size: cover;
   background-repeat: no-repeat;
+}
+.user-content{
+	width: 45%;
+	height: 100%;
+	text-align: center;
+}
+
+.user-content .match-user-item{
+	width: 68rpx;
+	height: 68rpx;
+	display: inline-block;
+	margin: 0 10rpx 24rpx;
+}
+.user-content .match-user-item image{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
 }
 image.right-icon{
 position: absolute;
@@ -37,14 +45,16 @@ height: 64rpx;
 margin-top: -32rpx;
 }
 .match-title{
+  padding: 34rpx 30rpx;
   font-size: 32rpx;
   font-weight: bold;
-  margin-bottom: 26rpx;
-  color: var(--whiteGray);
+  color: #333;
 }
 .match-round{
   font-size: 40rpx;
   font-weight: bold;
+  padding: 0 30rpx;
+  color: #333;
 }
 .match-tag{
   position: absolute;

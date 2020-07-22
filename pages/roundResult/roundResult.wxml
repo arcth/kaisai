@@ -7,6 +7,7 @@
 
 <view style="margin-top:{{CustomBar}}px">
   <view class="match-card-container">
+<<<<<<< HEAD:pages/roundResult/roundRresult.wxml
     <view class="match-card" style="background-image: url(../../images/vs-banner.png)" >
           <view class="">
             <view class="text-white">
@@ -20,11 +21,40 @@
               </view>
             </view>
           </view>
+=======
+    <view class="match-card fl" style="background-image: url(../../images/vs-banner.png)" >
+              <view class="fl user-content">
+				  <!-- <view class="match-user-item" wx:for="{{5}}" wx:key>
+					  <image  src='../../images/card-back.png' mode='aspectFill'></image>
+				  </view> -->
+				  <view wx:for="{{win}}" wx:key="item"  class="match-user-item">
+				  	<image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
+				  </view>
+				  <view class="text-bold text-lg">失败</view>
+			  </view>
+              <view class="fr user-content">
+				  <view class="match-user-item" wx:for="{{5}}" wx:key>
+				  		<image  src='../../images/card-back.png' mode='aspectFill'></image>
+				  </view>
+				  <view class="text-bold text-lg">胜利</view>
+			  </view>
+>>>>>>> 13fb7145d54b415fee1bd90412fe806334547744:pages/roundResult/roundResult.wxml
     </view>
   </view>
 
 </view>
-
+<view class="cu-list menu">
+	<view class="cu-item">
+	<view class="content padding-tb-sm">
+	        <view>
+	           {{gname}}
+			</view>
+	        <view class="text-gray text-sm">
+	           第 {{rounds}} 轮
+			</view>
+	</view>
+	</view>
+</view>
   
 
       
