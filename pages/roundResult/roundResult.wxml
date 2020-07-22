@@ -7,21 +7,6 @@
 
 <view style="margin-top:{{CustomBar}}px">
   <view class="match-card-container">
-<<<<<<< HEAD:pages/roundResult/roundRresult.wxml
-    <view class="match-card" style="background-image: url(../../images/vs-banner.png)" >
-          <view class="">
-            <view class="text-white">
-              <view class="match-title">{{gname}}</view>
-              <view class="match-round"> 第 {{rounds}} 轮</view>
-              <view class="match-user">
-
-              <view wx:for="{{win}}" wx:if="{{index < 10}}"  wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
-							  <image class='text' src='{{item.avatarurl}}  ' mode='aspectFill'></image>
-						  </view>
-              </view>
-            </view>
-          </view>
-=======
     <view class="match-card fl" style="background-image: url(../../images/vs-banner.png)" >
               <view class="fl user-content">
 				  <!-- <view class="match-user-item" wx:for="{{5}}" wx:key>
@@ -38,7 +23,6 @@
 				  </view>
 				  <view class="text-bold text-lg">胜利</view>
 			  </view>
->>>>>>> 13fb7145d54b415fee1bd90412fe806334547744:pages/roundResult/roundResult.wxml
     </view>
   </view>
 
