@@ -13,9 +13,10 @@
               <view class="match-title">{{gname}}</view>
               <view class="match-round"> 第 {{rounds}} 轮</view>
               <view class="match-user">
-              <block wx:for="{{win}}" wx:if="{{index < 10}}"  wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
+
+              <view wx:for="{{win}}" wx:if="{{index < 10}}"  wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
 							  <image class='text' src='{{item.avatarurl}}  ' mode='aspectFill'></image>
-						  </block>
+						  </view>
               </view>
             </view>
           </view>
