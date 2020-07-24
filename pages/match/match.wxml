@@ -155,6 +155,7 @@
 					<view class="content" bindtap="toResult" data-id="{{item.id}}"  data-rounds="{{item.rounds}}">
 						<!-- <text class="cuIcon-github text-grey"></text> -->
 						<text class="text-grey">第{{item.rounds}}轮  </text>
+
             <block class='match-user margin-bottom-sm cf'>
               <block wx:for="{{item.teammate}}" wx:if="{{index < 10}}" wx:for-item="itemPlayers" wx:key="item"  style='left:{{index*54}}rpx;z-index:{{index}}' class="match-user-item">
 							  <image class='text' src='{{itemPlayers.avatarurl}}  ' mode='aspectFill'></image>
@@ -162,10 +163,13 @@
 					  </block>
 
            <block wx:if="{{item.result=='LOSE'}}">
-            <text class="text-red">{{item.result}}</text>
+            <text class="text-red">失败</text>
            </block>
            <block wx:elif="{{item.result=='WIN'}}">
-            <text class="text-green">{{item.result}}</text>
+            <text class="text-green">胜利</text>
+           </block>
+            <block wx:elif="{{item.status=='10'}}">
+            <text class="text-gray">废弃</text>
            </block>
 
          

@@ -18,6 +18,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     isparticipant : false, //是否已经是参赛者
+    iscreater: false,
 	  gameUserCont:'∞', //比赛总人数
 	  gameUserContList:[],
  	  registeredUserCount:5,// 已经报名总人数
@@ -284,6 +285,9 @@ Page({
     let iscreater = event.currentTarget.dataset.iscreater
     if(app.globalData.openid == this.data.gameinfo.creater ){
       iscreater = true;
+      this.setData({
+        iscreater:iscreater
+      })
     }
     let num = event.currentTarget.dataset.gid
     
@@ -293,4 +297,30 @@ Page({
       url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname + "&pattern=" + pattern + "&isovergame=0" 
     })
   },
+  checkIn:function(e){
+    let param = {
+      num: this.data.gameinfo.id
+    }
+    let that = this
+      util.commonAjax('/api/getRound', 0, param)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          // 成功  
+          let round = resolve.data.data.curRound
+          if(round.status == 1 || round.status == 3){
+            wx.redirectTo({
+              url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + that.data.iscreater 
+               + '&pattern=' + that.data.gameinfo.pattern + '&num=' + that.data.gameinfo.id
+            })
+          }else{
+            wx.redirectTo({
+              url: '../match/match?num=' + that.data.gameinfo.id + '&iscreater=' + that.data.iscreater + '&gname=' + that.data.gameinfo.gamename + "&pattern=" + that.data.gameinfo.pattern + "&isovergame=0" 
+            })
+          }  
+        } else {
+          // 失败  
+        }
+      })
+  }
+  
 })

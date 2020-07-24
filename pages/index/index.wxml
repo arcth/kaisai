@@ -14,11 +14,29 @@
 
 
 <block wx:else> -->
-<block>
+<block >
 <basics  background='{{background}}' wx:if="{{PageCur=='basics'}}" ongoing='{{ongoing}}' finished='{{finished}}' imageBaseUrl='{{imageBaseUrl}}'></basics>
   <!-- <view class='wx_info'>
     <image src='{{userInfo.avatarUrl}}'></image>
     <text>{{userInfo.nickName}}</text> 
   </view> -->
 </block>
- 
+
+ <!-- 底部操作条-->
+ <view class="cu-bar tabbar  bg-white">
+    <view class="action text-gray">
+		<navigator url="../community/community" >
+      <view class="cuIcon-similar"></view> 社区
+		</navigator>
+    </view>
+    <view class="action text-gray add-action">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+      发布一场比赛
+    </view>
+    <view class="action text-gray">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>

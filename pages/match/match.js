@@ -206,7 +206,7 @@ Page({
     let pattern = this.data.pattern
     let num = this.data.num
     //2--已经分组完成 直接进入分组结果页面 
-    if(round.status == 2){
+    if(round.status == 2 ){
       wx.redirectTo({
         url: '../grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
       })
@@ -214,6 +214,16 @@ Page({
       wx.navigateTo({
         url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
       })
+    }else if( round.status === 3){
+       if(iscreater){
+        wx.redirectTo({
+          url: '../grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
+        })
+       }else{
+        wx.navigateTo({
+          url: '../register/register?round=' + encodeURIComponent(JSON.stringify(round)) + '&iscreater=' + iscreater + '&pattern=' + pattern + '&num=' + num
+        })
+       }
     }else{
       return false;
     }
@@ -230,7 +240,7 @@ Page({
   },
   toResult:function(e){
     wx.navigateTo({
-      url: '../roundResult/roundRresult?id=' + e.currentTarget.dataset.id 
+      url: '../roundResult/roundResult?id=' + e.currentTarget.dataset.id 
       + '&isovergame='+this.data.isovergame + '&num=' + this.data.num
       +  '&rounds=' + e.currentTarget.dataset.rounds +'&gname='+this.data.gname,
     })

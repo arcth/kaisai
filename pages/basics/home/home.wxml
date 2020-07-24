@@ -1,4 +1,6 @@
-<scroll-view scroll-y class="scrollPage">
+<scroll-view class="scrollPage">
+
+<scroll-view scroll-y >
   <image wx:if="{{imageBaseUrl}}" src='{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8Nb56ACj74AAYdmiBMteU981.png' mode='widthFix' class='png' style='width:100%;height:446rpx;display: block;'></image>
 </scroll-view>
 
@@ -10,11 +12,6 @@
 </scroll-view>  
 
 <block wx:if="{{TabCur==0}}">
-  <!-- <view class="cu-bar bg-white solid-bottom margin-top">
-    <view class="action">
-      <text class="cuIcon-title text-blue"></text>常用比赛
-    </view>
-  </view> -->
 
   <view class="create-tag-container">
 
@@ -105,7 +102,25 @@
 	  </view> -->
   </view>
 </block>
-
+</scroll-view>
+<!-- 底部操作条
+ <view class="cu-bar tabbar margin-bottom-xl bg-white">
+    <view class="action text-gray">
+		<navigator url="../community/community" >
+      <view class="cuIcon-similar"></view> 社区
+		</navigator>
+    </view>
+    <view class="action text-gray add-action">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+      发布一场比赛
+    </view>
+    <view class="action text-gray">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>-->
 <mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
 	          <view>该功能暂未开放，敬请期待！</view>
 	  </mp-dialog>

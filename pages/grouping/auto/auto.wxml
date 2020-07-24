@@ -1,24 +1,31 @@
 <!--pages/grouping/auto/auto.wxml-->
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">分组结果</view>
 </cu-custom>
 <image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg" style="top:{{CustomBar}}px"></image>
 
+ 
+
 <view style="margin-top:{{CustomBar}}px">
+<view class="cuIcon-peoplelist text-white" bindtap="showModal" data-target="viewModal"></view>
 <view class="auto-page">
+		
+
 	<view class="match-text-container">
-		<view class="match-title">{{game.name}}2</view>
+		<view class="match-title">{{game.name}}</view>
 		<view class="match-sub-title">第  {{round.rounds}} 轮</view>
 	</view>
 	<view class="match-group">
 		<view class="match-group-item">
 			<view class="group-name">红队队员</view>
-			<view class="match-user-info">
+			<view class="match-user-info bottom-group">
 				<!-- <view class="user-image-box" bindlongpress="handleLongPress" data-target="bottomModal" data-user="">
 					<image  src="/images/kaisai-text.png" mode='aspectFill'  ></image>
 				</view> -->
-				<view class="user-image-box" wx:for="{{redteam}}" wx:key="item">
+				<view class="user-image-box" wx:for="{{redteam}}" wx:key="item" bindlongpress="handleLongPress" data-target="bottomModal" data-user="{{item.user.openid}}">
 					<image   src="{{item.user.avatarurl}}" mode='aspectFill'></image>
 				</view>
 				
@@ -27,7 +34,7 @@
 		<view class="match-group-item bottom-group">
 			<view class="group-name">蓝队队员</view>
 			<view class="match-user-info">
-				<view class="user-image-box" wx:for="{{blueteam}}" wx:key="item">
+				<view class="user-image-box" wx:for="{{blueteam}}" wx:key="item" bindlongpress="handleLongPress" data-target="bottomModal" data-user="{{item.user.openid}}">
 					<image   src="{{item.user.avatarurl}}" mode='aspectFill'></image>
 				</view>
 				
@@ -35,11 +42,14 @@
 		</view>
 	</view>
 	<view class="btn-group">
-		<button wx:if = "{{confirm && iscreater}}" bindtap="torecord" class="btn-group-item">比赛结果记录</button>
-		<button wx:if="{{!confirm && iscreater}}"  open-type='share' bindtap="record"  class="btn-group-item">分好了，通知参赛者！</button>
-      <button wx:if = "{{!iscreater}}" open-type='share' class="btn-group-item">分享</button>
+		<button wx:if = "{{confirm && iscreater && iscomplete}}" bindtap="torecord" class="btn-group-item">比赛结果记录</button>
+		<button wx:if="{{!confirm && iscreater && iscomplete}}"  open-type='share' bindtap="record"  class="btn-group-item">分好了，通知参赛者！</button>
+		<button wx:if="{{ iscreater && !iscomplete}}"  bindtap="drawAgain"  class="btn-group-item">重新抽签</button>
+		<button wx:if="{{ iscreater && !iscomplete}}"  bindtap="showdiscardDialog"  class="btn-group-item">废弃本轮</button>
+    <button wx:if = "{{!iscreater}}" open-type='share'  data-source="buttonshare" class="btn-group-item">分享</button>
 		<text>未抽中的小伙伴，下次再加油</text>
 	</view>
+
 </view>
 </view>
 
@@ -48,7 +58,7 @@
 <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white">
-      <view class="action text-green" bind="reomveUser">确定</view>
+      <view class="action text-green" bindtap="reomveUser">确定</view>
       <view class="action text-blue" bindtap="hideModal">取消</view>
     </view>
     <view class="padding-xs text-left">
@@ -56,7 +66,7 @@
     </view>
 	<radio-group class="block" bindchange="reasonRadioChange">
 	      <view class="cu-list menu text-left">
-	        <view class="cu-item" wx:for="{{removeReason}}" wx:key="{{item.id}}">
+	        <view class="cu-item" wx:for="{{removeReason}}" wx:key="item">
 	          <label class="flex justify-between align-center flex-sub">
 	            <view class="flex-sub">{{item.label}}</view>
 	            <radio class="round" value="{{item.id}}"></radio>
@@ -67,38 +77,79 @@
   </view>
 </view>
 
-
-<!-- <view class="cu-form-group margin-top">
-   <view class='index'>红队：
-        <view wx:for="{{redteam}}" wx:key="item"  style='transform:translateX({{-index*0}}rpx)'>
-           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
-        </view>
-        <text ></text>
+<view class="cu-modal {{modalName=='understaffedDialog'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">签到人数不足</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
     </view>
-</view>
-<view class="cu-form-group">
-   <view class='index'>蓝队：
-        <view wx:for="{{blueteam}}" wx:key="item"   style='transform:translateX({{-index*0}}rpx)'>
-           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
-        </view>
-        <text ></text>
+    <view class="padding-xl">
+      无法从剩余签到人员中进行抽选，分享本轮比赛寻找新的签到队员！
     </view>
-</view>
-<view class="cu-form-group">
-   <view class='index'>本轮未抽中：
-        <view wx:for="{{uncheckteam}}" wx:key="item"   style='transform:translateX({{-index*0}}rpx)'>
-           <image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
-        </view>
-        <text ></text>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left"  data-source="understaffedDialog"  open-type='share' bindtap="hideModal">确定</button>
+      </view>
     </view>
+  </view>
 </view>
 
-
-
-<view class="cu-form-group  margin-top">
-    <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-      <button wx:if = "{{confirm && iscreater}}" bindtap="torecord">比赛结果记录</button>
-      <button wx:if="{{!confirm && iscreater}}"  open-type='share' bindtap="record"  class="btn-blue-gradient">分好了！通知参赛者</button>
-      <button wx:if = "{{!iscreater}}" open-type='share'>分享</button>
+<!-- 废弃本轮 提示-->
+<view class="cu-modal {{modalName=='discardDialog'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">废弃本轮</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
     </view>
-</view> -->
+    <view class="padding-xl">
+      确定要废弃本轮比赛？废弃后会开始新的一轮竞技！
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+        <button class="cu-btn bg-green margin-left"  bindtap="discard">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+	<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+			<text class="cuIcon-pullright"></text>
+		</view>
+	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+
+<view class=" cu-list card-menu col-1 margin-top-xl margin-bottom-xl shadow-l bg-white">
+		<view>
+			<text class="cuIcon-title text-blue"></text>未抽中选手
+		</view>
+
+		<view class="cu-list card-menu grid col-3 margin-top-xl margin-bottom-xl shadow-lg">
+			<view class="cu-item arrow" wx:for="{{uncheckteam}}" wx:key="item">
+			<view class="content">
+        <view class="cu-avatar round md" style="background-image:url({{item.user.avatarurl}});margin-right:24rpx"></view>
+				<text>{{item.user.nickname}}</text>
+			</view>	
+			</view>
+		</view>
+</view>
+
+<view class=" cu-list card-menu col-1 margin-top-xl margin-bottom-xl shadow-l bg-white">
+		<view>
+			<text class="cuIcon-title text-blue"></text>未参与选手
+		</view>
+
+		<view class="cu-list card-menu grid col-4 margin-top-xl margin-bottom-xl shadow-lg">
+			<view class="cu-item arrow" wx:for="{{notlotinteam}}" wx:key="item">
+			<view class="content">
+        <view class="cu-avatar round md" style="background-image:url({{item.avatarurl}});margin-right:24rpx"></view>
+				<text>{{item.nickname}}</text>
+			</view>	
+			</view>
+		</view>
+</view>
+		</scroll-view>

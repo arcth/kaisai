@@ -87,7 +87,7 @@ Page({
             if (curTime > round.opentime && curTime < round.closetime){
               disable = false
             }
-          } else if (round.status == 1){
+          } else if (round.status == 1 || round.status == 3){
             disable = false
           }
           that.setData({

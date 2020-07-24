@@ -1,0 +1,31 @@
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">比赛信息</view>
+</cu-custom>
+
+
+
+<!-- <view style="margin-top:{{CustomBar}}px" class="padding-top">
+  <view class="cu-bar bg-white margin-top">
+
+  </view>
+</view> -->
+
+<view style="margin-top:{{CustomBar}}px" class="">
+<view class="box">
+
+  <view class="cu-bar search bg-white">
+    <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
+      <view class="search-form round">
+        <text class="cuIcon-search"></text>
+        <input type="text" value='{{storeAddress}}' placeholder="当前位置：默认定位" confirm-type="search"></input>
+      </view>
+      <navigator url="../shopmap/shopmap" >
+        <view class="action"> 
+          <text>切换位置</text>
+          <text class="cuIcon-triangledownfill"></text>
+        </view>
+      </navigator>
+    </view>
+   </view>
+</view>
