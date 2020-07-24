@@ -151,6 +151,9 @@ var webSocket = {
          if (page.route == 'pages/register/register' && page.options.num == info.content){
             page.onLoad(page.options)
           }
+          if (page.route == 'pages/grouping/auto/auto' && page.options.round.num == info.content){
+            page.onLoad(page.options)
+          }
         })
       }
       if(info.header == 'JOIN'){
