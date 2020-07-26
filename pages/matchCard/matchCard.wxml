@@ -1,0 +1,20 @@
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">分组</view>
+</cu-custom>
+
+<view>{{a}}</view>
+<view class="card-modal" style="top:{{CustomBar}}px">
+	<view class="card-modal-content">
+		<view>随机匹配</view>
+		<view>从下面8张牌中随机抽取1张进行匹配</view>
+		<view class="card-container">
+			<view class='card-box card-red {{istap?"active":""}}' bindtap="fanCard">
+				
+				<cover-image src="../../images/card-back.png" class="card-item card-up"></cover-image>
+				<cover-image src="../../images/card-red.png" class="card-item card-down"></cover-image>
+			</view>
+		</view>
+	</view>
+	
+</view>

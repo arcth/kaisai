@@ -4,6 +4,10 @@ page{
   height:100%;
   
 }
+.scrollPage{
+	height: 100vh;
+	margin-bottom: calc(100rpx + env(safe-area-inset-bottom) / 2);
+}
 .login-page-container{
 	background-color: #fff;
 	padding-top: 292rpx;

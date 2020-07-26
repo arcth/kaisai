@@ -31,7 +31,7 @@ view .text:first-of-type {
 	width: 100%;
 	height: auto;
 	overflow-y: auto;
-	padding: 100rpx 50rpx;
+	padding: 0 50rpx 80rpx;
 }
 .match-text-container{
 	margin-bottom: 40rpx;
@@ -67,6 +67,12 @@ view .text:first-of-type {
 }
 .match-group-item:first-child{
 	margin-bottom: 240rpx;
+}
+.match-group{
+	padding-top: 100rpx;
+}
+.match-user-info{
+	min-height: 120rpx;
 }
 .match-user-info .user-image-box{
 	display: block;

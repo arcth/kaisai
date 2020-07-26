@@ -1,5 +1,5 @@
 <!--pages/grouping/auto/auto.wxml-->
-<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="padding-top:{{CustomBar}}px">
 
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
@@ -9,7 +9,7 @@
 
  
 
-<view style="margin-top:{{CustomBar}}px">
+<view >
 <view class="cuIcon-peoplelist text-white" bindtap="showModal" data-target="viewModal"></view>
 <view class="auto-page">
 		
@@ -118,10 +118,10 @@
   </view>
 </view>
 </scroll-view>
-	<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+	<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal" >
 			<text class="cuIcon-pullright"></text>
 		</view>
-	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}" style="padding-top:{{CustomBar}}px">
 
 <view class=" cu-list card-menu col-1 margin-top-xl margin-bottom-xl shadow-l bg-white">
 		<view>

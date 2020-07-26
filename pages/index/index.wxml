@@ -23,7 +23,7 @@
 </block>
 
  <!-- 底部操作条-->
- <view class="cu-bar tabbar  bg-white">
+ <view class="cu-bar tabbar foot bg-white">
     <view class="action text-gray">
 		<navigator url="../community/community" >
       <view class="cuIcon-similar"></view> 社区
