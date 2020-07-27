@@ -10,7 +10,9 @@
  
 
 <view style="margin-top:{{CustomBar}}px">
-<view class="cuIcon-peoplelist text-white" bindtap="showModal" data-target="viewModal"></view>
+<view class="cuIcon-peoplelist text-white" bindtap="showModal" data-target="viewModal">
+ </view>
+
 <view class="auto-page">
 		
 
