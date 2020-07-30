@@ -16,15 +16,20 @@ Page({
     totalmvp : '',
     win:'',
     lose:'',
-    gname:''
+    gname:'',
+    vsImg:'/images/vs-banner.png',
+    vsImgBase64:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
+    console.log(basePng);
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
+      vsImgBase64:'data:image/png;base64,'+ basePng,
       num:options.num,
       rounds:options.rounds,
       gname:options.gname,

@@ -7,7 +7,7 @@
 
 <view style="margin-top:{{CustomBar}}px">
   <view class="match-card-container cf">
-    <view class="match-card fl" style="background-image: url(../../images/vs-banner.png)" >
+    <view class="match-card fl" style="background-image: url({{vsImgBase64}})" >
               <view class="fl user-content">
 				  <!-- <view class="match-user-item" wx:for="{{5}}" wx:key>
 					  <image  src='../../images/card-back.png' mode='aspectFill'></image>
