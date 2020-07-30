@@ -146,10 +146,10 @@
     </view>
   </view>
 </scroll-view>
-  <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal" >
 			<text class="cuIcon-pullright"></text>
 		</view>
-	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+	<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}" style="padding-top:{{CustomBar}}px">
 			<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
 				<view class="cu-item arrow" wx:for="{{historyList}}" wx:key="item">
 					<view class="content" bindtap="toResult" data-id="{{item.id}}"  data-rounds="{{item.rounds}}">

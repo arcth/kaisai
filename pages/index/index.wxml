@@ -30,7 +30,7 @@
 		</navigator>
     </view>
     <view class="action text-gray add-action">
-      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+       <button class="cu-btn cuIcon-add bg-green shadow" bindtap="create" ></button>
       发布一场比赛
     </view>
     <view class="action text-gray">

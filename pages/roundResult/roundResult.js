@@ -10,7 +10,6 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     imageBaseUrl:'',
-    id:'',
     top : '',
     top_field : '',
     totalfield : '',
@@ -26,7 +25,6 @@ Page({
   onLoad: function (options) {
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
-      id:options.id,
       num:options.num,
       rounds:options.rounds,
       gname:options.gname,

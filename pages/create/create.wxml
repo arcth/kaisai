@@ -5,6 +5,13 @@
 
 <view style="margin-top:{{CustomBar}}px" class="padding-top">
 <form bindsubmit='formSubmit'>
+
+<view class="bg-img  padding-tb-xl" style="background-image: url('{{cover}}');height: 414rpx;">
+<view  bindtap="Choosecover" >
+				<text class="cuIcon-pic">更换封面</text>
+			</view>
+</view>
+ 
 	<view class="cu-form-group">
 		<view class="title">比赛名称</view>
 		<input name="gamename" placeholder="请给比赛起个名字"></input>
@@ -27,7 +34,7 @@
 	</view>
   <view class="cu-form-group">
 		<view class="title">公开赛</view>
-		<switch name="prop"  class="red sm" checked></switch>
+		<switch name="publishtype"  class="red sm" checked></switch>
 	</view>
 
   <!--<view class="cu-bar bg-white margin-top">

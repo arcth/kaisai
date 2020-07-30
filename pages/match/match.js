@@ -240,8 +240,7 @@ Page({
   },
   toResult:function(e){
     wx.navigateTo({
-      url: '../roundResult/roundResult?id=' + e.currentTarget.dataset.id 
-      + '&isovergame='+this.data.isovergame + '&num=' + this.data.num
+      url: '../roundResult/roundResult?isovergame='+this.data.isovergame + '&num=' + this.data.num
       +  '&rounds=' + e.currentTarget.dataset.rounds +'&gname='+this.data.gname,
     })
   }

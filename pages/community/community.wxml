@@ -1,3 +1,6 @@
+
+<import src="item/item-template.wxml" />
+
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">比赛信息</view>
@@ -29,3 +32,8 @@
     </view>
    </view>
 </view>
+
+<block  wx:for="{{broadcast}}" wx:key="item">
+    <!-- is的值是模板文件中定义的模板名称，data是将循环出来的子元素对象传递到模板文件中 -->
+    <template is="gameInfoItem" data="{{item,coverAddress:coverAddress}}" />
+  </block>

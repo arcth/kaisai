@@ -135,5 +135,10 @@ Page({
         })
       }
     }
+  },
+  create:function(){
+    wx.navigateTo({
+      url: '../create/create'
+    })
   }
 })

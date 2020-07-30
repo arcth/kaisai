@@ -13,9 +13,10 @@
 	</view>
 	<view class="match-group">
 		<view class="match-group-item">
-			<view class="group-name">红队队员</view>
+			<view class="group-name">胜利队员</view>
 			<view class="match-user-info">
-				<image wx:for="{{redteam}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				<image wx:for="{{winner}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
+				<text>{{item.nickname}}</text>
 			</view>
 		</view>
 		

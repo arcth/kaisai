@@ -9,6 +9,7 @@ Page({
   data: {
     CustomBar: app.globalData.CustomBar,
     index: 0,
+    round:null,
     redteam: null,
     blueteam: null,
     redshows: null,
@@ -29,16 +30,36 @@ Page({
    */
   onLoad: function (options) {
     
-    let redteam = JSON.parse(decodeURIComponent(options.redteam))
-    let blueteam = JSON.parse(decodeURIComponent(options.blueteam))
     let pattern = options.pattern
+    let game = JSON.parse(decodeURIComponent(options.game))
+    let round = JSON.parse(decodeURIComponent(options.round))
     this.setData({
-      redteam: redteam,
-      blueteam: blueteam,
       pattern: pattern,
-      num:options.num
+      num:options.num,
+      round:round,
+      game:game
     })
+    this.getCurRoundREC(round)
 
+  },
+  getCurRoundREC(round){
+    let that = this
+    var parameter= {
+      id: round.id
+    }
+    util.commonAjax('/api/getCurRoundREC', 0, parameter)
+      .then(function(resolve) {
+        if (resolve.data.state === 0) {
+          let redteam = resolve.data.data.RED
+          let blueteam = resolve.data.data.BLUE
+          that.setData({
+            redteam: redteam,
+            blueteam: blueteam,
+          })
+        } else {
+          // 失败  
+        }
+    })
   },
   tapDialogButton(e) {
 	  this.setData({
@@ -123,10 +144,11 @@ Page({
     
     let winner = JSON.stringify(this.data.winner)
     let loser = JSON.stringify(this.data.loser)
+    let mvps = this.data.redshows + '|' + this.data.blueshows
     let param = {
       winners: winner,
       losers: loser,
-      mvp: this.data.redshows + '|' + this.data.blueshows,
+      mvp: mvps
     }
     var that = this
     if (that.data.imgList != 0) {
@@ -139,7 +161,8 @@ Page({
           formData:{
               roundid : that.data.redteam[0].id,
               gamenum : that.data.redteam[0].num,
-              index : index
+              index : index,
+              action : 'result'
           },
           header: {
             "Content-Type": "multipart/form-data"
@@ -176,8 +199,6 @@ Page({
             })
           },
           fail: function (err) {
-            console.log(22222222222222222222)
-            console.log(err)
             return
           }
         });
@@ -186,10 +207,14 @@ Page({
       util.commonAjax('/api/record', 0, param)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
+          // wx.redirectTo({
+          //   url: '../match/match?num=' + that.data.num + '&iscreater=' + true + 
+          //   '&pattern=' + that.data.pattern + '&isovergame=' + 0
+          // })
           wx.redirectTo({
-            url: '../match/match?num=' + that.data.num + '&iscreater=' + true + 
-            '&pattern=' + that.data.pattern + '&isovergame=' + 0
-          })
+              url: '../matchResult/matchResult?winner='+winner +'&loser=' + loser + '&mvps=' + mvps
+               + "&game="+ this.data.game + "&round="+ this.data.round
+            })
         } else {
           // 失败  
         }

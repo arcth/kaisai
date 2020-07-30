@@ -12,13 +12,13 @@
 				  <!-- <view class="match-user-item" wx:for="{{5}}" wx:key>
 					  <image  src='../../images/card-back.png' mode='aspectFill'></image>
 				  </view> -->
-				  <view wx:for="{{win}}" wx:key="item"  class="match-user-item">
+				  <view wx:for="{{lose}}" wx:key="item"  class="match-user-item">
 				  	<image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
 				  </view>
 				  <view class="text-bold text-lg">失败</view>
 			  </view>
               <view class="fr user-content">
-				  <view class="match-user-item" wx:for="{{lose}}" wx:key>
+				  <view class="match-user-item" wx:for="{{win}}" wx:key="item">
 				  		<image  src='{{item.avatarurl}}' mode='aspectFill'></image>
 				  </view>
 				  <view class="text-bold text-lg">胜利</view>

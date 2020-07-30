@@ -47,7 +47,7 @@ Page({
     //status =0 创建 status =1 开启签到
     if(roundinfo.status == 0 || roundinfo.status == 1 ){
       //进行分组
-      this.getGroupingResult(roundinfo)
+      this.getGroupingResult(roundinfo,'')
     }
     this.getUserWhodidnotSignin(roundinfo)
       /**
@@ -88,12 +88,14 @@ Page({
       }
     })
   },
-  getGroupingResult(roundinfo){
+  
+  getGroupingResult(roundinfo,mode){
     let that = this
     let param = {
       id: roundinfo.id,
       teammode:roundinfo.teammode,
-      pattern: this.data.pattern
+      pattern: this.data.pattern,
+      mode:mode
     }
 
     util.commonAjax('/api/getGroupingResult', 0, param)
@@ -169,7 +171,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function(e) {
-    console.log(e)
     if(e.from == "button"){
       var source = e.target.dataset.source
       if(source == "understaffedDialog"){
@@ -225,10 +226,9 @@ Page({
       //进行分享 通知
   },
   torecord: function() {
-    let redteam = JSON.stringify(this.data.redteam)
-    let blueteam = JSON.stringify(this.data.blueteam)
     wx.redirectTo({
-      url: '../../record/record?&redteam=' + redteam + '&blueteam=' + blueteam + "&num=" + this.data.round.num + "&pattern=" + this.data.pattern
+      url: '../../record/record?num=' + this.data.round.num + "&pattern=" + this.data.pattern +
+      '&round=' + JSON.stringify(this.data.round) + '&game=' + JSON.stringify(this.data.game)
     })
   },
   handleLongPress:function(e){ //长按显示底部弹窗，同时缓存长按的当前用户数据
@@ -281,7 +281,8 @@ Page({
       .then(function(resolve) {
         if (resolve.data.state === 0) {
           that.setData({
-            modalName: null
+            modalName: null,
+            iscomplete:false
           })
           var curpage = getCurrentPages()[getCurrentPages().length - 1]
           curpage.options.round = encodeURIComponent(JSON.stringify(resolve.data.data.round)) 
@@ -310,7 +311,7 @@ Page({
     //   curpage.options.round =  encodeURIComponent(JSON.stringify(roundinfo))
     //   curpage.onLoad(curpage.options)
     // }
-    curpage.getGroupingResult(roundinfo)
+    curpage.getGroupingResult(roundinfo,'afresh')
    
   },
   showdiscardDialog(){
@@ -340,7 +341,6 @@ Page({
    startpollingUser:function (round) {
     var that = this;
     that.init(that);          //这步很重要，没有这步，重复点击会出现多个定时器
-    console.log("轮询计划开始")
     var interval = setInterval(function () {
           that.pollingUser(round);
     },1000)
@@ -359,8 +359,6 @@ Page({
           let redteam = resolve.data.data.RED
           let blueteam = resolve.data.data.BLUE
           let uncheck = resolve.data.data.UNCHECK 
-          console.log("111111111111111111 getCurRoundREC " )
-          console.log(uncheck )
           that.setData({
             uncheckteam:uncheck
           })
@@ -422,7 +420,8 @@ Page({
     */
     onHide:function () {
         var that = this;
-        that.clearTimeInterval(that)
+       // that.clearTimeInterval(that)
+       // console.log("clearTimeInterval = onHide" )
     }
 
 
