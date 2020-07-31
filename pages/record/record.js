@@ -31,13 +31,11 @@ Page({
   onLoad: function (options) {
     
     let pattern = options.pattern
-    let game = JSON.parse(decodeURIComponent(options.game))
     let round = JSON.parse(decodeURIComponent(options.round))
     this.setData({
       pattern: pattern,
       num:options.num,
       round:round,
-      game:game
     })
     this.getCurRoundREC(round)
 
@@ -212,8 +210,7 @@ Page({
           //   '&pattern=' + that.data.pattern + '&isovergame=' + 0
           // })
           wx.redirectTo({
-              url: '../matchResult/matchResult?winner='+winner +'&loser=' + loser + '&mvps=' + mvps
-               + "&game="+ this.data.game + "&round="+ this.data.round
+              url: '../matchResult/matchResult?gamenum='+ that.data.num + '&roundid='+ that.data.round.id
             })
         } else {
           // 失败  

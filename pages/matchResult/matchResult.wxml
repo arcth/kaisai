@@ -9,21 +9,21 @@
 <view class="auto-page">
 	<view class="match-text-container">
 		<view class="match-title">{{game.name}}</view>
-		<view class="match-sub-title">第  {{round.rounds}} 轮</view>
+		<view class="match-sub-title">第  {{rounds}} 轮</view>
 	</view>
 	<view class="match-group">
 		<view class="match-group-item">
 			<view class="group-name">胜利队员</view>
 			<view class="match-user-info">
-				<image wx:for="{{winner}}" wx:key="item" src="{{item.user.avatarurl}}" mode='aspectFill'></image>
-				<text>{{item.nickname}}</text>
+				<image wx:for="{{winner}}" wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'>
+				</image>
 			</view>
 		</view>
 		
 	</view>
 	<image src="../../images/vb.png" class="vb-img"></image>
 	<view class="btn-group">
-		<button  bindtap="torecord" class="btn-group-item">查看赛场统计</button>
+		<button  bindtap="tomatchpage" class="btn-group-item">查看赛场统计</button>
 		
 	</view>
 </view>

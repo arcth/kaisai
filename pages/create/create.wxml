@@ -3,7 +3,8 @@
 	<view slot="content">创建比赛</view>
 </cu-custom>
 
-<view style="margin-top:{{CustomBar}}px" class="padding-top">
+<!-- <view style="margin-top:{{CustomBar}}px" class="padding-top"> -->
+<view style="margin-top:{{CustomBar}}px" >
 <form bindsubmit='formSubmit'>
 
 <view class="bg-img  padding-tb-xl" style="background-image: url('{{cover}}');height: 414rpx;">

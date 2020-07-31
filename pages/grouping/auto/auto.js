@@ -228,7 +228,7 @@ Page({
   torecord: function() {
     wx.redirectTo({
       url: '../../record/record?num=' + this.data.round.num + "&pattern=" + this.data.pattern +
-      '&round=' + JSON.stringify(this.data.round) + '&game=' + JSON.stringify(this.data.game)
+      '&round=' + JSON.stringify(this.data.round) 
     })
   },
   handleLongPress:function(e){ //长按显示底部弹窗，同时缓存长按的当前用户数据
