@@ -135,11 +135,13 @@ var webSocket = {
         })
        }
        //当参赛者停留在atuo界面  创办者完成本轮比赛记录 开始下一轮新轮次时
-       
        if(curpage.route == 'pages/grouping/auto/auto' && info.status == 0){
         curpage.data.round.status =  info.status
+        // wx.redirectTo({
+        //   url: '../../match/match?isovergame=0&iscreater=' + curpage.data.iscreater + '&pattern=' + curpage.data.pattern + '&num=' + curpage.data.round.num
+        // })
         wx.redirectTo({
-          url: '../../match/match?isovergame=0&iscreater=' + curpage.data.iscreater + '&pattern=' + curpage.data.pattern + '&num=' + curpage.data.round.num
+          url: '../../matchResult/matchResult?gamenum='+ curpage.data.round.num + '&roundid=' + curpage.data.round.id
         })
        }
       
