@@ -94,6 +94,17 @@ image.right-icon{
     width: 64%;
     min-width: 220rpx;
 }
+.btn-all{
+	width: 640rpx;
+	height: 80rpx;
+	background-color: transparent;
+	border-radius: 40rpx;
+	border: 1px solid #268AE9;
+	color: #268AE9;
+	margin: 28rpx auto ;
+	left: 50%;
+	margin-left: -320rpx;
+}
 page {
     background-image: var(--gradualBlue);
     width: 100vw;
@@ -136,7 +147,7 @@ page {
   
   .DrawerClose {
     position: absolute;
-    width: 40vw;
+    width: 0;
     height: 100vh;
     right: 0;
     top: 0;

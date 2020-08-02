@@ -4,6 +4,7 @@ const util = require('../../utils/util.js')
 
 Page({
 	data:{
+		isVictory:false,
 		CustomBar: app.globalData.CustomBar,
 		imageBaseUrl:'',
 		winner:'',
