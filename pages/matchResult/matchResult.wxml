@@ -12,7 +12,7 @@
 		<view class="match-sub-title">第  {{rounds}} 轮</view>
 	</view>
 	<image wx:if="{{isVictory}}" src="../../images/vb.png" class="vb-img"></image>
-	<image wx:else src="../../images/vb.png" class="vb-img"></image>
+	<image wx:else src="../../images/fail.png" class="vb-img"></image>
 	<view class="match-group">
 		<view class="match-group-item">
 			<view class="group-name">胜利队员</view>
