@@ -13,7 +13,8 @@
     "pages/record/record",
     "pages/roundResult/roundResult",
     "pages/community/community",
-    "pages/shopmap/shopmap"
+    "pages/shopmap/shopmap",
+    "pages/personalCenter/personalCenter"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",
