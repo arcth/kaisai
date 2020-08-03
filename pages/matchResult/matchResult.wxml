@@ -3,28 +3,45 @@
 	<view slot="backText">返回</view>
 	<view slot="content">比赛结果</view>
 </cu-custom>
-<image wx:if="{{imageBaseUrl}}" src="{{imageBaseUrl}}/group1/M00/4C/35/wKhmBV8T0omAO3DLAAPm-UdZRZ0194.png" class="share-bg" style="top:{{CustomBar}}px"></image>
-
+<image wx:if="{{imageBaseUrl && !isVictory}}" src="{{imageBaseUrl}}/group1/M00/56/09/wKhmBV8mY0KAApLZAAPXOgGkTuU336.png" class="share-bg" style="top:{{CustomBar}}px"></image>
+<image wx:if="{{imageBaseUrl && isVictory}}" src="{{imageBaseUrl}}/group1/M00/4C/35/wKhmBV8T0omAO3DLAAPm-UdZRZ0194.png" class="share-bg" style="top:{{CustomBar}}px"></image>
 <view style="margin-top:{{CustomBar}}px">
 <view class="auto-page">
 	<view class="match-text-container">
 		<view class="match-title">{{game.name}}</view>
 		<view class="match-sub-title">第  {{rounds}} 轮</view>
 	</view>
+	<image wx:if="{{isVictory}}" src="../../images/vb.png" class="vb-img"></image>
+	<image wx:else src="../../images/fail.png" class="vb-img"></image>
 	<view class="match-group">
 		<view class="match-group-item">
 			<view class="group-name">胜利队员</view>
 			<view class="match-user-info">
-				<image wx:for="{{winner}}" wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'>
-				</image>
+				<view wx:for="{{winner}}">
+					<image  wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'>
+					</image>
+					<view class="user-name">阿萨达</view>
+				</view>
+				
+				
 			</view>
 		</view>
-		
+		<view class="match-group-item">
+			<view class="group-name">mvp</view>
+			<view class="match-user-info">
+				<view>
+					<image  src="{{item.avatarurl}}" mode='aspectFill'>
+					</image>
+					<view class="user-name">阿萨达1231231232</view>
+				</view>
+			</view>
+		</view>
 	</view>
-	<image src="../../images/vb.png" class="vb-img"></image>
+	
+	
+	
 	<view class="btn-group">
 		<button  bindtap="tomatchpage" class="btn-group-item">查看赛场统计</button>
-		
 	</view>
 </view>
 </view>

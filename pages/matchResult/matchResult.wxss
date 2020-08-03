@@ -8,7 +8,7 @@
 	width: 100%;
 	height: auto;
 	overflow-y: auto;
-	padding: 100rpx 50rpx;
+	padding: 50rpx 50rpx;
 }
 .match-text-container{
 	margin-bottom: 40rpx;
@@ -33,7 +33,14 @@
 .match-user-info{
 	display: flex;
 	justify-content: space-around;
-	margin: 40rpx 0 0 0;
+	margin: 40rpx 0 40rpx 0;
+	text-align: center;
+}
+.user-name{
+	width: 100rpx;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .match-group-item{
 	color: #fff;
@@ -69,5 +76,5 @@
 	display: block;
 	width: 364rpx;
 	height: 180rpx;
-	margin: 200rpx  auto 0;
+	margin: 68rpx auto 90rpx;
 }

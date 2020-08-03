@@ -35,7 +35,7 @@
     </view>
     <view class="action text-gray">
       <view class="cuIcon-my">
-        <view class="cu-tag badge"></view>
+        
       </view>
       我的
     </view>

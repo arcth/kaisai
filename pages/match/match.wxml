@@ -45,7 +45,7 @@
 <!---->
   
   <view>
-		<view class='cu-btn bg-green lg block shadow radius margin-xl' bindtap="showModal" data-target="viewModal">
+		<view class='cu-btn btn-all' bindtap="showModal" data-target="viewModal">
 				历史轮次
 		</view>
 	</view>
