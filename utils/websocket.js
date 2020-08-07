@@ -141,7 +141,7 @@ var webSocket = {
         //   url: '../../match/match?isovergame=0&iscreater=' + curpage.data.iscreater + '&pattern=' + curpage.data.pattern + '&num=' + curpage.data.round.num
         // })
         wx.redirectTo({
-          url: '../../matchResult/matchResult?gamenum='+ curpage.data.round.num + '&roundid=' + curpage.data.round.id
+          url: '../../matchResult/matchResult?gamenum='+ curpage.data.round.num + '&roundid=' + curpage.data.round.id 
         })
        }
       
