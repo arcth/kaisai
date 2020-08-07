@@ -34,9 +34,8 @@
       发布一场比赛
     </view>
     <view class="action text-gray">
-      <view class="cuIcon-my">
-        
-      </view>
-      我的
+    	<navigator url="../personalCenter/personalCenter" >
+      <view class="cuIcon-my"></view>我的 
+      </navigator>
     </view>
   </view>

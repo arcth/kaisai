@@ -1,13 +1,17 @@
-<view>
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">个人中心</view>
+</cu-custom>
+<view style="margin-top:{{CustomBar}}px">
 	<view class="personal-top">
 		<image src="../../images/user-top.png" class="personal-top-img"></image>
-		<view wx:if="{{islogin}}">
+		<view wx:if="{{isLogin}}">
 			<view class="user-photo-container">
-				<image src="../../images/login-logo.png" class="user-img"></image>
+				<image src="{{userInfo.avatarUrl}}" class="user-img"></image>
 			</view>
 			<view class="user-info">
-				<view class="user-name">user</view>
-				<view class="user-sub">123123</view>
+				<view class="user-name">{{userInfo.nickName}}</view>
+				<!-- <view class="user-sub">123123</view> -->
 			</view>
 		</view>
 		<view wx:else>
@@ -35,6 +39,16 @@
 			    <text class="text-grey">系统消息</text>
 			</view>
 		</view>
+
+			<view class="cu-item arrow">
+			<view class="content">
+			    <text class="cuIcon-circlefill text-grey"></text>
+			    <text class="text-grey">客服</text>
+			</view>
+		</view>
+<button open-type="contact">进入客服会话</button>
+		
+
 	</view>
 </view>
 

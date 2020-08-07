@@ -18,7 +18,13 @@
 <view class="box">
 
   <view class="cu-bar search bg-white">
-    <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
+    <block wx:if="{{hasUserInfo}}">
+        <view class="cu-avatar round" bindtap="personalCenter" style="background-image:url({{userInfo.avatarUrl}});"></view>
+
+    </block>
+    <block wx:else>
+        <view class="cu-avatar round" bindtap="showLogin" style="background-image:url(../../images/login-logo.png);" ></view>
+    </block>
       <view class="search-form round">
         <text class="cuIcon-search"></text>
         <input type="text" value='{{storeAddress}}' placeholder="当前位置：默认定位" confirm-type="search"></input>
@@ -33,7 +39,46 @@
    </view>
 </view>
 
+<view class="cu-bar tabbar foot bg-white">
+    <view class="action text-blue">
+		<navigator url="../community/community" >
+			<view class="cuIcon-similar"></view> 社区
+		</navigator>
+    </view>
+    <view class="action text-gray add-action">
+       <button class="cu-btn cuIcon-add bg-green shadow" bindtap="create" ></button>
+      发布一场比赛
+    </view>
+    <view class="action text-gray">
+    <navigator url="../personalCenter/personalCenter" >
+      <view class="cuIcon-my">
+      </view>
+      我的
+    </navigator>
+    </view>
+    
+ </view>
+
 <block  wx:for="{{broadcast}}" wx:key="item">
     <!-- is的值是模板文件中定义的模板名称，data是将循环出来的子元素对象传递到模板文件中 -->
     <template is="gameInfoItem" data="{{item,coverAddress:coverAddress}}" />
   </block>
+
+<view wx:if="{{needLoginShow}}">
+	<cover-view class="need-login-model">
+		<cover-view class="need-login-model"  >
+			<cover-view class="need-login-dialog">
+				<cover-image src="../../images/need-login-title.png" class="title-image"></cover-image>
+				<cover-view class="close-icon" bindtap="hideModal">
+					<cover-image src="../../images/close-icon.png" mode="aspectFill"></cover-image>
+				</cover-view>
+				<cover-view class="login-info-text">请先登录再进行操作</cover-view>
+				<cover-image src="../../images/need-login-bg.png" class="login-modle-bg"></cover-image>
+				<cover-view class="need-login-btn-group">	
+					<button class="need-login-btn not" bindtap="hideModal">暂不登录</button>
+					<button class="need-login-btn allow" open-type='getUserInfo' bindgetuserinfo="bindgetuserinfo" >立即登录</button>
+				</cover-view>
+			</cover-view>
+		</cover-view>
+	</cover-view>
+</view>
