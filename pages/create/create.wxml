@@ -8,9 +8,9 @@
 <form bindsubmit='formSubmit'>
 
 <view class="bg-img  padding-tb-xl" style="background-image: url('{{cover}}');height: 414rpx;">
-<view  bindtap="Choosecover" >
+<view  bindtap="Choosecover" class="changeImg">
 				<text class="cuIcon-pic">更换封面</text>
-			</view>
+</view>
 </view>
  
 	<view class="cu-form-group">
