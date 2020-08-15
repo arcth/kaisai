@@ -252,7 +252,16 @@ Page({
     this.options.num = this.data.num
     getCurrentPages()[getCurrentPages().length - 1].onLoad(this.options)
   },
-  
+  showDrawModal(e){
+    this.setData({
+      drawModalName: e.currentTarget.dataset.target
+    })
+  },
+  hideDrawModal(e){
+    this.setData({
+      drawModalName: null
+    })
+  },
   formSubmit(e){ 
     let param = {
       id: this.data.round.id,
@@ -278,7 +287,11 @@ Page({
             round: resolve.data.data.curRound
           })
           //刷新当前页面的数据
-          
+          //关闭抽屉
+          that.setData({
+            drawModalName: null
+          })
+
           var pages = getCurrentPages();
           var prevPage = pages[pages.length - 2]
           pages[pages.length - 1].onLoad(that.options)

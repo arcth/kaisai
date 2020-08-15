@@ -1,5 +1,9 @@
 /* pages/register/register.wxss */
-
+page {
+  background-image: var(--gradualBlue);
+  width: 100vw;
+  overflow: hidden;
+}
 .index {
   width: 100%;
   height: auto;
@@ -29,4 +33,215 @@
 }
 view .text:first-of-type {
   transform: translateX(0px);
+}
+
+
+.game-info{
+  height: 264rpx;
+  width: 100%;
+  padding:32rpx 32rpx;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color:#fff;
+}
+.game-info .game-title{
+  font-size:36rpx;
+  font-weight: bold;
+  margin-bottom: 18rpx;
+}
+.game-info .game-subtitle,
+.game-info .game-dis{
+  font-size: 24rpx;
+  line-height: 40rpx;
+}
+.game-content{
+  width: 660rpx;
+  margin: 0 auto;
+  position: relative;
+  top: -40rpx;
+}
+.reg-players{
+  background: #fff;
+  border-radius: 20rpx;
+  padding:0 32rpx;
+}
+.signin-top{
+  line-height: 92rpx;
+}
+.signin-top .left-text{
+  float: left;
+  font-size: 32rpx;
+  color: #000;
+}
+.signin-top .right-text{
+  float:right;
+  font-size: 28rpx;
+  color: #999900;
+}
+
+.signin-players{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.signin-players-item{
+  width: 92rpx;
+  text-align: center;
+  margin-left: 24rpx;
+  margin-bottom: 28rpx;
+}
+.signin-players-item image{
+  width: 92rpx;
+  height: 92rpx;
+  display: block;
+  border-radius: 50%;
+  box-shadow:0px 3px 6px 0px rgba(76,109,142,0.16);
+}
+.signin-players-item .user-name{
+  width: 92rpx;
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.bottom-btn-group{
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0 30rpx 24rpx;
+  
+}
+.bottom-dis{
+  font-size: 24rpx;
+  color:#999;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.bottom-dis.color-blue{
+  color:#0034FF;
+  margin-left: 240rpx;
+  text-align: center;
+}
+button.signin-btn{
+  height: 84rpx;
+  border-radius: 42rpx;
+  color: #fff;
+  background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
+}
+
+button.signin-btn.disable{
+  color: #fff;
+  background:linear-gradient(270deg,rgba(171,173,180,1) 0%,rgba(119,126,127,1) 100%);
+}
+.signin-btn.iscreater{
+ float: left;
+ width: 200rpx;
+ margin-right: 40rpx;
+}
+
+
+.drawForm{
+  width: 95%;
+  display: block;
+  margin: 0 auto;
+}
+.DrawerPage {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0vw;
+  background-color: #f1f1f1;
+  transition: all 0.4s;
+}
+
+.DrawerPage.show {
+  transform: scale(0.9, 0.9);
+  left: 85vw;
+  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+  transform-origin: 0;
+}
+
+.DrawerWindow {
+  position: absolute;
+  width: 85vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: scale(0.9, 0.9) translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerWindow.show {
+  transform: scale(1, 1) translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.DrawerClose {
+  position: absolute;
+  width: 0;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  color: transparent;
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
+  letter-spacing: 5px;
+  font-size: 50rpx;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerClose.show {
+  opacity: 1;
+  pointer-events: all;
+  width: 15vw;
+  color: #fff;
+}
+
+.DrawerPage .cu-bar.tabbar .action button.icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0;
+  display: inline-block;
+}
+
+.DrawerPage .cu-bar.tabbar .action .cu-avatar {
+  margin: 0;
+}
+
+.DrawerPage .nav {
+  flex: 1;
+}
+
+.DrawerPage .nav .cu-item.cur {
+  border-bottom: 0;
+  position: relative;
+}
+
+.DrawerPage .nav .cu-item.cur::after {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  background-color: currentColor;
+  position: absolute;
+  bottom: 10rpx;
+  border-radius: 10rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.DrawerPage .cu-bar.tabbar .action {
+  flex: initial;
 }

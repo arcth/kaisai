@@ -1,4 +1,7 @@
 <!--pages/register/register.wxml-->
+
+
+<scroll-view scroll-y class="DrawerPage {{drawModalName=='viewModal'?'show':''}}">
 <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">分享比赛</view>
@@ -6,7 +9,72 @@
 
 <view style="margin-top:{{CustomBar}}px">
 
-<view class="cu-form-group">
+<view class="game-info" style="background-image:url(/images/vs-banner.png)">
+  <view class="game-title" >测试杯</view>
+  <view class="game-subtitle" >5v5打群架</view>
+  <view class="game-dis" >不要哔哔</view>
+</view>
+
+<!-- 签到人数 签到按钮 设置按钮 -->
+<view class="game-content">
+  <view class="reg-players" hover-class="none" hover-stop-propagation="false">
+    <view class="signin-top cf">
+      <text class="left-text">已签到</text>
+      <text class="right-text">{{players.length}}人</text>
+    </view>
+    <view class="signin-players" >
+      <!-- <view wx:for="{{players}}">
+					<image  wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'></image>
+					<view class="user-name">{{item.nickname}}</view>
+      </view> -->
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+      </view>
+      <view  class="signin-players-item">
+					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
+					<view class="user-name">123123123123123</view>
+			</view>
+    </view>  
+  </view>
+</view>
+
+
+<!-- 底部按钮 -->
+<view class="bottom-btn-group">
+  <view class="bottom-dis" wx:if="{{disable && !iscreater}}">比赛还未开启签到，请耐心等待</view>
+
+  <view class="bottom-dis color-blue" wx:if="{{disable && iscreater}}">先设置,然后开启签到</view>
+  <button bindtap="register" data-target="Modal" disabled="{{disable}}" class="signin-btn {{disable?'disable':''}} {{iscreater?'iscreater':''}} ">签到</button>
+  <button data-target="Modal" wx:if="{{iscreater}}" class="signin-btn setting-btn" bindtap="showDrawModal" data-target="viewModal">设置</button>
+</view>
+
+
+<!-- <view class="cu-form-group">
    <view class='index'>
 		<span style="display:block;line-height: 60rpx;width: 360rpx;">已报名：</span>
         <view class="flex-user-container">
@@ -16,8 +84,10 @@
 		</view>
         <text></text>
     </view>
-</view>
-<block wx:if="{{round.istimecontrol == 1}}">
+</view> -->
+
+
+<!-- <block wx:if="{{round.istimecontrol == 1}}">
 <view class="cu-form-group">
     <view class="title">本轮签到开放:</view>
     <view>{{round.opentime}}</view>
@@ -26,8 +96,10 @@
     <view class="title">本轮签到终止:</view>
     <view>{{round.closetime}}</view>
  </view>
- </block>
- 	<view class="cu-form-group">
+ </block> -->
+
+
+ 	<!-- <view class="cu-form-group">
 		<view class="title">分组模式</view>
 		<picker name="teammode"  value="{{index}}" range="{{picker}}" >
 			<view class="picker">
@@ -42,9 +114,9 @@
   <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
        <button bindtap="register" data-target="Modal" disabled="{{disable}}">签到</button>
     </view>
- </view>
+ </view> -->
 
-<view  class="cu-form-group" >
+<!-- <view  class="cu-form-group" >
  <view class="content">
         <text class="cuIcon-warn text-green"></text>
         <text class="text-grey">提示:</text>
@@ -53,10 +125,10 @@
         <text class="text-grey text-sm">{{tips}}</text>
       </view>
 
- </view>
+ </view> -->
 
 
-<view wx:if="{{iscreater}}">
+<!-- <view wx:if="{{iscreater}}">
 <form bindsubmit='formSubmit' >
 <view class="cu-form-group margin-top">
 		<view class="title">日期选择</view>
@@ -107,15 +179,15 @@
     </view>
  </view>
  </form> 
-</view>
+</view> -->
 
-<block wx:if="{{isDrawlots}}">
+<!-- <block wx:if="{{isDrawlots}}">
     <view class="cu-form-group  margin-top">
       <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
        <button bindtap="drawlots">开启分组抽签</button>
       </view>
     </view>
- </block>
+</block> -->
 
 <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
@@ -144,7 +216,66 @@
     </view>
   </view>
 </view>
-</view>
+
+
 <mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
 	          <view>{{dialogmsg}}</view>
  </mp-dialog>
+</view>
+
+</scroll-view>
+<view class="DrawerClose {{drawModalName=='viewModal'?'show':''}}" bindtap="hideDrawModal">
+			<text class="cuIcon-pullright"></text>
+</view>
+
+<scroll-view scroll-y class="DrawerWindow {{drawModalName=='viewModal'?'show':''}}">
+  <form bindsubmit='formSubmit' class="drawForm" style="margin-top:{{CustomBar+20}}px">
+    <view class="cu-form-group margin-top">
+        <view class="title">日期选择</view>
+        <picker name="date" mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+    <view class="cu-form-group ">
+        <view class="title">签到开始</view>
+      <picker name="btime" mode="time" value="{{btime}}" start="09:01" end="23:59" bindchange="TimeChangeB">
+          <view class="picker">
+            {{btime}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group ">
+        <view class="title">签到结束</view>
+        <picker name="etime" mode="time" value="{{etime}}" start="09:01" end="23:59" bindchange="TimeChangeE">
+          <view class="picker">
+            {{etime}}
+          </view>
+        </picker>
+      </view>
+      <view class="cu-form-group">
+        <view class="title">启用签到时间限制</view>
+        <switch name="istimecontrol"></switch>
+      </view>
+
+      <view class="cu-form-group">
+        <view class="title">分组模式</view>
+        <picker name='teammode' bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+          <view class="picker">
+            {{index?picker[index]:'选择分组模式'}}
+          </view>
+        </picker>
+      </view>
+
+      <view class="cu-form-group ">
+        <textarea name="describe" maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="比赛规则描述"></textarea>
+      </view>
+    
+      <view class="cu-form-group">
+        <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
+          <button form-type='submit' class="signin-btn">设置好了，开启签到</button>
+        </view>
+    </view>
+ </form> 
+</scroll-view>
