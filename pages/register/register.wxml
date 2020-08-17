@@ -31,6 +31,15 @@
       
     </view>  
   </view>
+
+  <view class="game-list" >
+    <text class="fl">已报名</text>
+    <text class="fr">人</text>
+  </view>
+  <view class="game-list" >
+    <text class="fl">分组模式</text>
+    <text class="fr"></text>
+  </view>
 </view>
 
 
