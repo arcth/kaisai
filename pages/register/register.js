@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    coverAddress:app.globalData.url + '/cover/',
     CustomBar: app.globalData.CustomBar,
     date: util.getNowFormatDate(),
     iscreater : false,
@@ -25,6 +26,7 @@ Page({
     teammode : '0',
     options :'',
     round : '',
+    gameinfo:'',
     tipsDialogvisible: false,
     oneButton: [{text: '确定'}],
     dialogmsg:'',
@@ -63,10 +65,44 @@ Page({
   },
   async init () {
     await api.showLoading() // 显示loading
+    await this.getGameInfo()
     await this.getRound()  
     await this.getPlayers()
     await this.tipsSet()
     await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
+  getGameInfo(){
+    return new Promise((resolve, reject) => {
+      var parameter = {
+        num:  this.data.num,
+        isovergame : 0
+      }
+      let that = this
+       api.commonAjax('/api/getGameInfo', 0, parameter)
+        .then(function (resolve) {
+          // 这里自然不用解释了，这是接口返回的参数  
+          if (resolve.data.state === 0) {
+            // console.log(" match = " + resolve.data.data.statusdes)
+            // 成功  
+            that.setData({
+              gameinfo: resolve.data.data.game
+            })
+            if(app.globalData.openid == that.data.gameinfo.creater ){
+              that.setData({
+                iscreater : true
+              })
+            }
+          } else {
+            // 失败  
+          }
+        }).then((res) => {
+          resolve()
+        }).catch((err) => {
+          console.error(err)
+          reject(err)
+        })
+          
+      })
   },
 
   getRound(){

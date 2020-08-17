@@ -9,10 +9,10 @@
 
 <view style="margin-top:{{CustomBar}}px">
 
-<view class="game-info" style="background-image:url(/images/vs-banner.png)">
-  <view class="game-title" >测试杯</view>
-  <view class="game-subtitle" >5v5打群架</view>
-  <view class="game-dis" >不要哔哔</view>
+<view class="game-info" style="background-image:url({{coverAddress +  gameinfo.cover}})">
+  <view class="game-title" >{{gameinfo.name}}</view>
+  <view class="game-subtitle" >{{gameinfo.patterndes}}</view>
+  <view class="game-dis" >{{gameinfo.describe}}</view>
 </view>
 
 <!-- 签到人数 签到按钮 设置按钮 -->
@@ -59,6 +59,7 @@
 
 
 <!-- <block wx:if="{{round.istimecontrol == 1}}">
+开启时间控制，显示时间
 <view class="cu-form-group">
     <view class="title">本轮签到开放:</view>
     <view>{{round.opentime}}</view>
@@ -71,6 +72,7 @@
 
 
  	<!-- <view class="cu-form-group">
+   分组模式显示
 		<view class="title">分组模式</view>
 		<picker name="teammode"  value="{{index}}" range="{{picker}}" >
 			<view class="picker">
