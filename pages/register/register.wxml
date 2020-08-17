@@ -9,10 +9,11 @@
 
 <view style="margin-top:{{CustomBar}}px">
 
-<view class="game-info" style="background-image:url({{coverAddress +  gameinfo.cover}})">
+<view class="game-info" style="background-image:url(/images/vs-banner.png)">
   <view class="game-title" >{{gameinfo.name}}</view>
   <view class="game-subtitle" >{{gameinfo.patterndes}}</view>
-  <view class="game-dis" >{{gameinfo.describe}}</view>
+  <view class="game-subtitle" >第{{round.rounds}}轮</view>
+  <view class="game-dis" >{{round.rounddesc}}</view>
 </view>
 
 <!-- 签到人数 签到按钮 设置按钮 -->
