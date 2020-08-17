@@ -26,7 +26,8 @@ Page({
     background : '/images/share-bg.png',
     introducer : '',
     options : '',
-    imageBaseUrl:''
+    imageBaseUrl:'',
+    isRunningGame: true
   },
 
   /**
@@ -61,6 +62,7 @@ Page({
   async init(){
     await api.showLoading() // 显示loading
     await this.isloginedUser()  
+    await this.isRunningGame()
     await this.isparticipant()
     await this.getParticipants()
     await api.hideLoading() // 等待请求数据成功后，隐藏loading
@@ -99,11 +101,34 @@ Page({
           })
     })
   },
+  isRunningGame(){
+    return new Promise((resolve, reject) => {
+      var param = {
+        num: this.data.gameinfo.id      }
+      var that = this
+      api.commonAjax('/api/isRunningGame', 0, param)
+        .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          that.setData({
+            isRunningGame:  resolve.data.data.isRunningGame
+          })
+        } else {
+          // 失败  
+        }
+        }).then((res) => {
+          resolve()
+        }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
+  },
   isparticipant(){
     return new Promise((resolve, reject) => {
       var param = {
         num: this.data.gameinfo.id,
-        player : app.globalData.openid
+        player : app.globalData.openid,
+        isRunningGame : this.data.isRunningGame
       }
       var that = this
       api.commonAjax('/api/getCurPartakeInfo', 0, param)

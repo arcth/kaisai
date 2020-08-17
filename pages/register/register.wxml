@@ -23,42 +23,11 @@
       <text class="right-text">{{players.length}}人</text>
     </view>
     <view class="signin-players" >
-      <!-- <view wx:for="{{players}}">
+      <view wx:for="{{players}}" class="signin-players-item">
 					<image  wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'></image>
 					<view class="user-name">{{item.nickname}}</view>
-      </view> -->
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
       </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-      </view>
-      <view  class="signin-players-item">
-					<image  src="/images/vs-banner.png" mode='aspectFill'></image>
-					<view class="user-name">123123123123123</view>
-			</view>
+      
     </view>  
   </view>
 </view>
