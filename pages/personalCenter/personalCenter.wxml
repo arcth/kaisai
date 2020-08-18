@@ -41,7 +41,10 @@
 		</view>
 
 			
-		<button open-type="contact" class="custom-item">进入客服会话</button>
+		<button open-type="contact" class="custom-item text-grey arrow">
+			<text class="cuIcon-circlefill text-grey"></text>
+			进入客服会话
+		</button>
 		
 
 	</view>
