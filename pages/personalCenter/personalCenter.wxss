@@ -114,3 +114,9 @@ page{
 	color: #fff;
 	background: rgba(0,217,255,1);
 }
+button.custom-item{
+	min-height: 100rpx;
+	background-color: #fff;
+	border:none;
+	/* border-bottom: 2rpx solid #ccc; */
+}

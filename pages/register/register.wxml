@@ -33,12 +33,12 @@
   </view>
 
   <view class="game-list" >
-    <text class="fl">已报名</text>
-    <text class="fr">人</text>
+    <text class="fl">总报名</text>
+    <text class="fr">{{registeredUserCount}}人</text>
   </view>
   <view class="game-list" >
     <text class="fl">分组模式</text>
-    <text class="fr"></text>
+    <text class="fr">{{round.teammodedesc}}</text>
   </view>
 </view>
 
@@ -49,9 +49,8 @@
 
   <view class="bottom-dis color-blue" wx:if="{{disable && iscreater}}">先设置,然后开启签到</view>
   <button bindtap="register" data-target="Modal" disabled="{{disable}}" class="signin-btn {{disable?'disable':''}} {{iscreater?'iscreater':''}} ">签到</button>
-  <button data-target="Modal" wx:if="{{iscreater}}" class="signin-btn setting-btn" bindtap="showDrawModal" data-target="viewModal">设置</button>
-
-  <button bindtap="drawlots" wx:if="{{isDrawlots}}">开启分组抽签</button>
+  <button data-target="Modal" wx:if="{{iscreater && !isDrawlots}}" class="signin-btn setting-btn" bindtap="showDrawModal" data-target="viewModal">设置</button>
+  <button bindtap="drawlots" wx:if="{{iscreater && isDrawlots}}" class="signin-btn setting-btn">开启分组抽签</button>
 </view>
 
 
