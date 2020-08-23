@@ -114,3 +114,37 @@ page{
 	color: #fff;
 	background: rgba(0,217,255,1);
 }
+button.custom-item{
+	position: relative;
+	min-height: 100rpx;
+	line-height: 100rpx;
+	background-color: #fff;
+	text-align: left;
+	font-size: 30rpx;
+	padding-right:90rpx;
+	/* border-bottom: 2rpx solid #ccc; */
+}
+button.custom-item::after{
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, .1);
+	
+}
+button.custom-item [class*="cuIcon-"]{
+	margin-right:10rpx ;
+}
+button.arrow::before{
+	position: absolute;
+	top: 0;
+	right: 30rpx;
+	bottom: 0;
+	display: block;
+	margin: auto;
+	width: 30rpx;
+	height: 30rpx;
+	color: var(--grey);
+	content: "\e6a3";
+	text-align: center;
+	font-size: 34rpx;
+	font-family: "cuIcon";
+	line-height: 30rpx;
+}

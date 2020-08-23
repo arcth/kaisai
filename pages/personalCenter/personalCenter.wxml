@@ -40,13 +40,11 @@
 			</view>
 		</view>
 
-			<view class="cu-item arrow">
-			<view class="content">
-			    <text class="cuIcon-circlefill text-grey"></text>
-			    <text class="text-grey">客服</text>
-			</view>
-		</view>
-<button open-type="contact">进入客服会话</button>
+			
+		<button open-type="contact" class="custom-item text-grey arrow">
+			<text class="cuIcon-circlefill text-grey"></text>
+			进入客服会话
+		</button>
 		
 
 	</view>

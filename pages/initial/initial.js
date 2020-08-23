@@ -13,7 +13,6 @@ Page({
 	  
     gameinfo : {},
 	  isShow:false,
-	  
     isSponsor : false,
     userInfo: {},
     hasUserInfo: false,

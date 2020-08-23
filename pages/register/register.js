@@ -30,7 +30,8 @@ Page({
     tipsDialogvisible: false,
     oneButton: [{text: '确定'}],
     dialogmsg:'',
-    num: ''
+    num: '',
+    registeredUserCount: 0 
 
   },
   onUnload: function (options) {
@@ -69,7 +70,35 @@ Page({
     await this.getRound()  
     await this.getPlayers()
     await this.tipsSet()
+    await this.getParticipants()
     await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
+  getParticipants(){
+    return new Promise((resolve, reject) => { 
+      var param = {
+        gamenum: this.data.gameinfo.id,
+        status: 0
+      }
+      var that = this
+      api.commonAjax('/api/getParticipants', 0, param)
+        .then(function (resolve) {
+          if (resolve.data.state === 0) {
+            // 成功  
+            const obj = resolve.data.data.participants;
+            that.setData({
+              //participants: obj,
+              registeredUserCount: obj.length
+            })
+          } else {
+            // 失败  
+          }
+        }).then((res) => {
+          resolve()
+        }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
   },
   getGameInfo(){
     return new Promise((resolve, reject) => {
