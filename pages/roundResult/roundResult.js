@@ -26,7 +26,6 @@ Page({
    */
   onLoad: function (options) {
     let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
-    console.log(basePng);
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
       vsImgBase64:'data:image/png;base64,'+ basePng,
