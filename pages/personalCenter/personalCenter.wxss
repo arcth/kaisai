@@ -129,6 +129,9 @@ button.custom-item::after{
 	border-bottom: 1px solid rgba(0, 0, 0, .1);
 	
 }
+button.custom-item [class*="cuIcon-"]{
+	margin-right:10rpx ;
+}
 button.arrow::before{
 	position: absolute;
 	top: 0;

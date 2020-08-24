@@ -21,7 +21,9 @@ Page({
     tipsDialogvisible: false,
     oneButton: [{text: '确定'}],
     dialogmsg:'',
-    imgList: []
+    imgList: [],
+    vsImg:'/images/vs-banner.png',
+    vsImgBase64:''
 
   },
 
@@ -30,14 +32,17 @@ Page({
    */
   onLoad: function (options) {
     
-    let pattern = options.pattern
-    let round = JSON.parse(decodeURIComponent(options.round))
+    // let pattern = options.pattern
+    // let round = JSON.parse(decodeURIComponent(options.round))
+    let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
+
     this.setData({
-      pattern: pattern,
-      num:options.num,
-      round:round,
+      // pattern: pattern,
+      // num:options.num,
+      // round:round,
+      vsImgBase64:'data:image/png;base64,'+ basePng
     })
-    this.getCurRoundREC(round)
+    // this.getCurRoundREC(round)
 
   },
   getCurRoundREC(round){
@@ -136,7 +141,12 @@ Page({
       blueshows: e.detail.value
     })
   },
-  
+  jumpToTeamList(){
+    console.log(12);
+    wx.navigateTo({
+      url:''
+    })
+  },
 
   formSubmit: function (e) {
     

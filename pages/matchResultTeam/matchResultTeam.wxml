@@ -1,0 +1,51 @@
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">MVP选择</view>
+</cu-custom>
+
+
+<view style="margin-top:{{CustomBar}}px">
+    <radio-group class="block padding-top" bindchange="RedradioChange">
+	    <view class="cu-form-group " wx:for="{{redTeam}}" >
+           
+                <view class="user-avatar">
+                    <image class="user-photo" src="{{item.avatar}}">
+                    </image>
+                </view>        
+                <view class="user-name" hover-class="none" hover-stop-propagation="false">
+                    <view class="flex" >
+                        <text class="text-cut  ">
+                            {{item.name}}
+                        </text>
+                    </view>
+                </view>
+            
+        
+			<radio value="{{item.value}}" checked="{{item.checked}}"></radio>
+        </view>
+    </radio-group>
+
+    <radio-group class="block padding-top margin-bottom" bindchange="RedradioChange">
+	    <view class="cu-form-group " wx:for="{{redTeam}}" >
+           
+                <view class="user-avatar">
+                    <image class="user-photo" src="{{item.avatar}}">
+                    </image>
+                </view>        
+                <view class="user-name" hover-class="none" hover-stop-propagation="false">
+                    <view class="flex" >
+                        <text class="text-cut  ">
+                            {{item.name}}
+                        </text>
+                    </view>
+                </view>
+            
+        
+			<radio value="{{item.value}}" checked="{{item.checked}}"></radio>
+        </view>
+    </radio-group>
+
+    <view class="padding flex flex-direction">
+        <button form-type='submit' class="bottom-dis">保存</button>
+    </view>
+</view>
