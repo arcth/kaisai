@@ -84,11 +84,11 @@ App({
     // imageUrl:'https://ksai.nong12.com/images',
     imageUrl:'http://images.esale.chinacarabao.com',
 
-    // websocketUrl: 'wss://ksaiwss.nong12.com',
-    // url: 'https://ksai.nong12.com'
+    websocketUrl: 'wss://ksaiwss.nong12.com',
+    url: 'https://ksai.nong12.com'
 
-     websocketUrl: 'ws://localhost:8080',
-     url: 'http://localhost:8080'
+    //  websocketUrl: 'ws://localhost:8080',
+    //  url: 'http://localhost:8080'
 
     // websocketUrl: 'ws://118.114.77.102:9258',
     // url:'http://118.114.77.102:9258'
