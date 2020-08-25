@@ -98,5 +98,15 @@ Page({
     wx.navigateTo({
       url: '../create/create'
     })
-  }
+	},
+	gotoMacthlist(){
+		wx.navigateTo({
+      url: '../matchlist/matchlist?status=2'
+    })
+	},
+	gotoCommunity(){
+		wx.navigateTo({
+      url: '../community/community'
+    })
+	}
 })

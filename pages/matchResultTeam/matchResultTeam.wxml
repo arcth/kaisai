@@ -5,47 +5,47 @@
 
 
 <view style="margin-top:{{CustomBar}}px">
-    <radio-group class="block padding-top" bindchange="RedradioChange">
-	    <view class="cu-form-group " wx:for="{{redTeam}}" >
+    <radio-group class="block padding-top" bindchange="redmvpradiochange">
+	    <view class="cu-form-group " wx:for="{{redteam}}" wx:key="item">
            
                 <view class="user-avatar">
-                    <image class="user-photo" src="{{item.avatar}}">
+                    <image class="user-photo" src="{{item.user.avatarurl}}">
                     </image>
                 </view>        
                 <view class="user-name" hover-class="none" hover-stop-propagation="false">
                     <view class="flex" >
                         <text class="text-cut  ">
-                            {{item.name}}
+                            {{item.user.nickname}}
                         </text>
                     </view>
                 </view>
             
         
-			<radio value="{{item.value}}" checked="{{item.checked}}"></radio>
+			<radio value="{{(item.player)}}" checked="{{item.checked}}"></radio>
         </view>
     </radio-group>
 
-    <radio-group class="block padding-top margin-bottom" bindchange="RedradioChange">
-	    <view class="cu-form-group " wx:for="{{redTeam}}" >
+    <radio-group class="block padding-top margin-bottom" bindchange="bluemvpradiochange">
+	    <view class="cu-form-group " wx:for="{{blueteam}}" wx:key="item">
            
                 <view class="user-avatar">
-                    <image class="user-photo" src="{{item.avatar}}">
+                    <image class="user-photo" src="{{item.user.avatarurl}}">
                     </image>
                 </view>        
                 <view class="user-name" hover-class="none" hover-stop-propagation="false">
                     <view class="flex" >
                         <text class="text-cut  ">
-                            {{item.name}}
+                            {{item.user.nickname}}
                         </text>
                     </view>
                 </view>
             
         
-			<radio value="{{item.value}}" checked="{{item.checked}}"></radio>
+			<radio value="{{item.player}}" checked="{{item.checked}}"></radio>
         </view>
     </radio-group>
 
     <view class="padding flex flex-direction">
-        <button form-type='submit' class="bottom-dis">保存</button>
+        <button  class="bottom-dis" bindtap="mvpSubmit" >保存</button>
     </view>
 </view>

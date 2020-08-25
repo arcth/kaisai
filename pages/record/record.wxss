@@ -132,3 +132,13 @@ button.bottom-dis{
   color: #fff;
   background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
 }
+
+.mvp-avatar{
+  display: inline-block;
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  margin-top:10rpx;
+  margin-right: 20rpx;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.1);
+}

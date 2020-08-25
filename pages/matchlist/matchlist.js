@@ -16,7 +16,10 @@ Page({
     imageBaseUrl:'',
     background: "/images/match_list_bg.png",
     isovergame: 0, //0 进行中的比赛 1已经完结的比赛
-	  groupon:[],
+    groupon:[],
+    pageNum: 1,
+    totalPages:0, //后台调用存在异常 无法得到总数 comunity无异常 能够得到总数 应该是由于ID引起
+    gamestatus: 0
   },
 
   /**
@@ -31,11 +34,16 @@ Page({
 	}
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
-      isovergame : options.status
+      isovergame : options.status,
     })
+    this.getGamePage(1,4)
+  },
+  getGamePage(pageNum,pageSize){
     var param = {
       openid: app.globalData.openid,
-      status: options.status
+      status:this.data.isovergame,
+      pageNum: 1, 
+      pageSize: pageNum * pageSize
     }
     var that = this
     util.commonAjax('/api/selectGameinfoByOpenid', 0, param)
@@ -44,20 +52,14 @@ Page({
           // 成功  
           that.setData({
             openid: app.globalData.openid,
-            gamelist: resolve.data.data.gamelist
+            gamelist: resolve.data.data.pageResult.content,
+            totalPages:resolve.data.data.pageResult.totalPages,
           })
           var gamelist = that.data.gamelist
           for (var i = 0; i < gamelist.length; i++) {
             var lack_num = gamelist[i].create_num - gamelist[i].current_num
             gamelist[i].lack_num = lack_num
           }
-		  //测试代码
-		  // let img = gamelist[0].players[0],arr = [];
-		  // for(let k = 0;k<12;k++){
-		  // 	arr.push(img) 
-		  // }
-		  // gamelist[0].players = arr;
-		  //end
           that.setData({
             groupon: gamelist
           })
@@ -67,18 +69,6 @@ Page({
             var end_time = data[i].etime.replace(/-/g, '/')
            that.grouponcountdown(that,end_time, i)
            }
-		   
-		   
-		   
-		   // that.setData({
-			  //  groupon[0].players:arr
-		   // })
-		   //end
-          /**that.data.gamelist.forEach(function (item, index) {
-            that.setData({
-               ['gamelist['+(index)+'].text'] : that.countDown('2020-06-05 10:40:30')
-            })
-          })**/
         } else {
           // 失败  
         }
@@ -147,9 +137,10 @@ Page({
     let iscreater = event.currentTarget.dataset.iscreater
     let gname = event.currentTarget.dataset.gname
     let pattern = event.currentTarget.dataset.pattern
+    let gamestatus = event.currentTarget.dataset.gamestatus
     wx.redirectTo({
       url: '../match/match?num=' + num + '&iscreater=' + iscreater + '&gname=' + gname +
-       "&pattern=" + pattern + "&isovergame=" + this.data.isovergame
+       "&pattern=" + pattern + "&isovergame=" + gamestatus
     })
   },
   handleGetUserInfo:function(e){
@@ -177,6 +168,28 @@ Page({
   		        console.log('/api/login 失败' )  
   		      }
   		    })
-  }
+  },
+    /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh({
+      complete: (res) => {
+        this.getGamePage(this.data.pageNum,4)
+      },
+    })
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    var curreachPage =   this.data.pageNum 
+    if(curreachPage <= this.data.totalPages){
+     this.setData({
+       pageNum: this.data.pageNum + 1
+      })
+      this.getGamePage(this.data.pageNum,4)
+    }
+ },
 
 })

@@ -17,7 +17,10 @@ Page({
     pattern: '',
     num: '',
     winner: [],
+    winnerTeamName: '',
+    winnerTeam:'',
     loser: [],
+    mvps:'',
     tipsDialogvisible: false,
     oneButton: [{text: '确定'}],
     dialogmsg:'',
@@ -32,17 +35,17 @@ Page({
    */
   onLoad: function (options) {
     
-    // let pattern = options.pattern
-    // let round = JSON.parse(decodeURIComponent(options.round))
+     let pattern = options.pattern
+     let round = JSON.parse(decodeURIComponent(options.round))
     let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
 
     this.setData({
-      // pattern: pattern,
-      // num:options.num,
-      // round:round,
+       pattern: pattern,
+       num:options.num,
+       round:round,
       vsImgBase64:'data:image/png;base64,'+ basePng
     })
-    // this.getCurRoundREC(round)
+     this.getCurRoundREC(round)
 
   },
   getCurRoundREC(round){
@@ -115,16 +118,18 @@ Page({
     })
   },
   teamradiochange: function(e){
-    let team = e.detail.value
+    let team = e.currentTarget.dataset.target
     switch(team){
       case 'RED':
         this.setData({
+          winnerTeam: 'red',
           winner: this.data.redteam,
           loser: this.data.blueteam
         })
       break;
       case 'BLUE':
         this.setData({
+          winnerTeam: 'blue',
           winner: this.data.blueteam,
           loser: this.data.redteam
         })
@@ -142,9 +147,21 @@ Page({
     })
   },
   jumpToTeamList(){
-    console.log(12);
+    let that = this
     wx.navigateTo({
-      url:''
+      url: '../matchResultTeam/matchResultTeam?redteam=' + JSON.stringify(this.data.redteam) 
+      + '&blueteam=' + JSON.stringify(this.data.blueteam),
+      events: {
+        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+        acceptDataFromOpenedPage: function(data) {
+          console.log(data)
+        },
+        mvpSubmit: function(e) {
+          that.setData({
+            mvps : e.data
+          })
+        }
+      }
     })
   },
 
@@ -152,7 +169,7 @@ Page({
     
     let winner = JSON.stringify(this.data.winner)
     let loser = JSON.stringify(this.data.loser)
-    let mvps = this.data.redshows + '|' + this.data.blueshows
+    let mvps = this.data.mvps.reduser.player + "|" + this.data.mvps.blueuser.player
     let param = {
       winners: winner,
       losers: loser,
@@ -227,6 +244,31 @@ Page({
         }
       })
     }
-    
+  },
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  submitWinnerTeam(e){
+    switch(this.data.winnerTeam){
+      case 'red':
+        this.setData({
+          winnerTeamName: '红队'
+        })
+      break;
+      case 'blue':
+        this.setData({
+          winnerTeamName: '蓝队'
+        })
+        break;
+    }
+    this.hideModal(e)
   }
+
 })

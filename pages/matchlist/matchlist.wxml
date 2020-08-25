@@ -22,7 +22,7 @@
 </view>
 <!-- BUG后期处理 头像多了没有换行  -->
 <view class="groupon-container" wx:if="{{isLogin && groupon.length > 0}}">
-	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
+	<view wx:for="{{groupon}}" wx:key="item" class="match-list" bindtap="openCurrentGame" data-gamestatus="{{item.status}}" data-gid="{{item.id}}" data-iscreater="{{item.creater == openid}}" data-gname="{{item.name}}" data-pattern="{{item.pattern}}">
 			<image src="{{imageBaseUrl}}/group1/M00/48/FD/wKhmBV8Nb_qAH4HdAARMzSn4hQ4549.png" class="match-list-bg"></image>
 	       <!-- <view class="cu-item bg-img shadow-blur"  > -->
 				<view class="text-white cf">

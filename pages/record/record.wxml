@@ -11,14 +11,14 @@
 				  <!-- <view class="match-user-item" wx:for="{{5}}" wx:key>
 					  <image  src='../../images/card-back.png' mode='aspectFill'></image>
 				  </view> -->
-				  <view wx:for="{{blueTeam}}" wx:key="item"  class="match-user-item">
-				  	<image class='text' src='{{item.avatarurl}}' mode='aspectFill'></image>
+				  <view wx:for="{{blueteam}}" wx:key="item"  class="match-user-item">
+				  	<image class='text' src='{{item.user.avatarurl}}' mode='aspectFill'></image>
 				  </view>
 				  <view class="text-bold text-lg">蓝队</view>
 			  </view>
               <view class="fr user-content">
-				  <view class="match-user-item" wx:for="{{redTeam}}" wx:key="item">
-				  		<image  src='{{item.avatarurl}}' mode='aspectFill'></image>
+				  <view class="match-user-item" wx:for="{{redteam}}" wx:key="item">
+				  		<image  src='{{item.user.avatarurl}}' mode='aspectFill'></image>
 				  </view>
 				  <view class="text-bold text-lg">红队</view>
 			  </view>
@@ -26,18 +26,22 @@
   </view>
 
   <view class="cu-list menu user-menu-list">
-		<view class="cu-item arrow">
+		<view class="cu-item arrow" bindtap="showModal" data-target="bottomModal">
 			<view class="content">
 			    <text class="">选择获胜队伍</text>
 			</view>
+      <view class="action">
+         <text class="text-{{winnerTeam}}  text-xl">{{winnerTeamName}}</text>
+      </view>
 		</view>
 		
 		<view class="cu-item arrow" bindtap="jumpToTeamList">
 			<view class="content">
 			    <text class="">选择<text class="text-red">MVP</text></text>
       </view>
-      <view class="action">
-        啊实打实的
+      <view class="action" wx:if="{{mvps}}">
+        <image src="{{mvps.reduser.avatarurl}}" class="mvp-avatar" ></image>
+        <image src="{{mvps.blueuser.avatarurl}}" class="mvp-avatar"></image>
       </view>
 		</view>
   </view>
@@ -159,3 +163,32 @@
 <mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
 	          <view>{{dialogmsg}}</view>
  </mp-dialog>
+
+
+
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green"  bindtap="submitWinnerTeam">确定</view>
+      <view class="action text-blue" bindtap="hideModal">取消</view>
+    </view>
+    <view class="padding-xl">
+      <radio-group class="block" >
+      <view class="cu-list menu text-left">
+        <view class="cu-item" >
+          <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub"><text class="text-blue">蓝队</text></view>
+            <radio class="round" value="BLUE" data-target="BLUE" bindtap="teamradiochange"></radio>
+          </label>
+          </view>
+          <view class="cu-item" >
+            <label class="flex justify-between align-center flex-sub">
+            <view class="flex-sub"><text class="text-red">红队</text></view>
+            <radio class="round" value="RED" data-target="RED" bindtap="teamradiochange"></radio>
+          </label>
+        </view>
+      </view>
+    </radio-group>
+    </view>
+  </view>
+</view>

@@ -26,14 +26,14 @@
 	</view>
 	
 	<view class="cu-list menu user-menu-list">
-		<view class="cu-item arrow">
+		<view class="cu-item arrow" bindtap="gotoMacthlist">
 			<view class="content">
 			    <text class="cuIcon-circlefill text-grey"></text>
 			    <text class="text-grey">我参加的比赛</text>
 			</view>
 		</view>
 		
-		<view class="cu-item arrow">
+		<view class="cu-item arrow" bindtap="gotoCommunity">
 			<view class="content">
 			    <text class="cuIcon-circlefill text-grey"></text>
 			    <text class="text-grey">系统消息</text>
@@ -53,7 +53,7 @@
 <view class="cu-bar tabbar foot bg-white">
     <view class="action text-gray">
 		<navigator url="../community/community" >
-			<view class="cuIcon-similar"></view> 社区
+			<view class="cuIcon-similar"></view> 消息
 		</navigator>
     </view>
     <view class="action text-gray add-action">

@@ -7,22 +7,43 @@ Page({
 		isLogin:null,
 		needLoginShow:false,
         userInfo:{},
-        redTeam:[
-            {value: '1', name: '老大',avatar:'/images/login-logo.png',checked:'true'},
-            {value: '2', name: '老二',avatar:'/images/login-logo.png'},
-            {value: '2', name: '老老三',avatar:'/images/login-logo.png'}
-        ]
+        redteam:[],
+        blueteam:[],
+        reduser: null,
+        blueuser: null
 	},
 	onLoad:function(options){
+        let redteam  = JSON.parse(decodeURIComponent(options.redteam))
+        let blueteam = JSON.parse(decodeURIComponent(options.blueteam))
+        this.setData({
+            redteam : redteam,
+            blueteam : blueteam
+        })
 		
     },
-    RedradioChange(e){
-        let val = e.detail.val;
-        let items = this.data.redTeam;
-        for(let item of items){
-            items.checked = item.value === val;
+    mvpSubmit(e){
+       const eventChannel = this.getOpenerEventChannel()
+       eventChannel.emit('mvpSubmit', {data:{reduser:this.data.reduser, blueuser:this.data.blueuser}});
+       wx.navigateBack({
+        delta: 1
+       })
+    },
+    redmvpradiochange: function (e) {
+        for (var value of this.data.redteam) {
+            if (value.player === e.detail.value) {
+             this.setData({ reduser: value.user });
+             break;
+            }
         }
-        this.setData(items);
+      },
+    bluemvpradiochange: function (e) {
+        for (var value of this.data.blueteam) {
+            if (value.player === e.detail.value) {
+                this.setData({ blueuser: value.user });
+             break;
+            }
+        }
+        
     }
-	
+    
 })

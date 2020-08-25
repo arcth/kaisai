@@ -8,8 +8,8 @@
 </cu-custom>
 
 <view style="margin-top:{{CustomBar}}px">
-
-<view class="game-info" style="background-image:url(/images/vs-banner.png)">
+<!--(/images/vs-banner.png -->
+<view class="game-info" style="background-image:url({{vsImgBase64}})">
   <view class="game-title" >{{gameinfo.name}}</view>
   <view class="game-subtitle" >{{gameinfo.patterndes}}</view>
   <view class="game-subtitle" >第{{round.rounds}}轮</view>
@@ -24,8 +24,8 @@
       <text class="right-text">{{players.length}}人</text>
     </view>
     <view class="signin-players" >
-      <view wx:for="{{players}}" class="signin-players-item">
-					<image  wx:key="item" src="{{item.avatarurl}}" mode='aspectFill'></image>
+      <view wx:for="{{players}}" wx:key="item" class="signin-players-item">
+					<image  src="{{item.avatarurl}}" mode='aspectFill'></image>
 					<view class="user-name">{{item.nickname}}</view>
       </view>
       
@@ -40,9 +40,15 @@
     <text class="fl">分组模式</text>
     <text class="fr">{{round.teammodedesc}}</text>
   </view>
+  <block wx:if = "{{round.istimecontrol == 1 }}"> 
+    <view class="game-list" >
+      <text class="fl">签到时间 </text>
+      <text class="fr">{{round.opentime}}~{{closetime}}</text>
+    </view>
+  </block>
 </view>
 
-
+<view class="bottom-dis">{{tips}}</view>
 <!-- 底部按钮 -->
 <view class="bottom-btn-group">
   <view class="bottom-dis" wx:if="{{disable && !iscreater}}">比赛还未开启签到，请耐心等待</view>

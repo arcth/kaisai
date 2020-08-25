@@ -31,7 +31,10 @@ Page({
     oneButton: [{text: '确定'}],
     dialogmsg:'',
     num: '',
-    registeredUserCount: 0 
+    registeredUserCount: 0 ,
+    imageBaseUrl:'',
+    vsImg:'/images/vs-banner.png',
+    vsImgBase64:''
 
   },
   onUnload: function (options) {
@@ -43,11 +46,13 @@ Page({
   onLoad: function (options) {
   // socket.closeSocket();
   // socket.connectSocket();
-   
+   let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
     if (util.isBlank(options.round)) {
       return
     }
     this.setData({
+      imageBaseUrl:app.globalData.imageUrl,
+      vsImgBase64:'data:image/png;base64,'+ basePng,
       num:options.num,
       pattern:options.pattern,
       options: options
@@ -158,7 +163,8 @@ Page({
           that.setData({
             round:round,
             disable:disable,
-            num : round.num
+            num : round.num,
+            closetime: round.closetime.substring(11,20)
           })
         }else {
           // 失败  
@@ -207,7 +213,6 @@ Page({
     return new Promise((resolve) => {
       let that = this
        setTimeout(function () {
-        console.log('执行操作1');
         var minparticipants = parseInt(that.data.pattern)*2;
         if(that.data.disable && !that.data.iscreater){
           that.setData({
@@ -217,7 +222,7 @@ Page({
           
           if(that.data.players.length >= minparticipants && !that.data.iscreater){
             that.setData({
-              tips : '签到人数已达到比赛条件，等待比赛创建者开启分组抽签'
+              tips : '签到人数已达到比赛开启条件，等待比赛创建者开启分组抽签'
             })
           }else if(that.data.players.length < minparticipants && !that.data.iscreater){
             var upto = minparticipants - that.data.players.length 
