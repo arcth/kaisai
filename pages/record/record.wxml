@@ -40,8 +40,8 @@
 			    <text class="">选择<text class="text-red">MVP</text></text>
       </view>
       <view class="action" wx:if="{{mvps}}">
-        <image src="{{mvps.reduser.avatarurl}}" class="mvp-avatar" ></image>
-        <image src="{{mvps.blueuser.avatarurl}}" class="mvp-avatar"></image>
+        <image wx:if="{{mvps.reduser}}" src="{{mvps.reduser.avatarurl}}" class="mvp-avatar" ></image>
+        <image wx:if="{{mvps.blueuser}}" src="{{mvps.blueuser.avatarurl}}" class="mvp-avatar"></image>
       </view>
 		</view>
   </view>
@@ -70,7 +70,7 @@
   </view>
 
   <view class="padding flex flex-direction">
-    <button form-type='submit' class="bottom-dis">保存，并公布结果</button>
+    <button form-type='submit' class="bottom-dis" bindtap="formSubmit">保存，并公布结果</button>
   </view>
 <!-- <form bindsubmit='formSubmit'>
   <radio-group class="block" bindchange='teamradiochange'>

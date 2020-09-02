@@ -39,7 +39,11 @@
 	</view>
 	</view>
 </view>
-  
+
+ <block wx:if="{{resultimg}}">
+ <view class="bg-img  padding-tb-xl" bindtap="ViewImage" data-url="{{staticimgurladdress + resultimg}}" style="background-image: url('{{staticimgurladdress + resultimg}}');height: 414rpx;"></view>
+ </block> 
+
 
       
   <view class="cu-list menu title-bar solid-bottom margin-top">

@@ -17,6 +17,8 @@ Page({
     win:'',
     lose:'',
     gname:'',
+    resultimg : '',
+    staticimgurladdress: app.globalData.url + '/',
     vsImg:'/images/vs-banner.png',
     vsImgBase64:''
   },
@@ -31,11 +33,31 @@ Page({
       vsImgBase64:'data:image/png;base64,'+ basePng,
       num:options.num,
       rounds:options.rounds,
+      roundid:options.roundid,
       gname:options.gname,
       isovergame:options.isovergame
     })
     this.getThatTimeTop()
     this.getRoundResult()
+    this.getRound()
+  },
+  getRound(){
+    let param = {
+      id: this.data.roundid,
+      isovergame : this.data.isovergame
+    }
+    let that = this
+    api.commonAjax('/api/getRoundinfoByID', 0, param)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          var round = resolve.data.data.round
+          that.setData({
+            resultimg : round.resultimg
+          })
+        }else {
+          // 失败  
+        }
+      })
   },
   getThatTimeTop(){
     return new Promise((resolve, reject) => {
@@ -110,6 +132,12 @@ Page({
         })
     })
   },
+  ViewImage(e) {
+    wx.previewImage({
+      urls: [this.data.staticimgurladdress + this.data.resultimg],
+      current: e.currentTarget.dataset.url
+    });
+  }
 
 
 })

@@ -18,7 +18,7 @@ Page({
     dialogmsg:'',
     imgtype:'',
     iscover:false,
-    cover: app.globalData.url + '/cover/default.jpg',
+    cover: app.globalData.url + '/default.jpg',
     picker: ['1v1','2v2','3v3','4v4','5v5'],
 
   },

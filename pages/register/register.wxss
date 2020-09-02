@@ -138,10 +138,19 @@ view .text:first-of-type {
 button.signin-btn{
   height: 84rpx;
   border-radius: 42rpx;
-  color: #fff;
+  color: #fff; 
   background:linear-gradient(270deg,rgba(0,217,255,1) 0%,rgba(0,52,255,1) 100%);
 }
 
+
+.draw-btn-left{
+  width: 45%;
+  font-size: 28rpx;
+}
+.draw-btn-right{
+  width: 35%;
+  font-size: 28rpx;
+}
 button.signin-btn.disable{
   color: #fff;
   background:linear-gradient(270deg,rgba(171,173,180,1) 0%,rgba(119,126,127,1) 100%);

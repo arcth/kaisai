@@ -113,6 +113,24 @@ Page({
 			}) 
 	},
 	tomatchpage:function(e){
+				
+		if(!this.data.iscreater){
+			// 订阅签到消息
+			wx.requestSubscribeMessage({
+				tmplIds: ["iRwCjnpwDtRhFAdogxGdSsJXyp7sXBZDR0RskgLLe4A"],
+				success: (res) => {
+					if (res['iRwCjnpwDtRhFAdogxGdSsJXyp7sXBZDR0RskgLLe4A'] === 'accept') {
+						wx.showToast({
+							title: '新一轮签到消息订阅成功！',
+							duration: 1000,
+							success(data) {
+								//成功
+							}
+						})
+					}
+				}
+			})
+		}
 		wx.redirectTo({
       url: '../match/match?num=' + this.data.gamenum + '&iscreater=' + this.data.iscreater + '&gname=' + this.data.game.name +
        "&pattern=" + this.data.game.pattern + "&isovergame=0" 

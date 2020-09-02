@@ -25,80 +25,168 @@ Page({
     removeUserId:'',
     removeReason:{},
     removeReasonId:null,
-    interval: ""      //定时器
+    interval: "",      //定时器
+    onlytoHome:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getEliminateDic()
+    
     let roundinfo = JSON.parse(decodeURIComponent(options.round))
     this.startpollingUser(roundinfo)
+    this.websocketCheck()
     let pattern = options.pattern
+    // console.log("111111111111 options.source" + options.source)
+    // console.log(options.source== 'subscribe')
+    // console.log(options.source== 'shara')
+    if(options.source == 'shara' || options.source == 'subscribe'){
+      this.setData({
+        onlytoHome : true
+      })
+    }
     this.setData({
-      pattern: options.pattern,
+      pattern: pattern,
     })
-    //status =2 已分组 status =3 重新分组
-    if(roundinfo.status == 2 || roundinfo.status == 3){
-      //取分组结果
-      this.getCurRoundREC(roundinfo)
+    this.initdata(roundinfo)
+  },
+  async initdata(roundinfo){
+    await api.showLoading() // 显示loading
+    await this.getEliminateDic()
+    await this.getGameInfo(roundinfo.num)
+    await this.getRound(roundinfo)  
+    await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
+  websocketCheck(){
+    var fields = {
+      socketid:app.globalData.openid
     }
-    //status =0 创建 status =1 开启签到
-    if(roundinfo.status == 0 || roundinfo.status == 1 ){
-      //进行分组
-      this.getGroupingResult(roundinfo,'')
-    }
-    this.getUserWhodidnotSignin(roundinfo)
-      /**
-       *  解决：从分享页面进入的用户 需要通过是否为创建者判断 进行页面控制
-       */
-      let that = this
-      var pm= {
-        num: roundinfo.num,
-        isovergame : 0
-      }
-      util.commonAjax('/api/getGameInfo', 0, pm)
+    api.commonAjax('/api/onlinejudge', 0, fields)
       .then(function (resolve) {
         if (resolve.data.state === 0) {
-          that.setData({
-            game:resolve.data.data.game
-          })
-          if(app.globalData.openid == that.data.game.creater ){
-            that.setData({
-              iscreater : true
-            })
+          console.log('auto.page onlinejudge : ' + app.globalData.openid + '  '+ resolve.data.data.isconnect )
+          if(!resolve.data.data.isconnect){
+            socket.connectSocket();
+            app.globalData.isConnect = true
           }
         } else {
           // 失败  
         }
       })
   },
-  getEliminateDic(){
-    let that = this
-    util.commonAjax('/api/getEliminateDic', 0, "")
-    .then(function(resolve) {
-      if (resolve.data.state === 0) {
-        let reason = resolve.data.data.cache        
-        that.setData({
-          removeReason : reason
-        })
-      } else {
-        // 失败  
+  getGameInfo(num){
+    return new Promise((resolve, reject) => {
+      var parameter = {
+        num: num,
+        isovergame : 0
       }
+      let that = this
+       api.commonAjax('/api/getGameInfo', 0, parameter)
+        .then(function (resolve) {
+          // 这里自然不用解释了，这是接口返回的参数  
+          if (resolve.data.state === 0) {
+            // console.log(" match = " + resolve.data.data.statusdes)
+            // 成功  
+            that.setData({
+              game: resolve.data.data.game
+            })
+            if(app.globalData.openid == that.data.game.creater ){
+              that.setData({
+                iscreater : true
+              })
+            }
+          } else {
+            // 失败  
+          }
+        }).then((res) => {
+          resolve()
+        }).catch((err) => {
+          console.error(err)
+          reject(err)
+        })
+      })
+  },
+
+  getRound(roundinfo){
+    return new Promise((resolve, reject) => {
+    let parameter = {
+      num: roundinfo.num,
+      isovergame : 0
+    }
+    let that = this      
+      api.commonAjax('/api/getRound', 0, parameter)
+      .then(function (resolve) {
+        if (resolve.data.state === 0) {
+          var round = resolve.data.data.curRound
+          //判断 如果是分享页进入 当前轮次已经不是分享页带入的轮次
+          if(roundinfo.rounds != round.rounds){
+              wx.redirectTo({
+                url: '../../matchResult/matchResult?gamenum='+ roundinfo.num + '&roundid='+ roundinfo.id
+              })
+              return
+          }
+
+          //status =2 已分组 status =3 重新分组
+          if(round.status == 2 || round.status == 3){
+            //取分组结果
+            that.getCurRoundREC(round)
+          }
+          //status =0 创建 status =1 开启签到
+          if(round.status == 0 || round.status == 1 ){
+            //进行分组
+            that.getGroupingResult(round,'')
+          }
+          that.getUserWhodidnotSignin(round)
+        }else {
+          // 失败  
+        }
+      }).then((res) => {
+        resolve()
+      })
+        .catch((err) => {
+          console.error(err)
+          reject(err)
+        })
     })
+  },
+  /**
+   * 获取字典 -- 删除理由
+   */
+  getEliminateDic(){
+    return new Promise((resolve, reject) => {
+      let that = this
+      api.commonAjax('/api/getEliminateDic', 0, "")
+      .then(function(resolve) {
+        if (resolve.data.state === 0) {
+          let reason = resolve.data.data.cache        
+          that.setData({
+            removeReason : reason
+          })
+        } else {
+          // 失败  
+        }
+      }).then((res) => {
+        resolve()
+      })
+        .catch((err) => {
+          console.error(err)
+          reject(err)
+				})
+		}) 
   },
   
   getGroupingResult(roundinfo,mode){
-    let that = this
-    let param = {
-      id: roundinfo.id,
-      teammode:roundinfo.teammode,
-      pattern: this.data.pattern,
-      mode:mode
-    }
+    return new Promise((resolve, reject) => {
+      let that = this
+      let param = {
+        id: roundinfo.id,
+        teammode:roundinfo.teammode,
+        pattern: this.data.pattern,
+        mode:mode
+      }
 
-    util.commonAjax('/api/getGroupingResult', 0, param)
+      util.commonAjax('/api/getGroupingResult', 0, param)
       .then(function(resolve) {
         if (resolve.data.state === 0) {
           that.setData({
@@ -112,7 +200,13 @@ Page({
         } else {
           // 失败  
         }
-      })
+      }).then((res) => {
+        resolve()
+      }) .catch((err) => {
+          console.error(err)
+          reject(err)
+        })
+    })
   },
   getUserWhodidnotSignin(roundinfo){
     let that = this
@@ -188,7 +282,7 @@ Page({
           title: '生而无畏，战至终章',
           desc: '分享页面的内容',
           path: '/pages/grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(this.data.round))
-           + '&iscreater=' + this.data.iscreater + '&pattern=' + this.datapattern
+           + '&iscreater=' + this.data.iscreater + '&pattern=' + this.data.pattern + '&source=shara'
         }
     }
     }else if(e.from == "menu"){

@@ -169,7 +169,18 @@ Page({
     
     let winner = JSON.stringify(this.data.winner)
     let loser = JSON.stringify(this.data.loser)
-    let mvps = this.data.mvps.reduser.player + "|" + this.data.mvps.blueuser.player
+    if( this.data.winner == '' ){
+      this.setData({
+        tipsDialogvisible: true,
+        dialogmsg : '请选择获胜队伍'
+      }) 
+      return
+    }
+
+
+    let redmvp = this.data.mvps.reduser == null ? '' : this.data.mvps.reduser.openid
+    let bluemvp = this.data.mvps.blueuser == null ? '' : this.data.mvps.blueuser.openid
+    let mvps = redmvp + "|" + bluemvp
     let param = {
       winners: winner,
       losers: loser,
@@ -186,7 +197,7 @@ Page({
           formData:{
               roundid : that.data.redteam[0].id,
               gamenum : that.data.redteam[0].num,
-              index : index,
+              index : '_' + index,
               action : 'result'
           },
           header: {

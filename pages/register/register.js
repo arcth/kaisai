@@ -34,7 +34,8 @@ Page({
     registeredUserCount: 0 ,
     imageBaseUrl:'',
     vsImg:'/images/vs-banner.png',
-    vsImgBase64:''
+    vsImgBase64:'',
+    onlytoHome:false
 
   },
   onUnload: function (options) {
@@ -47,9 +48,13 @@ Page({
   // socket.closeSocket();
   // socket.connectSocket();
    let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
-    if (util.isBlank(options.round)) {
-      return
-    }
+   //如果是通过分享 或者 订阅消息 进入页面的 自定义导航栏只出现到主页按钮
+   if(options.source == 'shara' || options.source == 'subscribe'){
+    this.setData({
+      onlytoHome : true
+    })
+   }
+   util.websocketCheck('register')
     this.setData({
       imageBaseUrl:app.globalData.imageUrl,
       vsImgBase64:'data:image/png;base64,'+ basePng,
@@ -57,15 +62,7 @@ Page({
       pattern:options.pattern,
       options: options
     })
-    if (options.iscreater === 'true') {
-      this.setData({
-        iscreater: true
-      })
-    } else if (options.iscreater === 'false') {
-      this.setData({
-        iscreater: false
-      })
-    }
+    
     this.init()
         
   },
@@ -119,7 +116,8 @@ Page({
             // console.log(" match = " + resolve.data.data.statusdes)
             // 成功  
             that.setData({
-              gameinfo: resolve.data.data.game
+              gameinfo: resolve.data.data.game,
+              pattern : resolve.data.data.game.pattern
             })
             if(app.globalData.openid == that.data.gameinfo.creater ){
               that.setData({
@@ -164,7 +162,7 @@ Page({
             round:round,
             disable:disable,
             num : round.num,
-            closetime: round.closetime.substring(11,20)
+            closetime: round.closetime == null?null:round.closetime.substring(11,20)
           })
         }else {
           // 失败  
@@ -410,20 +408,21 @@ Page({
   },
 
   register(e){
-    this.setData({
-      modalName: e.currentTarget.dataset.target
-    })
+    // 签到按钮弹出modal提示窗 
+    // this.setData({
+    //   modalName: e.currentTarget.dataset.target
+    // })
     
     var param = {
       player : app.globalData.openid, 
       round : JSON.stringify(this.data.round)
     }
-    
     let that = this
     util.commonAjax('/api/register', 0, param)
       .then(function (resolve) {
-        
         if (resolve.data.state === 0) {
+          that.options.num = that.data.num
+          getCurrentPages()[getCurrentPages().length - 1].onLoad(that.options)
         } else {
           // 失败  
         }
@@ -444,5 +443,18 @@ Page({
         }
       }
     })
+  },
+    /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '生死看淡，不服来干',
+      desc: '都准备好了，就差你了，快来签到',
+      path: '/pages/register/register?num=' + this.data.num  + '&source=shara'
+    }
+  },
+  resetRegister:function(){
+    
   }
 })

@@ -15,7 +15,7 @@ Page({
     broadcast:'',
     interval: '',     //定时器
     optionslist:{gname:'',round:''},
-    coverAddress:app.globalData.url + '/cover/',
+    coverAddress:app.globalData.url + '/',
     tempPageNum: [],
     pageNum: 1,
     needLoginShow:false,

@@ -2,10 +2,19 @@
 
 
 <scroll-view scroll-y class="DrawerPage {{drawModalName=='viewModal'?'show':''}}">
-<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+<block wx:if="{{onlytoHome}}">
+<cu-custom bgColor="bg-gradual-pink" onlytoHome="{{onlytoHome}}">
 	<view slot="backText">返回</view>
 	<view slot="content">分享比赛</view>
 </cu-custom>
+</block>
+<block wx:else>
+  <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+	 <view slot="backText">返回</view>
+	 <view slot="content">分享比赛</view>
+  </cu-custom>
+</block>
+
 
 <view style="margin-top:{{CustomBar}}px">
 <!--(/images/vs-banner.png -->
@@ -13,7 +22,7 @@
   <view class="game-title" >{{gameinfo.name}}</view>
   <view class="game-subtitle" >{{gameinfo.patterndes}}</view>
   <view class="game-subtitle" >第{{round.rounds}}轮</view>
-  <view class="game-dis" >{{round.rounddesc}}</view>
+  <view class="game-dis" >{{round.rounddesc == null?'':round.rounddesc}}</view>
 </view>
 
 <!-- 签到人数 签到按钮 设置按钮 -->
@@ -38,7 +47,7 @@
   </view>
   <view class="game-list" >
     <text class="fl">分组模式</text>
-    <text class="fr">{{round.teammodedesc}}</text>
+    <text class="fr">{{round.teammodedesc==null?'':round.teammodedesc}}</text>
   </view>
   <block wx:if = "{{round.istimecontrol == 1 }}"> 
     <view class="game-list" >
@@ -49,15 +58,7 @@
 </view>
 
 <view class="bottom-dis">{{tips}}</view>
-<!-- 底部按钮 -->
-<view class="bottom-btn-group">
-  <view class="bottom-dis" wx:if="{{disable && !iscreater}}">比赛还未开启签到，请耐心等待</view>
 
-  <view class="bottom-dis color-blue" wx:if="{{disable && iscreater}}">先设置,然后开启签到</view>
-  <button bindtap="register" data-target="Modal" disabled="{{disable}}" class="signin-btn {{disable?'disable':''}} {{iscreater?'iscreater':''}} ">签到</button>
-  <button data-target="Modal" wx:if="{{iscreater && !isDrawlots}}" class="signin-btn setting-btn" bindtap="showDrawModal" data-target="viewModal">设置</button>
-  <button bindtap="drawlots" wx:if="{{iscreater && isDrawlots}}" class="signin-btn setting-btn">开启分组抽签</button>
-</view>
 
 
 <!-- <view class="cu-form-group">
@@ -177,7 +178,7 @@
     </view>
 </block> -->
 
-<view class="cu-modal {{modalName=='Modal'?'show':''}}">
+<!-- <view class="cu-modal {{modalName=='Modal'?'show':''}}">
   <view class="cu-dialog">
     <view class="cu-bar bg-white justify-end">
       <view class="content">成功签到</view>
@@ -189,7 +190,7 @@
       记得准时参赛哦！
     </view>
   </view>
-</view>
+</view> -->
 
 <view class="cu-modal {{modalName=='Modal_submit'?'show':''}}">
   <view class="cu-dialog">
@@ -212,6 +213,15 @@
 </view>
 
 </scroll-view>
+<!-- 底部按钮 -->
+<view class="bottom-btn-group" wx:if="{{drawModalName !='viewModal'}}">
+  <view class="bottom-dis" wx:if="{{disable && !iscreater}}">比赛还未开启签到，请耐心等待</view>
+
+  <view class="bottom-dis color-blue" wx:if="{{disable && iscreater}}">先设置,然后开启签到</view>
+  <button bindtap="register" data-target="Modal" disabled="{{disable}}" class="signin-btn {{disable?'disable':''}} {{iscreater?'iscreater':''}} ">签到</button>
+  <button data-target="Modal" wx:if="{{iscreater && !isDrawlots}}" class="signin-btn setting-btn" bindtap="showDrawModal" data-target="viewModal">设置</button>
+  <button bindtap="drawlots" wx:if="{{iscreater && isDrawlots}}" class="signin-btn setting-btn">开启分组抽签</button>
+</view>
 <view class="DrawerClose {{drawModalName=='viewModal'?'show':''}}" bindtap="hideDrawModal">
 			<text class="cuIcon-pullright"></text>
 </view>
@@ -262,7 +272,8 @@
     
       <view class="cu-form-group">
         <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-          <button form-type='submit' class="signin-btn">设置好了，开启签到</button>
+          <button form-type='submit' class="signin-btn draw-btn-left">设置好了</button>
+          <button  bindtap="resetRegister" class="signin-btn draw-btn-right fr">重置签到</button>
         </view>
     </view>
  </form> 

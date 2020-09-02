@@ -1,10 +1,17 @@
 <!--pages/grouping/auto/auto.wxml-->
 <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="padding-top:{{CustomBar}}px">
-
+<block wx:if="{{onlytoHome}}">
+<cu-custom bgColor="bg-gradual-pink" onlytoHome="{{onlytoHome}}">
+	<view slot="backText">返回</view>
+	<view slot="content">分组结果</view>
+</cu-custom>
+</block>
+<block wx:else>
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">分组结果</view>
 </cu-custom>
+</block>
 <image src="https://ksai.nong12.com/images/auto_bg.png" class="share-bg" style="top:{{CustomBar}}px"></image>
 
  
@@ -44,7 +51,7 @@
 	</view>
 	<view class="btn-group">
 		<button wx:if = "{{confirm && iscreater && iscomplete}}" bindtap="torecord" class="btn-group-item">比赛结果记录</button>
-		<button wx:if="{{!confirm && iscreater && iscomplete}}"  open-type='share' bindtap="record"  class="btn-group-item">分好了，通知参赛者！</button>
+		<button wx:if="{{!confirm && iscreater && iscomplete}}"  open-type='share' data-source="buttonshare" bindtap="record"  class="btn-group-item">分好了，通知参赛者！</button>
 		<button wx:if="{{ iscreater && !iscomplete}}"  bindtap="drawAgain"  class="btn-group-item">重新抽签</button>
 		<button wx:if="{{ iscreater && !iscomplete}}"  bindtap="showdiscardDialog"  class="btn-group-item">废弃本轮</button>
     <button wx:if = "{{!iscreater}}" open-type='share'  data-source="buttonshare" class="btn-group-item">分享</button>
