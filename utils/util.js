@@ -177,6 +177,27 @@ function bindgetuserinfo(e) {
   
 }
 
+function websocketCheck(Pagename){
+    // 获取公共配置  
+  var app = getApp()
+  const socket = require('./websocket.js');
+  var fields = {
+    socketid:app.globalData.openid
+  }
+  this.commonAjax('/api/onlinejudge', 0, fields)
+    .then(function (resolve) {
+      if (resolve.data.state === 0) {
+        console.log( Pagename + 'onlinejudge : ' + app.globalData.openid + '  '+ resolve.data.data.isconnect )
+        if(!resolve.data.data.isconnect){
+          socket.connectSocket();
+          app.globalData.isConnect = true
+        }
+      } else {
+        // 失败  
+      }
+    })
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -184,6 +205,7 @@ module.exports = {
   getNowFormatDate: getNowFormatDate,
   formatTimeOnly: formatTimeOnly,
   isBlank: isBlank,
-  bindgetuserinfo:bindgetuserinfo
+  bindgetuserinfo:bindgetuserinfo,
+  websocketCheck:websocketCheck
   
 }  
