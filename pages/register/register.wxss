@@ -144,7 +144,7 @@ button.signin-btn{
 
 
 .draw-btn-left{
-  width: 45%;
+  width: 60%;
   font-size: 28rpx;
 }
 .draw-btn-right{

@@ -38,10 +38,7 @@ Page({
     this.startpollingUser(roundinfo)
     this.websocketCheck()
     let pattern = options.pattern
-    // console.log("111111111111 options.source" + options.source)
-    // console.log(options.source== 'subscribe')
-    // console.log(options.source== 'shara')
-    if(options.source == 'shara' || options.source == 'subscribe'){
+    if(getCurrentPages().length ==1){
       this.setData({
         onlytoHome : true
       })
@@ -263,6 +260,7 @@ Page({
   },
   /**
    * 用户点击右上角分享
+   * e.from : button 按钮分享,menu 右上角分享按钮分享
    */
   onShareAppMessage: function(e) {
     if(e.from == "button"){
@@ -277,15 +275,26 @@ Page({
           '&introducer=' + app.globalData.openid
         }
       }
-      if(this.data.confirm && source == "buttonshare"){
+      if( source == "buttonshare"){
         return {
-          title: '生而无畏，战至终章',
+          title: '生死有命富贵在天，点击查看分组结果！',
           desc: '分享页面的内容',
           path: '/pages/grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(this.data.round))
            + '&iscreater=' + this.data.iscreater + '&pattern=' + this.data.pattern + '&source=shara'
         }
     }
     }else if(e.from == "menu"){
+      if(this.data.confirm ){
+        return {
+          title: '生死有命富贵在天，点击查看分组结果！',
+          desc: '分享页面的内容',
+          path: '/pages/grouping/auto/auto?round=' + encodeURIComponent(JSON.stringify(this.data.round))
+           + '&iscreater=' + this.data.iscreater + '&pattern=' + this.data.pattern + '&source=shara'
+        }
+      }else{
+        return
+      }
+     
 
     }
     
@@ -309,15 +318,13 @@ Page({
           that.setData({
             confirm : true
           })
-          console.log("round.id =" + that.data.round.id)
-          console.log("round.num =" + that.data.round.num)
+          // var e = {from:'button',target:{dataset:{source:'buttonshare'}}}
+          // that.onShareAppMessage(e) 没有opentype 没法触动
           that.pollingUser(that.data.round)
         } else {
           // 失败  
         }
       })
-
-      //进行分享 通知
   },
   torecord: function() {
     wx.redirectTo({

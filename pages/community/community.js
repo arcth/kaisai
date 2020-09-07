@@ -102,10 +102,10 @@ Page({
       rounds = topic.match(/第([0-9]*)轮/)[1]
     }
 
-    this.getGameInfo(gamenum,gamestatus,rounds,type)
+    this.getGameInfo(gamenum,gamestatus,rounds,type,roundid)
    
   },
-  getGameInfo:function(gamenum,gamestatus,rounds,type){
+  getGameInfo:function(gamenum,gamestatus,rounds,type,roundid){
     return new Promise((resolve, reject) => {
     var parameter = {
       num: gamenum,
@@ -124,7 +124,7 @@ Page({
           if(type == 'RECORD'){
             wx.navigateTo({
               url: '../roundResult/roundResult?isovergame='+gamestatus + '&num=' + gamenum
-              +  '&rounds=' + rounds +'&gname='+gamename,
+              +  '&rounds=' + rounds +'&gname='+gamename + '&roundid=' + roundid,
             })
           } 
           if(type == 'CREATEGAME'){

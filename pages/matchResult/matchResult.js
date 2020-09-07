@@ -18,11 +18,15 @@ Page({
 		background:'',
 		wolmarker:'',
 		woltittle:'',
-		wolteam:''
+		wolteam:'',
+		onlytoHome:false
 	},
 	onLoad:function(options){
-
-	
+		if(getCurrentPages().length ==1){
+			this.setData({
+				onlytoHome : true
+			})
+		 }
 		this.getGameInfo(options.gamenum)
 	//	this.getRoundRECInfo(options.roundid)
 		this.init(options.roundid)

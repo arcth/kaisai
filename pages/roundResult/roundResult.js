@@ -51,8 +51,9 @@ Page({
       .then(function (resolve) {
         if (resolve.data.state === 0) {
           var round = resolve.data.data.round
+          var img =  round.resultimg == null?'': round.resultimg
           that.setData({
-            resultimg : round.resultimg
+            resultimg :img
           })
         }else {
           // 失败  

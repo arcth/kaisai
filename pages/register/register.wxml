@@ -207,7 +207,7 @@
 </view>
 
 
-<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogButton" buttons="{{oneButton}}">
+<mp-dialog title="提示" show="{{tipsDialogvisible}}" bindbuttontap="tapDialogOneButton" buttons="{{oneButton}}">
 	          <view>{{dialogmsg}}</view>
  </mp-dialog>
 </view>
@@ -272,9 +272,13 @@
     
       <view class="cu-form-group">
         <view class="bg-white padding padding-top-xl padding-bottom-xxl flex-sub">
-          <button form-type='submit' class="signin-btn draw-btn-left">设置好了</button>
+          <button form-type='submit' class="signin-btn draw-btn-left fl">设置好了</button>
           <button  bindtap="resetRegister" class="signin-btn draw-btn-right fr">重置签到</button>
         </view>
     </view>
  </form> 
+  <mp-dialog title="提示" show="{{resetDialogvisible}}" bindbuttontap="resetDialogButton" buttons="{{buttons}}">
+	          <view>{{dialogmsg}}</view>
+ </mp-dialog>
 </scroll-view>
+

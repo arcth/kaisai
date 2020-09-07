@@ -1,7 +1,15 @@
+<block wx:if="{{onlytoHome}}">
+<cu-custom bgColor="bg-gradual-pink" onlytoHome="{{onlytoHome}}">
+	<view slot="backText">返回</view>
+	<view slot="content">比赛结果</view>
+</cu-custom>
+</block>
+<block wx:else>
 <cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
 	<view slot="backText">返回</view>
 	<view slot="content">比赛结果</view>
 </cu-custom>
+</block>
 <image  src="{{background}}" class="share-bg" style="top:{{CustomBar}}px"></image>
 <!-- <image wx:if="{{imageBaseUrl && isVictory}}" src="{{imageBaseUrl}}/group1/M00/4C/35/wKhmBV8T0omAO3DLAAPm-UdZRZ0194.png" class="share-bg" style="top:{{CustomBar}}px"></image> -->
 <view style="margin-top:{{CustomBar}}px">

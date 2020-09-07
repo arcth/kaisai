@@ -28,14 +28,17 @@ Page({
     round : '',
     gameinfo:'',
     tipsDialogvisible: false,
+    resetDialogvisible:false,
     oneButton: [{text: '确定'}],
+    buttons: [{text: '确定'},{text: '取消'}],
     dialogmsg:'',
     num: '',
     registeredUserCount: 0 ,
     imageBaseUrl:'',
     vsImg:'/images/vs-banner.png',
     vsImgBase64:'',
-    onlytoHome:false
+    onlytoHome:false,
+    sharers:''
 
   },
   onUnload: function (options) {
@@ -45,11 +48,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  // socket.closeSocket();
-  // socket.connectSocket();
    let basePng = wx.getFileSystemManager().readFileSync(this.data.vsImg,'base64');
    //如果是通过分享 或者 订阅消息 进入页面的 自定义导航栏只出现到主页按钮
-   if(options.source == 'shara' || options.source == 'subscribe'){
+   if(getCurrentPages().length ==1){
     this.setData({
       onlytoHome : true
     })
@@ -60,7 +61,8 @@ Page({
       vsImgBase64:'data:image/png;base64,'+ basePng,
       num:options.num,
       pattern:options.pattern,
-      options: options
+      options: options,
+      sharers: options.sharers
     })
     
     this.init()
@@ -69,11 +71,39 @@ Page({
   async init () {
     await api.showLoading() // 显示loading
     await this.getGameInfo()
+    await this.isloginedUser()
     await this.getRound()  
     await this.getPlayers()
     await this.tipsSet()
     await this.getParticipants()
     await api.hideLoading() // 等待请求数据成功后，隐藏loading
+  },
+  isloginedUser(){
+    return new Promise((resolve, reject) => {
+      var param = {
+        id: app.globalData.openid
+      }
+      var that = this
+        api.commonAjax('/api/getuser', 0, param)
+          .then(function (resolve) {
+            if (resolve.data.state === 0) {
+              const obj = resolve.data.data.wxuser;
+              if (typeof obj == "undefined" || obj == null || obj == "") {
+                wx.redirectTo({
+                  url: '/pages/initial/initial?gameinfo=' + 
+                  encodeURIComponent(JSON.stringify(that.data.gameinfo)) + 
+                  '&introducer=' + that.data.sharers 
+                })
+              } 
+            } else {
+            }
+          }).then((res) => {
+          resolve()
+         }) .catch((err) => {
+            console.error(err)
+            reject(err)
+          })
+    })
   },
   getParticipants(){
     return new Promise((resolve, reject) => { 
@@ -451,10 +481,37 @@ Page({
     return {
       title: '生死看淡，不服来干',
       desc: '都准备好了，就差你了，快来签到',
-      path: '/pages/register/register?num=' + this.data.num  + '&source=shara'
+      path: '/pages/register/register?num=' + this.data.num  + '&source=shara' + '&sharers=' + app.globalData.openid
     }
   },
   resetRegister:function(){
-    
+    this.setData({
+      resetDialogvisible : true
+    })
+  },
+  resetDialogButton : function(e){
+    if(e.detail.index == 0 ){
+      var param = {
+        roundid : this.data.round.id
+      }
+      let that = this
+      util.commonAjax('/api/resetRegister', 0, param)
+        .then(function (resolve) {
+          if (resolve.data.state === 0) {
+            that.setData({
+              resetDialogvisible : false,
+              drawModalName: null
+            })
+            that.options.num = that.data.num
+            getCurrentPages()[getCurrentPages().length - 1].onLoad(that.options)
+          } else {
+            // 失败  
+          }
+        })
+    }else if(e.detail.index == 1){
+      this.setData({
+        resetDialogvisible : false
+      })
+    }
   }
 })

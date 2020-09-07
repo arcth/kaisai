@@ -44,7 +44,6 @@ Component({
 	        })
 	},
 	showTips:function(e){
-		console.log(11);
 		this.setData({
 		    tipsDialogvisible: true
 		})
