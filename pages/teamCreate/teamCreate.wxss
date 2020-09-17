@@ -1,0 +1,36 @@
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.bg-img{
+  position: relative;
+}
+.changeImg{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 40rpx 0 40rpx 40rpx;
+  font-weight: bold;
+  width: 100%;
+}
+.cu-form-group.cu-up{
+  padding: 12rpx 30rpx;
+}
+.line-image-up{
+  width: 120rpx;
+  height: 120rpx;
+}
+.line-image-up .cuIcon-cameraadd{
+  font-size: 52rpx;
+  position: absolute;
+  color: var(--grey);
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}

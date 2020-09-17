@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">个人中心</view>
+</cu-custom>
+
+<view style="margin-top:{{CustomBar}}px">
+    <view class="create-team" >
+        <view class="create-team-group" >
+            <view>
+                <i></i>
+                <text >
+                    创建战队
+                </text>
+            </view>
+        </view>
+    </view>
+
+    <view class="team-list" >
+        <view class="">战队列表</view>
+        <!-- for -->
+        <view class="team-list-item cf" >
+            <view class="team-img fl" >
+                <image class="" src="../../images/login-logo.png" >
+                    
+                </image>
+            </view>
+            <view class="team-info fl">
+                <view class="" >陽光廣場突擊隊</view>
+                <view class="" >偷搶拐騙無惡不作，就等你的加入</view>
+                <view class="" >
+                    <text class="" ><i></i>51/100</text>
+                    <text class="" ><i></i>51/100</text>
+                    <view class="fr add-icon" >
+                        
+                    </view>
+                </view>
+            </view>
+        </view>
+        
+    </view>
+</view>
