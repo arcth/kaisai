@@ -6,8 +6,9 @@
 <view style="margin-top:{{CustomBar}}px">
     <view class="create-team" >
         <view class="create-team-group" >
-            <view>
-                <i></i>
+            <view class="top-item-inline">
+                <text class="cuIcon-group lg text-white inline-icon">
+                </text>
                 <text >
                     创建战队
                 </text>
@@ -16,22 +17,24 @@
     </view>
 
     <view class="team-list" >
-        <view class="">战队列表</view>
+        <view class="text-top">战队列表</view>
         <!-- for -->
-        <view class="team-list-item cf" >
-            <view class="team-img fl" >
+        <view class="team-list-item cf flex justify-between" >
+            <view class="team-img " >
                 <image class="" src="../../images/login-logo.png" >
                     
                 </image>
             </view>
-            <view class="team-info fl">
-                <view class="" >陽光廣場突擊隊</view>
-                <view class="" >偷搶拐騙無惡不作，就等你的加入</view>
-                <view class="" >
-                    <text class="" ><i></i>51/100</text>
-                    <text class="" ><i></i>51/100</text>
+            <view class="team-info ">
+                <view class="team-name" >陽光廣場突擊隊</view>
+                <view class="" >偷搶拐騙無惡不作，就等你的加入偷搶拐騙無惡不作，就等你的加入偷搶拐騙無惡不作，就等你的加入</view>
+                <view class="flex justify-between bottom-line" >
+                    <text class="" ><text class="cuIcon-peoplefill b-icon lg text-gray"></text>51/100</text>
+                    <text class="" ><text class="cuIcon-likefill lg b-icon text-gray"></text>51/100</text>
                     <view class="fr add-icon" >
-                        
+                        <text class="cuIcon-roundaddfill lg text-gray add-to-team" >
+                            
+                        </text>
                     </view>
                 </view>
             </view>

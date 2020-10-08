@@ -1,0 +1,76 @@
+<cu-custom bgColor="bg-gradual-pink" isCustom="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">个人中心</view>
+</cu-custom>
+
+<view style="margin-top:{{CustomBar}}px;padding-bottom:140rpx">
+    <view class="team-list-item cf flex justify-between shadow shadow-lg" >
+        <view class="team-img " >
+            <image class="" src="../../images/login-logo.png" ></image>
+        </view>
+        <view class="team-info ">
+            <view class="team-name" >陽光廣場突擊隊</view>
+            <view class="" >偷搶拐騙無惡不作，就等你的加入偷搶拐騙無惡不作，就等你的加入偷搶拐騙無惡不作，就等你的加入</view>
+            <view class="flex justify-start bottom-line" >
+                <text class="b-inline" ><text class="cuIcon-peoplefill b-icon lg text-gray"></text>51/100</text>
+                <text class="b-inline" ><text class="cuIcon-likefill lg b-icon text-gray"></text>51/100</text>  
+            </view>
+        </view>
+    </view>
+    <view class="team-record flex justify-between shadow shadow-lg">
+        <view class="" >
+            <view class="text-bold">参战</view>
+            <view class="text-brown">123</view>
+        </view>
+        <view class="" >
+            <view class="text-bold">胜利</view>
+            <view class="text-brown">230</view>
+        </view>
+        <view class="" >
+            <view class="text-bold">积分</view>
+            <view class="text-brown">1w</view>
+        </view>
+    </view>
+    <!-- 战队管理可见 -->
+    <view class="" >
+        <view class="flex justify-between notice-line">
+            <view class="">战队公告</view>
+            <view class="">更多</view>
+        </view>
+        <view class="notice-info">
+           <view  class="over-text" >
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+           </view>
+        </view>
+        <view class="flex justify-between notice-line">
+            <view class="">战队成员</view>
+            
+        </view>
+    </view>
+
+    <!-- 访客可见 -->
+    <view class="" >
+        <view class="flex justify-between notice-line">
+            <view class="">战队加入要求</view>
+        </view>
+        <view class="notice-info height-auto">
+           <view  class="over-text" >
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            奥术大师大所大大所大Asdasd阿萨达打算
+            
+           </view>
+        </view>
+    </view>
+    <!-- 访客可见 -->
+    <button class="join-team">申请加入</button>
+</view>
