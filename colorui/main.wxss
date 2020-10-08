@@ -25,7 +25,7 @@ page {
 	--purple: #6739b6;
 	--mauve: #9c26b0;
 	--pink: #e03997;
-	--brown: #a5673f;
+	--brown: #724F13;
 	--grey: #8799a3;
 	--black: #333333;
 	--darkGray: #666666;
@@ -3444,7 +3444,10 @@ scroll-view.cu-steps .cu-item {
 	background-color: var(--red);
 	color: var(--white);
 }
-
+.bg-liner-blur{
+	background:linear-gradient(to right,#0035FF 0%,#00D8FF 100%);
+	color: var(--white);
+}
 .bg-orange {
 	background-color: var(--orange);
 	color: var(--white);
